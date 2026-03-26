@@ -3,66 +3,154 @@ import Layout from "../../layouts/Layout.astro";
 
 const faqs = [
   {
-    question: "How long does it take to launch a team?",
-    answer: "We typically assemble and launch your dedicated team in just 2 weeks, including brand-specific training."
+    title: "How long does it take to launch a team?",
+    content: "We typically assemble and launch your dedicated team in just 2 weeks, including brand-specific training."
   },
   {
-    question: "How do you handle quality control?",
-    answer: "Our recruiting process has a 2% acceptance rate. Once hired, teams undergo rigorous audits and weekly performance reviews."
+    title: "How do you handle quality control?",
+    content: "Our recruiting process has a 2% acceptance rate. Once hired, teams undergo rigorous audits and weekly performance reviews."
   },
   {
-    question: "Do you offer flexible scaling?",
-    answer: "Yes. Our SurgeProtect model allows you to scale your team up or down with just 24 hours' notice."
+    title: "Do you offer flexible scaling?",
+    content: "Yes. Our SurgeProtect model allows you to scale your team up or down with just 24 hours' notice."
   },
   {
-    question: "What industries do you serve?",
-    answer: "We specialize in technology, e-commerce, healthcare, and finance where complex customer interactions are required."
+    title: "What industries do you serve?",
+    content: "We specialize in technology, e-commerce, healthcare, and finance where complex customer interactions are required."
+  },
+  {
+    title: "What is your pricing structure?",
+    content: "Our pricing is transparent and simple. We offer flat-rate monthly fees per seat, with no hidden setup costs or long-term lock-ins."
   }
 ];
 ---
 
 <Layout title="FAQs — HireDesk">
-  <section class="faqs-hero">
-    <div class="container--smart">
-      <div class="header-small reveal">
+  <section class="operational-steps faq-section">
+    <div class="container--wide">
+      <div class="steps-header reveal">
         <span class="tagline">RESOURCES</span>
-        <h1>Frequently Asked Questions</h1>
+        <h2>Frequently Asked Questions</h2>
         <p>Everything you need to know about scaling your team with HireDesk.</p>
       </div>
 
-      <div class="faqs-list">
-        {faqs.map((faq, i) => (
-          <div class="faq-card reveal">
-            <h3 class="faq-question">{faq.question}</h3>
-            <p class="faq-answer">{faq.answer}</p>
+      <div class="steps-layout">
+        <!-- Left: Interactive Accordion -->
+        <div class="steps-list reveal">
+          {faqs.map((faq, i) => (
+            <div class={`step-item ${i === 0 ? 'active' : ''}`} data-index={i}>
+              <div class="step-header">
+                <span class="step-title">{i + 1}. {faq.title}</span>
+                <div class="step-toggle">
+                  <span class="plus">+</span>
+                  <span class="minus">-</span>
+                </div>
+              </div>
+              <div class="step-content">
+                <div class="content-inner">
+                  <p>{faq.content}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Right: Geometric Graphic -->
+        <div class="steps-graphic reveal">
+          <div class="graphic-container">
+             <svg viewBox="0 0 400 400" class="geometric-svg" id="stepsGeometric">
+                <g class="bg-grid">
+                  {Array.from({ length: 16 }).map((_, i) => {
+                    const row = Math.floor(i / 4);
+                    const col = i % 4;
+                    const x = 70 + col * 85 + (row % 2 === 0 ? 0 : 42);
+                    const y = 80 + row * 75;
+                    
+                    return (
+                      <circle 
+                        cx={x} cy={y} 
+                        r={38} 
+                        class="dot-bg"
+                        fill="none"
+                        stroke="#F1E6CC"
+                        stroke-width="1.8"
+                      />
+                    );
+                  })}
+                </g>
+
+                <!-- Solid Reveal Layer -->
+                <g class="solid-layer">
+                   {Array.from({ length: 16 }).map((_, i) => {
+                    const row = Math.floor(i / 4);
+                    const col = i % 4;
+                    const x = 70 + col * 85 + (row % 2 === 0 ? 0 : 42);
+                    const y = 80 + row * 75;
+                    return (
+                      <circle 
+                        cx={x} cy={y} 
+                        r={38} 
+                        id={`dot-solid-${i}`}
+                        class="dot-solid"
+                        fill="transparent"
+                        stroke="none"
+                      />
+                    );
+                  })}
+                </g>
+
+                <!-- Animated Snakes Layer -->
+                <g class="snake-layer">
+                  {Array.from({ length: 16 }).map((_, i) => {
+                    const row = Math.floor(i / 4);
+                    const col = i % 4;
+                    const cx = 70 + col * 85 + (row % 2 === 0 ? 0 : 42);
+                    const cy = 80 + row * 75;
+                    
+                    return (
+                      <path 
+                        class="step-snake" 
+                        id={`step-snake-${i}`}
+                        d={`M ${cx} ${cy - 38} A 38 38 0 1 1 ${cx} ${cy + 38}`}
+                        stroke="none"
+                        stroke-width="10"
+                        stroke-linecap="round"
+                        fill="none"
+                      />
+                    );
+                  })}
+                </g>
+             </svg>
           </div>
-        ))}
+        </div>
       </div>
 
-      <div class="cta-bottom reveal">
-        <p>Still have questions?</p>
-        <a href="/contact" class="btn btn-black">Get in touch</a>
+      <!-- Centered CTA -->
+      <div class="steps-cta-center reveal">
+        <p style="margin-bottom: 2rem; font-weight: 500;">Still have questions?</p>
+        <a href="/contact" class="btn btn-black">Book a Meeting</a>
       </div>
     </div>
   </section>
 </Layout>
 
 <style>
-  .faqs-hero {
+  .faq-section {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+  }
+  
+  .operational-steps {
     background-color: #FDFCF6;
     padding: 6rem 0;
-    min-height: 80vh;
+    overflow: hidden;
   }
 
-  .container--smart {
-    max-width: 800px;
+  .container--wide {
+    max-width: 1100px;
     margin: 0 auto;
     padding: 0 4rem;
-  }
-
-  .header-small {
-    text-align: center;
-    margin-bottom: 5rem;
   }
 
   .tagline {
@@ -72,70 +160,230 @@ const faqs = [
     color: var(--color-primary);
     text-transform: uppercase;
     display: block;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
 
-  h1 {
-    font-size: clamp(2.2rem, 5vw, 3.2rem);
+  /* Header */
+  .steps-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 4rem;
+  }
+
+  h2 {
+    font-size: clamp(2.2rem, 5vw, 3rem);
     font-weight: 500;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     color: #000;
   }
 
-  .header-small p {
+  .steps-header p {
     font-size: 1.1rem;
     color: #666;
-    max-width: 500px;
-    margin: 0 auto;
+    line-height: 1.5;
   }
 
-  .faqs-list {
+  /* Layout */
+  .steps-layout {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  @media (max-width: 1024px) {
+    .steps-layout { grid-template-columns: 1fr; gap: 4rem; }
+    .steps-graphic { order: -1; }
+  }
+
+  /* Accordion */
+  .steps-list {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
   }
 
-  .faq-card {
+  .step-item {
     background: #fff;
-    padding: 2rem;
+    border: 1.2px solid rgba(0,0,0,0.06); 
     border-radius: 16px;
-    border: 1px solid rgba(0,0,0,0.06);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   }
 
-  .faq-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.04);
+  .step-header {
+    padding: 1.25rem 1.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
-  .faq-question {
-    font-size: 1.15rem;
+  .step-title {
+    font-size: 1.1rem;
     font-weight: 700;
-    margin-bottom: 0.75rem;
     color: #000;
   }
 
-  .faq-answer {
+  .step-toggle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .plus, .minus {
+    position: absolute;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  .step-item.active .plus { opacity: 0; transform: rotate(90deg); }
+  .step-item.active .minus { opacity: 1; transform: rotate(0); }
+  .step-item:not(.active) .minus { opacity: 0; transform: rotate(-90deg); }
+
+  .step-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .step-item.active .step-content {
+    max-height: 300px;
+  }
+
+  .content-inner {
+    padding: 0 1.75rem 1.5rem;
+  }
+
+  .content-inner p {
+    font-size: 1rem;
     line-height: 1.6;
     color: #444;
-    font-size: 1rem;
-    opacity: 0.85;
   }
 
-  .cta-bottom {
-    margin-top: 6rem;
+  /* CTA */
+  .steps-cta-center {
+    margin-top: 5rem;
     text-align: center;
+    width: 100%;
   }
 
-  .cta-bottom p {
-    margin-bottom: 2rem;
-    font-size: 1.1rem;
-    font-weight: 500;
+  /* Graphic */
+  .graphic-container {
+    width: 100%;
+    max-width: 380px;
+    position: relative;
+    margin-left: auto;
   }
 
-  @media (max-width: 768px) {
-    .container--smart { padding: 0 2rem; }
-    .faqs-hero { padding: 4rem 0; }
+  .geometric-svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .step-snake {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .dot-solid {
+    transition: opacity 0.6s ease;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
   }
 </style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initFaqGraphic = () => {
+    const stepColors = ['#FFDC00', '#4DD0E1', '#738AC9', '#5C60A6', '#FF4081'];
+    const items = document.querySelectorAll('.step-item');
+    const snakes = document.querySelectorAll('.step-snake');
+    const solidDots = document.querySelectorAll('.dot-solid');
+
+    // Reveal animations handled globally by Layout.astro, 
+    // but we can add specific section logic if needed.
+
+    snakes.forEach((snake, i) => {
+      const path = snake as SVGPathElement;
+      const length = path.getTotalLength();
+      gsap.set(path, { strokeDasharray: `50 ${length}`, strokeDashoffset: length });
+    });
+
+    gsap.to('.dot-bg', {
+       scale: 1.05,
+       duration: 4,
+       repeat: -1,
+       yoyo: true,
+       stagger: { amount: 1.5, from: "random" },
+       ease: "sine.inOut"
+    });
+
+    const updateGraphic = (idx: number) => {
+      const color = stepColors[idx % stepColors.length];
+
+      items.forEach((item, i) => {
+        if (i === idx) {
+           gsap.to(item, { backgroundColor: `${color}15`, borderColor: color, duration: 0.4 });
+        } else {
+           gsap.to(item, { backgroundColor: '#fff', borderColor: 'rgba(0,0,0,0.06)', duration: 0.4 });
+        }
+      });
+
+      solidDots.forEach((dot, i) => {
+         const isSelected = i % 5 === idx % 5 || (i + idx) % 4 === 0;
+         const path = snakes[i] as SVGPathElement;
+         const length = path.getTotalLength();
+
+         if (isSelected) {
+            gsap.to(dot, { 
+               fill: color, 
+               opacity: 0.15, 
+               scale: 1, 
+               duration: 0.8,
+               ease: "power2.out"
+            });
+            
+            gsap.killTweensOf(path);
+            gsap.set(path, { stroke: color, opacity: 0.95 });
+            gsap.fromTo(path, 
+               { strokeDashoffset: length }, 
+               { strokeDashoffset: -50, duration: 2.5, repeat: -1, ease: "linear", delay: Math.random() * 0.5 }
+            );
+         } else {
+            gsap.to(dot, { fill: 'transparent', opacity: 0, duration: 0.5 });
+            gsap.to(path, { opacity: 0, duration: 0.5 });
+         }
+      });
+    };
+
+    items.forEach((item, i) => {
+      item.addEventListener('click', () => {
+        items.forEach(el => el.classList.remove('active'));
+        item.classList.add('active');
+        updateGraphic(i);
+      });
+    });
+
+    updateGraphic(0);
+  };
+
+  window.addEventListener('load', () => {
+     initFaqGraphic();
+  });
+</script>
