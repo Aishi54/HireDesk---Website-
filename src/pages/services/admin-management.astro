@@ -1,0 +1,77 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ServiceHero from "../../components/ServiceHero.astro";
+import WhatYouGet from "../../components/WhatYouGet.astro";
+import ServiceFeatures from "../../components/ServiceFeatures.astro";
+import ServicesStats from '../../components/ServicesStats.astro';
+import OperationalSteps from '../../components/OperationalSteps.astro';
+import ServicePricing from '../../components/ServicePricing.astro';
+import WhyChoose from '../../components/WhyChoose.astro';
+import CustomerStories from '../../components/CustomerStories.astro';
+import LogoCloud from "../../components/LogoCloud.astro";
+---
+
+<Layout
+  title="Admin Management | Hiredesk - Scale faster with administrative experts"
+>
+  <ServiceHero
+    title="Admin Management"
+    description="Streamline your operations and focus on growth while our dedicated administrative experts handle the details — from scheduling to complex data management."
+    bgColor="#EBE6FF"
+  >
+    <LogoCloud
+      slot="bottom"
+      background="transparent"
+      padding="0 0 3rem"
+      hideTitle={true}
+    />
+  </ServiceHero>
+
+  <WhatYouGet
+    title="Admin Management"
+    description="Hiredesk handles every aspect of your operations across all platforms, empowering your team to focus on strategic growth while we manage the essentials."
+  />
+
+  <ServiceFeatures
+    cards={[
+      {
+        icon: "report",
+        title: "Daily Operations",
+        features: [
+          "Calendar management",
+          "Project coordination",
+          "Email handling",
+        ],
+      },
+      {
+        icon: "report",
+        title: "Data & Reporting",
+        features: ["Database management", "KPI tracking", "CRM updates"],
+      },
+      {
+        icon: "support",
+        title: "Support & Logistics",
+        features: ["Procurement", "Vendor management", "Document preparation"],
+      },
+    ]}
+  />
+
+  <ServicesStats
+    stats={[
+      { number: '24/7', label: '365 days of support' },
+      { number: '45M+', label: 'Conversations' },
+      { number: '97%', label: 'CSAT/eNPS in 2024' },
+      { number: '24/7', label: 'US Onshore + Offshore Coverage' }
+    ]}
+    title="Support You're Looking For"
+    description="Check out our tailored plans and pick the one that works best for you."
+  />
+
+  <WhyChoose />
+
+  <CustomerStories />
+
+  <OperationalSteps />
+
+  <ServicePricing />
+</Layout>

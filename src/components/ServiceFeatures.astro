@@ -1,0 +1,213 @@
+---
+interface Card {
+  icon: string;
+  title: string;
+  features: string[];
+  themeColor?: string;
+}
+
+interface Props {
+  cards: Card[];
+}
+
+const { cards } = Astro.props;
+---
+
+<section class="service-features">
+  <div class="container--wide">
+    <div class="features-grid">
+      {cards.map((card, i) => (
+        <div class="feature-card-wrapper reveal" style={`--delay: ${i * 0.1}s;`}>
+          <!-- The Offset Purple Pattern Background -->
+          <div class="card-pattern"></div>
+          
+          <div class="feature-card">
+            <div class="card-icon-wrap">
+              {card.icon === 'video' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                   <circle cx="12" cy="12" r="10" />
+                   <path d="M10 8l6 4-6 4z" fill="currentColor" />
+                </svg>
+              )}
+              {card.icon === 'report' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                   <rect x="4" y="4" width="16" height="16" rx="2" />
+                   <path d="M8 8h8M8 12h8M8 16h5" />
+                </svg>
+              )}
+              {card.icon === 'support' && (
+                <svg width="24" height="24" viewBox="0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                   <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                </svg>
+              )}
+            </div>
+
+            <h3 class="card-title">{card.title}</h3>
+            
+            <ul class="feature-list">
+              {card.features.map(feature => (
+                <li>{feature}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .service-features {
+    background-color: #FDFCF6;
+    padding: 0 0 80px; /* Compact */
+    position: relative;
+  }
+
+  .container--wide {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem; /* Reduced for a smarter, denser look */
+  }
+
+  .feature-card-wrapper {
+    position: relative;
+    padding: 0 12px 12px 0; /* Reduced offset for 'smart' look */
+  }
+
+  /* The Decorative Pattern behind the card */
+  .card-pattern {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 0;
+    bottom: 0;
+    background-color: #7B61FF;
+    border-radius: 16px;
+    border: 1.25px solid #000;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  /* Large Concentric Circles Pattern */
+  .card-pattern::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background-image: radial-gradient(circle at center, transparent, transparent 50%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.2) 51.5%, transparent 51.5%);
+    background-size: 80px 80px;
+    opacity: 0.4;
+    animation: rotatePattern 60s linear infinite;
+  }
+
+  @keyframes rotatePattern {
+    0% { transform: translate(-25%, -25%) rotate(0deg); }
+    100% { transform: translate(-25%, -25%) rotate(360deg); }
+  }
+
+  .feature-card {
+    position: relative;
+    z-index: 2;
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 2rem 1.5rem; /* More compact padding */
+    height: 100%;
+    border: 1.25px solid #000; /* Distinct black border */
+    box-shadow: 6px 6px 0 rgba(0,0,0,0.03);
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .feature-card-wrapper:hover .feature-card {
+    transform: translate(3px, 3px); /* Move towards the pattern on hover */
+  }
+
+  .card-icon-wrap {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #EBE6FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    color: #000;
+  }
+
+  .card-icon-wrap svg { width: 20px; height: 20px; }
+
+  .card-title {
+    font-size: 1.15rem; /* Scaled down 'Smart' scale */
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .feature-list li {
+    font-size: 0.85rem; /* Denser profile */
+    color: #000;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.4;
+    font-weight: 500;
+  }
+
+  .feature-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5em;
+    width: 4px;
+    height: 4px;
+    background-color: #000;
+    border-radius: 50%;
+  }
+
+  @media (max-width: 1024px) {
+    .features-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  /* Reveal logic */
+  .reveal { opacity: 0; transform: translateY(30px); }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initFeatures = () => {
+    gsap.to('.service-features .reveal', {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: '.service-features',
+        start: 'top 80%'
+      }
+    });
+  };
+
+  window.addEventListener('load', initFeatures);
+</script>

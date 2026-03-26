@@ -1,0 +1,175 @@
+---
+import FloatingGraphicLeft from './FloatingGraphicLeft.astro';
+import FloatingGraphicRight from './FloatingGraphicRight.astro';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { 
+  title, 
+  description
+} = Astro.props;
+---
+
+<section class="what-you-get">
+  <div class="container--wide">
+    <div class="floating-wrap left reveal">
+      <FloatingGraphicLeft />
+    </div>
+
+    <div class="content-center">
+      <div class="label-wrap reveal">
+        <span class="section-label">What You Get</span>
+        <svg class="scribble" width="120" height="24" viewBox="0 0 120 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 18C20 10 60 4 115 12" stroke="#000" stroke-width="2.5" stroke-linecap="round" />
+        </svg>
+      </div>
+
+      <div class="title-wrap reveal">
+         <h2 class="section-title">{title}</h2>
+         <svg class="underline" width="300" height="20" viewBox="0 0 300 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 12Q150 2 290 12" stroke="#000" stroke-width="3" stroke-linecap="round" />
+         </svg>
+      </div>
+
+      <p class="section-desc reveal">{description}</p>
+
+      <div class="cta-wrap reveal">
+        <a href="/get-started" class="btn btn-black-pill">Take Hiredesk for a spin</a>
+      </div>
+    </div>
+
+    <div class="floating-wrap right reveal">
+      <FloatingGraphicRight />
+    </div>
+  </div>
+</section>
+
+<style>
+  .what-you-get {
+    background-color: #FDFCF6;
+    padding: 60px 0 40px; /* Compact */
+    overflow: hidden;
+    position: relative;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+
+  .container--wide {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-height: 480px;
+  }
+
+  .content-center {
+    max-width: 640px;
+    text-align: center;
+    z-index: 10;
+  }
+
+  .label-wrap {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-label {
+    font-size: 0.9rem; /* Scaled down */
+    font-weight: 500;
+    color: #555;
+    text-transform: capitalize;
+  }
+
+  .scribble {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.25;
+    width: 100px;
+  }
+
+  .title-wrap {
+     position: relative;
+     display: inline-block;
+     margin-bottom: 2rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem); /* Refined 'Smart' scale */
+    font-weight: 500;
+    color: #000;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    position: relative;
+    z-index: 2;
+  }
+
+  .underline {
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.1;
+    width: 60%;
+  }
+
+  .section-desc {
+    font-size: 0.95rem; /* Denser, smarter profile */
+    line-height: 1.5;
+    color: #444;
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+    font-weight: 400;
+  }
+
+  .floating-wrap {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 360px;
+    pointer-events: none;
+    opacity: 0.6; /* Subdued */
+  }
+
+  .floating-wrap.left { left: 0; }
+  .floating-wrap.right { right: 0; }
+
+  @media (max-width: 1200px) {
+    .floating-wrap { display: none; }
+    .content-center { max-width: 100%; }
+    .what-you-get { padding: 60px 0; }
+  }
+
+  /* Reveal logic */
+  .reveal { opacity: 0; transform: translateY(30px); }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initAnimations = () => {
+    gsap.to('.what-you-get .reveal', {
+      opacity: 1,
+      y: 0,
+      duration: 1.2,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: '.what-you-get',
+        start: 'top 80%'
+      }
+    });
+  };
+
+  window.addEventListener('load', initAnimations);
+</script>

@@ -1,0 +1,351 @@
+---
+---
+
+<div class="form-wrapper">
+  {/* Modern Progress Bar */}
+  <div class="progress-container">
+    <div class="progress-bar">
+      <div id="progressFill" class="progress-fill"></div>
+    </div>
+  </div>
+
+  {/* Main Form Box */}
+  <div class="form-card">
+    <div id="formSteps" class="steps-box">
+      <!-- Step 1: Service Type -->
+      <div class="step active" data-step="1">
+        <h2 class="step-title">What service are you looking for?</h2>
+        <div class="options-list">
+          <button class="option-pill" data-value="Customer Support">Customer Support</button>
+          <button class="option-pill" data-value="Digital Operations">Digital Operations</button>
+          <button class="option-pill" data-value="Trust & Safety">Trust & Safety</button>
+          <button class="option-pill" data-value="Data & AI">Data & AI</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Team Size -->
+      <div class="step" data-step="2">
+        <h2 class="step-title">How many new team members do you need?</h2>
+        <div class="options-list">
+          <button class="option-pill" data-value="1-2">1–2</button>
+          <button class="option-pill" data-value="3-10">3–10</button>
+          <button class="option-pill" data-value="10-20">10–20</button>
+          <button class="option-pill" data-value="20-100">20–100</button>
+          <button class="option-pill" data-value="100+">100+</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Journey -->
+      <div class="step" data-step="3">
+        <h2 class="step-title">What best describes your journey in outsourcing?</h2>
+        <div class="options-list">
+          <button class="option-pill" data-value="Actively looking to outsource">Actively looking to outsource</button>
+          <button class="option-pill" data-value="Already outsourcing – looking to switch providers">Already outsourcing – looking to switch providers</button>
+          <button class="option-pill" data-value="Already outsourcing – looking to add more capacity">Already outsourcing – looking to add more capacity</button>
+          <button class="option-pill" data-value="Just exploring">Just exploring</button>
+        </div>
+      </div>
+
+      <!-- Step 4: Email Info -->
+      <div class="step" data-step="4">
+        <h2 class="step-title">Enter your professional email</h2>
+        <div class="input-wrap">
+          <input type="email" id="emailInput" placeholder="Enter Business Email" class="email-field" />
+        </div>
+        <div class="form-actions">
+           <button id="finalSubmit" class="btn btn-black">Next</button>
+        </div>
+      </div>
+
+      <!-- Final: Success Message -->
+       <div class="step" data-step="5">
+          <h2 class="step-title">Thank you! Our experts will contact you shortly.</h2>
+          <p class="final-desc">We’ve received your request and are preparing a custom strategy for you.</p>
+          <div class="form-actions">
+             <a href="/" class="btn btn-black">Return Home</a>
+          </div>
+       </div>
+    </div>
+
+    {/* Footer Link Navigation (Back) */}
+    <div class="footer-nav">
+       <button id="backBtn" class="btn-back" style="visibility: hidden;">
+         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+           <path d="M19 12H5M12 19l-7-7 7-7"/>
+         </svg>
+         Back
+       </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .form-wrapper {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  /* Progress Bar Styling */
+  .progress-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 12px;
+    background: #FFF9E6;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(0,0,0,0.03);
+  }
+
+  .progress-fill {
+    width: 25%;
+    height: 100%;
+    background: linear-gradient(90deg, #4DD0E1 0%, #66BB6A 50%, #5C60A6 100%);
+    border-radius: 6px;
+    transition: width 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  /* Form Card Styling - Tightened Hugo Yellow */
+  .form-card {
+    background: #FEE775;
+    border-radius: 24px;
+    padding: 3rem 2rem 2rem;
+    min-height: 420px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+  }
+
+  @media (max-width: 768px) {
+    .form-card { padding: 2.5rem 1.5rem 1.5rem; min-height: 380px; }
+  }
+
+  .steps-box {
+    position: relative;
+    width: 100%;
+    min-height: 320px; /* Fixed height for stability */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step {
+    position: absolute;
+    width: 100%;
+    transform: translateX(100%);
+    opacity: 0;
+    pointer-events: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step.active {
+    position: relative;
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .step-title {
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 1.5rem; /* TIGHTENED */
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+  }
+
+  /* Option Pills */
+  .options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* TIGHTENED */
+    width: 100%;
+    max-width: 580px;
+  }
+
+  .option-pill {
+    width: 100%;
+    background: #FFFCF1;
+    color: #000;
+    padding: 1.15rem; /* REFINED */
+    border-radius: 100px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border: 1.5px solid transparent;
+    font-family: var(--font-main);
+  }
+
+  .option-pill:hover {
+    background: #fff;
+    border: 2px solid #000; /* MATCH REFERENCE */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  }
+
+  /* Email Field */
+  .input-wrap {
+    width: 100%;
+    max-width: 580px;
+    margin-bottom: 1.5rem; /* TIGHTENED */
+  }
+
+  .email-field {
+    width: 100%;
+    background: #FFFCF1;
+    color: #000;
+    padding: 1.1rem 2rem; /* TIGHTENED */
+    border-radius: 100px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    border: 1px solid rgba(0,0,0,0.05);
+    outline: none;
+    text-align: center;
+  }
+
+  .email-field:focus {
+    background: #fff;
+    box-shadow: 0 0 0 2px #000;
+  }
+
+  /* Actions */
+  .form-actions {
+    margin-top: 0.5rem;
+  }
+
+  .footer-nav {
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    padding-top: 1.5rem; /* TIGHTENED */
+  }
+
+  .btn-back {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #F4DF5B;
+    border: none;
+    padding: 0.8rem 1.75rem;
+    border-radius: 100px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn-back:hover {
+    background: #EED739;
+    transform: translateX(-5px);
+  }
+
+  .final-desc {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+
+  const formSteps = document.querySelectorAll('.step');
+  const progressFill = document.getElementById('progressFill');
+  const backBtn = document.getElementById('backBtn' as any);
+  const optionButtons = document.querySelectorAll('.option-pill');
+  const finalBtn = document.getElementById('finalSubmit');
+
+  let currentStepIndex = 0;
+  const formData: Record<string, any> = {};
+
+  const goToStep = (targetIndex: number) => {
+    if (targetIndex < 0 || targetIndex >= formSteps.length) return;
+
+    const currentStep = formSteps[currentStepIndex];
+    const targetStep = formSteps[targetIndex];
+
+    // Direction logic
+    const direction = targetIndex > currentStepIndex ? 1 : -1;
+
+    // Timeline for transition
+    const tl = gsap.timeline();
+
+    tl.to(currentStep, {
+      opacity: 0,
+      x: -100 * direction,
+      duration: 0.4,
+      ease: "power2.in",
+      onComplete: () => {
+        currentStep.classList.remove('active');
+        targetStep.classList.add('active');
+      }
+    });
+
+    tl.fromTo(targetStep, 
+      { opacity: 0, x: 100 * direction },
+      { opacity: 1, x: 0, duration: 0.5, ease: "power2.out" }
+    );
+
+    // Update progress
+    currentStepIndex = targetIndex;
+    const progressPercent = ((currentStepIndex + 1) / (formSteps.length - 1)) * 100;
+    if (progressFill) progressFill.style.width = `${Math.min(100, progressPercent)}%`;
+
+    // Back button visibility
+    if (backBtn) {
+      if (currentStepIndex > 0 && currentStepIndex < formSteps.length - 1) {
+        backBtn.style.visibility = 'visible';
+      } else {
+        backBtn.style.visibility = 'hidden';
+      }
+    }
+  };
+
+  // Option selection
+  optionButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const value = (e.currentTarget as HTMLElement).dataset.value;
+      const step = (e.currentTarget as HTMLElement).closest('.step');
+      const stepIndex = parseInt((step as HTMLElement).dataset.step as string);
+      
+      formData[`step-${stepIndex}`] = value;
+      
+      goToStep(currentStepIndex + 1);
+    });
+  });
+
+  // Final step
+  finalBtn?.addEventListener('click', () => {
+    const email = (document.getElementById('emailInput') as HTMLInputElement).value;
+    if (email && email.includes('@')) {
+       formData['email'] = email;
+       console.log('Form Submitted:', formData);
+       goToStep(currentStepIndex + 1);
+    } else {
+       alert('Please enter a valid business email.');
+    }
+  });
+
+  // Back button
+  backBtn?.addEventListener('click', () => {
+    goToStep(currentStepIndex - 1);
+  });
+</script>

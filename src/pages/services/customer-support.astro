@@ -1,0 +1,77 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ServiceHero from "../../components/ServiceHero.astro";
+import WhatYouGet from "../../components/WhatYouGet.astro";
+import ServiceFeatures from "../../components/ServiceFeatures.astro";
+import ServicesStats from '../../components/ServicesStats.astro';
+import OperationalSteps from '../../components/OperationalSteps.astro';
+import WhyChoose from '../../components/WhyChoose.astro';
+import CustomerStories from '../../components/CustomerStories.astro';
+import ServicePricing from '../../components/ServicePricing.astro';
+import LogoCloud from "../../components/LogoCloud.astro";
+---
+
+<Layout
+  title="Customer Support | Hiredesk - World-class support teams built for growth"
+>
+  <ServiceHero
+    title="Customer Support"
+    description="Build fully managed teams who embody your voice, align with your values, and bring deep expertise to every single customer interaction."
+    bgColor="#EBE6FF"
+  >
+    <LogoCloud
+      slot="bottom"
+      background="transparent"
+      padding="0 0 3rem"
+      hideTitle={true}
+    />
+  </ServiceHero>
+
+  <WhatYouGet
+    title="Customer Support"
+    description="Hiredesk handles every aspect of your customer journey across all platforms, empowering your brand to create a lasting connection through human-led expertise."
+  />
+
+  <ServiceFeatures
+    cards={[
+      {
+        icon: "video",
+        title: "Inbound Support",
+        features: ["Live chat 24/7", "Email ticketing", "Phone escalations"],
+      },
+      {
+        icon: "report",
+        title: "Success & Growth",
+        features: [
+          "Proactive outreach",
+          "Upsell coordination",
+          "Feedback loops",
+        ],
+      },
+      {
+        icon: "support",
+        title: "Technical Care",
+        features: ["Troubleshooting", "Bug reporting", "User onboarding"],
+      },
+    ]}
+  />
+
+  <ServicesStats
+    stats={[
+      { number: '24/7', label: '365 days of support' },
+      { number: '45M+', label: 'Conversations' },
+      { number: '97%', label: 'CSAT/eNPS in 2024' },
+      { number: '24/7', label: 'US Onshore + Offshore Coverage' }
+    ]}
+    title="Support You're Looking For"
+    description="Check out our tailored plans and pick the one that works best for you."
+  />
+
+  <WhyChoose />
+
+  <CustomerStories />
+
+  <OperationalSteps />
+
+  <ServicePricing />
+</Layout>

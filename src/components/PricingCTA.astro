@@ -1,0 +1,139 @@
+---
+---
+
+<section class="pricing-cta">
+  <div class="container container--smart">
+    <div class="cta-banner reveal">
+       <div class="banner-top">
+          <h2 class="banner-title">
+             Your Dream Team Starts Here
+             <span class="icon-arrow-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                   <path d="M12 19V5M5 12l7 7 7-7"/>
+                </svg>
+             </span>
+          </h2>
+       </div>
+       <div class="banner-bottom">
+          <p class="banner-desc">
+             Hiredesk integrates into your workflows across all communication channels to deliver fast, consistent support from onboarding to retention. Connect with one of our solutions designers to build a custom team plan for your operational needs.
+          </p>
+          <div class="actions">
+             <a href="/get-started" class="btn btn-black-pill">Get Started</a>
+          </div>
+       </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing-cta {
+    padding: 100px 0;
+    background-color: var(--bg-primary);
+  }
+
+  .container--smart {
+     max-width: 1200px;
+     margin: 0 auto;
+     padding: 0 4rem;
+  }
+
+  .cta-banner {
+    background: #fff;
+    border: 1.5px solid rgba(0,0,0,0.06);
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.03);
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .banner-top {
+    background-color: #A9ECF3;
+    padding: 3.5rem 2rem;
+    text-align: center;
+    border-bottom: 1.5px solid rgba(0,0,0,0.06);
+  }
+
+  .banner-title {
+    font-size: clamp(2.5rem, 4vw, 3.8rem);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    color: #000;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .icon-arrow-box {
+    width: 60px;
+    height: 60px;
+    background: #000;
+    color: #fff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transform: rotate(0deg);
+  }
+
+  @media (max-width: 768px) {
+    .banner-title { flex-direction: column; text-align: center; }
+    .icon-arrow-box { width: 50px; height: 50px; }
+  }
+
+  .banner-bottom {
+    padding: 4rem 8rem 5rem;
+    text-align: center;
+  }
+
+  @media (max-width: 1024px) {
+    .banner-bottom { padding: 3rem 2rem 4rem; }
+  }
+
+  .banner-desc {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: #333;
+    margin-bottom: 3.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 500;
+  }
+
+  /* Actions */
+  .actions {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Reveal logic */
+  .reveal { opacity: 0; transform: translateY(30px); }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initPricingCTA = () => {
+    gsap.to('.cta-banner.reveal', {
+      opacity: 1,
+      y: 0,
+      duration: 1.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: '.cta-banner',
+        start: 'top 85%'
+      }
+    });
+  };
+
+  window.addEventListener('load', initPricingCTA);
+</script>

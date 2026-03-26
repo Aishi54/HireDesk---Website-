@@ -1,0 +1,195 @@
+---
+
+---
+
+<section class="about-culture" id="culture">
+  <div class="container--smart">
+    <!-- Section 1: Powerhouse (Left Text, Right Image) -->
+    <div class="culture-row reveal">
+      <div class="culture-text">
+        <h2 class="culture-title">
+          We’re a powerhouse with the brightest minds.
+        </h2>
+        <p class="culture-desc">
+          At Hiredesk, only the most qualified 4-year and advanced degree
+          holders make it onto your live-mandates. With an acceptance rate of
+          2%, our recruitment process is on par with Harvard.
+        </p>
+      </div>
+      <div class="culture-visual">
+        <div class="circle-frame" style="--border-color: #4DD0E1;">
+          <img src="/assets/sarah-sakara.png" alt="Brightest Minds" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: Collaboration (Left Image, Right Text) -->
+    <div class="culture-row reverse reveal">
+      <div class="culture-text">
+        <h2 class="culture-title">Collaboration is our deepest commitment.</h2>
+        <p class="culture-desc">
+          We’re your thought partner + sounding board. 365/24/7, we channel all
+          our energy, past successes, and collective expertise toward your
+          success.
+        </p>
+      </div>
+      <div class="culture-visual">
+        <div class="circle-frame" style="--border-color: #66BB6A;">
+          <img src="/assets/male-botm.png" alt="Collaboration" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: Teams that last (Left Text, Right Image) -->
+    <div class="culture-row reveal">
+      <div class="culture-text">
+        <h2 class="culture-title">We build teams that last.</h2>
+        <p class="culture-desc">
+          We don’t believe in revolving doors. Our Sphere methodology helps us
+          build teams around long-term alignment. On average, our clients have
+          partnered with the same team for 3.5 years and counting.
+        </p>
+        <div class="cta-wrap">
+          <a href="#" class="btn btn-black-pill">Take Hiredesk for a spin</a>
+        </div>
+      </div>
+      <div class="culture-visual">
+        <div class="circle-frame" style="--border-color: #5C60A6;">
+          <img src="/assets/female-faire.png" alt="Teams that last" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-culture {
+    padding: 6rem 0; /* Reduced from 140px */
+    background-color: var(--bg-primary);
+    overflow: hidden;
+  }
+
+  .container--smart {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 80px; /* Tighter gap between sections */
+  }
+
+  .culture-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 80px;
+  }
+
+  .culture-row.reverse {
+    direction: rtl; /* Flip the grid */
+  }
+
+  .culture-row.reverse .culture-text,
+  .culture-row.reverse .culture-desc,
+  .culture-row.reverse .culture-title {
+    direction: ltr; /* Ensure text remains LTR */
+  }
+
+  @media (max-width: 1024px) {
+    .culture-row,
+    .culture-row.reverse {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 40px;
+      direction: ltr;
+    }
+  }
+
+  .culture-title {
+    font-size: clamp(1.5rem, 3.2vw, 2rem); /* Matching the new Hero title scale */
+    font-weight: 500;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+    color: #000;
+  }
+
+  .culture-desc {
+    font-size: 0.9rem; /* Denser, smarter profile */
+    line-height: 1.5;
+    color: #444;
+    max-width: 460px;
+    font-weight: 400;
+  }
+
+  @media (max-width: 1024px) {
+    .culture-desc {
+      margin: 0 auto;
+    }
+  }
+
+  .cta-wrap {
+    margin-top: 2rem;
+  }
+
+  /* Circular Visuals */
+  .culture-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .circle-frame {
+    width: 100%;
+    max-width: 400px; /* Scaled down for compact frame */
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: 8px solid var(--border-color); /* Thinner border for 'smart' look */
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.05); /* Softer shadow */
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .circle-frame:hover {
+    transform: scale(1.03) translateY(-8px);
+  }
+
+  .circle-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Reveal logic */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initAboutCulture = () => {
+    const rows = document.querySelectorAll(".culture-row");
+
+    rows.forEach((row, i) => {
+      gsap.to(row, {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: row,
+          start: "top 80%",
+        },
+      });
+    });
+  };
+
+  window.addEventListener("load", initAboutCulture);
+</script>

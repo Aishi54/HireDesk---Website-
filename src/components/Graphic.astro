@@ -1,0 +1,216 @@
+---
+interface Props {
+  themeColor?: string;
+  opacity?: number;
+  size?: number;
+}
+
+const { 
+  themeColor,
+  opacity = 0.12,
+  size = 480
+} = Astro.props;
+---
+
+<div class="graphic-wrapper" style={size ? `width: ${size}px; height: ${size}px;` : ''}>
+  {/* Decorative Glows */}
+  <div class="blob blob-purple" style={themeColor ? `background: ${themeColor}` : ''}></div>
+  <div class="blob blob-blue" style={themeColor ? `background: ${themeColor}; opacity: 0.05` : ''}></div>
+
+  <div class="circles-grid" id="circlesGrid">
+    <svg width="650" height="650" viewBox="0 0 650 650" fill="none" xmlns="http://www.w3.org/2000/svg" class="hero-svg">
+      <defs>
+        {Array.from({ length: 24 }).map((_, i) => {
+          const row = Math.floor(i / 4);
+          const col = i % 4;
+          const x = 140 + col * 120 + (row % 2 === 0 ? 0 : 60);
+          const y = 120 + row * 105;
+          return (
+            <clipPath id={`nodeClip-${i}`}>
+              <circle cx={x} cy={y} r="54" />
+            </clipPath>
+          );
+        })}
+
+        {/* Snake Gradient */}
+        <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#8E24AA" />
+          <stop offset="100%" stop-color="#5C60A6" />
+        </linearGradient>
+        <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#03A9F4" />
+          <stop offset="100%" stop-color="#738AC9" />
+        </linearGradient>
+      </defs>
+
+      <!-- Background Circles (Premium Honeycomb) -->
+      <g class="bg-grid" opacity={opacity} stroke="#000">
+        {Array.from({ length: 24 }).map((_, i) => {
+          const row = Math.floor(i / 4);
+          const col = i % 4;
+          const x = 140 + col * 120 + (row % 2 === 0 ? 0 : 60);
+          const y = 120 + row * 105;
+          return <circle cx={x} cy={y} r={56} stroke-width="2.5" />;
+        })}
+      </g>
+
+      <!-- Simultaneous Glow Snakes -->
+      <g class="snake-layer">
+        {Array.from({ length: 24 }).map((_, i) => {
+          const row = Math.floor(i / 4);
+          const col = i % 4;
+          const cx = 140 + col * 120 + (row % 2 === 0 ? 0 : 60);
+          const cy = 120 + row * 105;
+          
+          // Use themeColor if provided, otherwise cycle through default gradients/colors
+          const colors = ['url(#purpleGrad)', 'url(#blueGrad)', '#4DD0E1', '#FFDC00'];
+          const color = themeColor ? themeColor : colors[i % colors.length];
+          
+          return (
+            <path 
+              class="moving-snake premium" 
+              id={`snake-${i}`} 
+              stroke={color}
+              d={`M ${cx} ${cy - 56} A 56 56 0 1 1 ${cx} ${cy + 56}`}
+              style={themeColor ? `opacity: ${i % 3 === 0 ? 0.8 : 0.3}` : ''}
+            />
+          );
+        })}
+      </g>
+
+      <!-- Sequential Premium Reveals -->
+      <g class="talent-reveal-layer">
+         {Array.from({ length: 24 }).map((_, i) => {
+          const row = Math.floor(i / 4);
+          const col = i % 4;
+          const x = 140 + col * 120 + (row % 2 === 0 ? 0 : 60);
+          const y = 120 + row * 105;
+          return (
+            <g class={`node-content node-${i}`} opacity="0" id={`node-${i}`} transform-origin={`${x} ${y}`}>
+              <circle cx={x} cy={y} r="54" fill="white" stroke="#000" stroke-width="1.5" />
+              <image 
+                class="node-img" 
+                href="/assets/female-faire.png" 
+                x={x - 56} 
+                y={y - 56} 
+                width="112" 
+                height="112" 
+                clip-path={`url(#nodeClip-${i})`} 
+              />
+              {/* Glassy Overlay Ring */}
+              <circle cx={x} cy={y} r="54" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="8" opacity="0.3" />
+            </g>
+          );
+         })}
+      </g>
+    </svg>
+  </div>
+</div>
+
+<style>
+  .graphic-wrapper {
+    position: relative;
+    width: 320px; /* Reduced from 480px */
+    height: 320px; /* Reduced from 480px */
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .blob {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.1;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .blob-purple { background: #5C60A6; top: 10%; left: 0; }
+  .blob-blue { background: #1AC4D3; bottom: 10%; right: 0; }
+
+  .hero-svg { width: 100%; height: 100%; overflow: visible; z-index: 2; }
+
+  .moving-snake {
+    fill: none;
+    stroke-width: 13;
+    stroke-linecap: round;
+    opacity: 0;
+    filter: drop-shadow(0 0 10px rgba(0,0,0,0.2));
+  }
+
+  @media (max-width: 1024px) {
+    .graphic-wrapper { width: 100%; height: auto; max-width: 480px; }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+
+  const assets = [
+    '/assets/female-faire.png',
+    '/assets/male-botm.png',
+    '/assets/sarah-sakara.png'
+  ];
+
+  const initGraphic = () => {
+    // 1. Simultaneous High-End Snakes
+    const snakes = document.querySelectorAll('.moving-snake');
+    snakes.forEach((snake, i) => {
+       const path = snake as SVGPathElement;
+       const length = path.getTotalLength();
+       // Longer snake (110) for more visibility
+       gsap.set(path, { strokeDasharray: `110 ${length}`, strokeDashoffset: length });
+
+       gsap.to(path, {
+          opacity: 0.9,
+          strokeDashoffset: -110,
+          duration: 3 + Math.random() * 2,
+          repeat: -1,
+          ease: "power2.inOut",
+          delay: Math.random() * 4
+       });
+    });
+
+    // 2. Sequential "WOW" Revealed Tour
+    const revealNode = async (idx: number) => {
+       const node = document.querySelector(`#node-${idx}`);
+       const img = node?.querySelector('.node-img');
+       if (!node || !img) return;
+
+       img.setAttribute('href', assets[idx % assets.length]);
+
+       await gsap.timeline()
+         // Scale and Fade with elegant easing
+         .fromTo(node, 
+           { opacity: 0, scale: 0.4, rotateY: -45 }, 
+           { opacity: 1, scale: 1, rotateY: 0, duration: 1, ease: "back.out(1.8)" }
+         )
+         .to(node, { 
+           opacity: 0, 
+           scale: 0.25, 
+           duration: 0.8, 
+           delay: 2, 
+           ease: "power3.in" 
+         });
+       
+       revealNode((idx + 1) % 24);
+    };
+
+    revealNode(0);
+
+    // Subtle breathing on blobs
+    gsap.to('.blob', {
+       scale: 1.2,
+       duration: 5,
+       repeat: -1,
+       yoyo: true,
+       stagger: 0.5,
+       ease: "sine.inOut"
+    });
+  };
+
+  window.addEventListener('load', initGraphic);
+</script>

@@ -1,0 +1,393 @@
+---
+interface Story {
+  image: string;
+  headline: string;
+  color: string;
+  quote: string;
+  author: string;
+  role: string;
+}
+
+const stories: Story[] = [
+  {
+    image: '/assets/case-study-1.jpg',
+    headline: 'Driving Retention for a High-Growth Subscription Brand',
+    color: '#EBE6FF',
+    quote: 'Hiredesk understood the nuances of our business and helped us turn customer feedback into meaningful improvements.',
+    author: 'Jeremy D.',
+    role: 'Customer Experience Manager'
+  },
+  {
+    image: '/assets/case-study-2.jpg',
+    headline: 'Supporting 10,000+ Inquiries for a Beauty Disruptor',
+    color: '#FFDB5B',
+    quote: "hiredesk brought real expertise and flexibility to our operation. They helped us improve response times and satisfaction.",
+    author: 'Anna G.',
+    role: 'Customer Experience Leader'
+  },
+  {
+     image: '/assets/case-study-3.jpg',
+     headline: 'Building Trust for a Parents-for-Parents Marketplace',
+     color: '#F9C5BD',
+     quote: "The team truly understands and reflected the care we strive to offer. We saw a measurable lift in support sentiment.",
+     author: 'Kelsey M.',
+     role: 'Customer Support Lead'
+  },
+  {
+    image: '/assets/case-study-4.jpg',
+    headline: 'Scaling a 5,000-Ticket Backlog in 14 Days',
+    color: '#BEE7F5',
+    quote: "We needed to scale fast without sacrificing quality. Hiredesk delivered results when we were at a breaking point.",
+    author: 'Mark S.',
+    role: 'Operations Director'
+  }
+];
+---
+
+<section class="customer-stories">
+  <div class="container">
+    <div class="header text-center">
+      <h2 class="section-title reveal">
+        Customer <span class="accent-underline">Stories</span>
+      </h2>
+    </div>
+
+    <div class="stories-wrapper">
+      <div class="stories-track">
+        {stories.map((story, i) => (
+          <div class="story-card" data-index={i}>
+            <div class="card-inner">
+               <div class="card-image">
+                  <img src={story.image} alt={story.author} />
+               </div>
+               <div class="card-headline" style={`background-color: ${story.color}`}>
+                  <h4>{story.headline}</h4>
+               </div>
+               <div class="card-body">
+                  <p class="quote">“ {story.quote} ”</p>
+                  <div class="author-meta">
+                     <span class="author-name">{story.author}</span>
+                     <span class="author-role">{story.role}</span>
+                  </div>
+                  <a href="#" class="btn btn-black-pill btn-sm">Read the Full Story</a>
+               </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Navigation Arrows (Centered properly) -->
+      <div class="stories-nav-wrap">
+        <div class="stories-nav">
+          <button class="nav-btn prev" aria-label="Previous">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          </button>
+          <div class="stories-dots">
+            {stories.map((_, i) => (
+              <div class="dot" data-index={i}></div>
+            ))}
+          </div>
+          <button class="nav-btn next" aria-label="Next">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .customer-stories {
+    background-color: #fff;
+    padding: 60px 0 100px; /* Compact */
+    overflow: hidden;
+    position: relative;
+    z-index: 5;
+  }
+
+  .container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
+
+  .header { 
+    margin-bottom: 4rem; /* Reduced space */
+    position: relative;
+    z-index: 50; 
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem); /* Matching page scale */
+    font-weight: 500;
+    color: #000;
+    letter-spacing: -0.03em;
+  }
+
+  .accent-underline {
+    position: relative;
+    display: inline-block;
+  }
+
+  .accent-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: url("data:image/svg+xml,%3Csvg width='200' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 10 Q100 2 195 10' stroke='black' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center;
+    background-size: contain;
+    opacity: 0.6;
+  }
+
+  /* Slider Logic (Very Minimal Size) */
+  .stories-wrapper {
+    position: relative;
+    height: 680px; /* Increased for vertical clearance */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stories-track {
+    position: relative;
+    width: 100%;
+    height: 580px; /* Increased for vertical clearance */
+    perspective: 1500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+  }
+
+  .story-card {
+    position: absolute;
+    width: 280px; /* Minimal card width */
+    background: #fff;
+    border-radius: 16px;
+    border: 1.5px solid #000;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(100%) scale(0.7);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .story-card.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0) scale(1);
+    z-index: 100;
+    pointer-events: all;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+  }
+
+  .story-card.prev-card {
+    opacity: 0.3;
+    visibility: visible;
+    transform: translateX(-80%) scale(0.75);
+    z-index: 5;
+    pointer-events: all;
+  }
+
+  .story-card.next-card {
+    opacity: 0.3;
+    visibility: visible;
+    transform: translateX(80%) scale(0.75);
+    z-index: 5;
+    pointer-events: all;
+  }
+
+  .card-inner { padding: 0.5rem; }
+
+  .card-image {
+    width: 100%;
+    height: 140px; /* Minimal image height */
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+    background-color: #f5f5f5;
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .card-headline {
+    padding: 1.2rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.2rem;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+  }
+
+  .card-headline h4 {
+    font-size: 1rem; /* Minimal title */
+    font-weight: 700;
+    line-height: 1.25;
+    color: #000;
+    letter-spacing: -0.01em;
+  }
+
+  .card-body { padding: 0 1rem 1.2rem; text-align: left; }
+
+  .quote {
+    font-size: 0.85rem; /* Minimal text */
+    line-height: 1.4;
+    color: #333;
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+  }
+
+  .author-meta { margin-bottom: 1.5rem; display: flex; flex-direction: column; }
+  .author-name { font-weight: 700; font-size: 0.95rem; color: #000; }
+  .author-role { font-size: 0.8rem; color: #666; font-weight: 500; }
+
+  .btn-sm { padding: 0.8rem 1.5rem; font-size: 0.85rem; }
+
+  /* Nav Wrap */
+  .stories-nav-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    position: relative;
+    z-index: 200;
+  }
+
+  .stories-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .nav-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: #FFDC00;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .nav-btn:hover { transform: scale(1.1); }
+  .stories-dots { display: flex; gap: 0.6rem; }
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1.5px solid #000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .dot.active { background-color: #000; }
+
+  .reveal { opacity: 0; transform: translateY(30px); }
+</style>
+
+<script>
+  import gsap from 'gsap';
+
+  class StorySlider {
+    wrapper: HTMLElement | null;
+    cards: HTMLElement[];
+    dots: HTMLElement[];
+    prevBtn: HTMLElement | null;
+    nextBtn: HTMLElement | null;
+    currentIndex: number;
+
+    constructor() {
+      this.wrapper = document.querySelector('.customer-stories');
+      if (!this.wrapper) {
+        this.cards = [];
+        this.dots = [];
+        this.prevBtn = null;
+        this.nextBtn = null;
+        this.currentIndex = 0;
+        return;
+      }
+
+      this.cards = Array.from(this.wrapper.querySelectorAll('.story-card'));
+      this.dots = Array.from(this.wrapper.querySelectorAll('.dot'));
+      this.prevBtn = this.wrapper.querySelector('.prev');
+      this.nextBtn = this.wrapper.querySelector('.next');
+      this.currentIndex = 0;
+
+      this.init();
+    }
+
+    init() {
+      this.updateClasses();
+      this.addEventListeners();
+    }
+
+    updateClasses() {
+      this.cards.forEach((card: HTMLElement, i: number) => {
+        card.classList.remove('active', 'prev-card', 'next-card');
+        this.dots[i].classList.remove('active');
+
+        if (i === this.currentIndex) {
+          card.classList.add('active');
+          this.dots[i].classList.add('active');
+        } else if (i === (this.currentIndex - 1 + this.cards.length) % this.cards.length) {
+          card.classList.add('prev-card');
+        } else if (i === (this.currentIndex + 1) % this.cards.length) {
+          card.classList.add('next-card');
+        }
+      });
+    }
+
+    next() {
+      this.currentIndex = (this.currentIndex + 1) % this.cards.length;
+      this.updateClasses();
+    }
+
+    prev() {
+      this.currentIndex = (this.currentIndex - 1 + this.cards.length) % this.cards.length;
+      this.updateClasses();
+    }
+
+    addEventListeners() {
+      this.nextBtn?.addEventListener('click', () => this.next());
+      this.prevBtn?.addEventListener('click', () => this.prev());
+      this.dots.forEach((dot: HTMLElement, i: number) => {
+        dot.addEventListener('click', () => {
+          this.currentIndex = i;
+          this.updateClasses();
+        });
+      });
+      this.cards.forEach((card: HTMLElement, i: number) => {
+        card.addEventListener('click', () => {
+          if (card.classList.contains('prev-card') || card.classList.contains('next-card')) {
+            this.currentIndex = i;
+            this.updateClasses();
+          }
+        });
+      });
+    }
+  }
+
+  window.addEventListener('load', () => {
+    new StorySlider();
+    gsap.to('.customer-stories .reveal', {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      stagger: 0.15,
+      scrollTrigger: {
+        trigger: '.customer-stories',
+        start: 'top 80%'
+      }
+    });
+  });
+</script>

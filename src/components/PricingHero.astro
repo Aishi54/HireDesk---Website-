@@ -1,0 +1,230 @@
+---
+---
+
+<section class="pricing-hero">
+  <div class="container--smart">
+    <div class="hero-banner-outer">
+      <div class="hero-banner">
+        <!-- Floating Avatars Architecture -->
+        <div class="avatar-float av-1 reveal"><div class="avatar-ring" style="border-color: #4CC9F0;"><img src="/assets/sarah-sakara.png" alt="Team 1" /></div><span class="badge icon-slack"></span></div>
+        <div class="avatar-float av-2 reveal"><div class="avatar-ring" style="border-color: #7209B7;"><img src="/assets/male-botm.png" alt="Team 2" /></div><span class="badge icon-mail"></span></div>
+        <div class="avatar-float av-3 reveal"><div class="avatar-ring" style="border-color: #F72585;"><img src="/assets/female-faire.png" alt="Team 3" /></div><span class="badge icon-shop"></span></div>
+
+        <div class="hero-content">
+          <h1 class="hero-title reveal">Customer Support<br/>Outsourcing</h1>
+          <div class="cta-wrap reveal">
+             <a href="/get-started" class="btn-black-pill">Build your team</a>
+          </div>
+        </div>
+
+        <!-- Floating Avatars Right -->
+        <div class="avatar-float av-4 reveal"><div class="avatar-ring" style="border-color: #4361EE;"><img src="/assets/clark-bland.png" alt="Team 4" /></div><span class="badge icon-zendesk"></span></div>
+        <div class="avatar-float av-5 reveal"><div class="avatar-ring" style="border-color: #4895EF;"><img src="/assets/ashley-petersen.png" alt="Team 5" /></div><span class="badge icon-phone"></span></div>
+        <div class="avatar-float av-6 reveal"><div class="avatar-ring" style="border-color: #4CC9F0;"><img src="/assets/sarah-sakara.png" alt="Team 6" /></div><span class="badge icon-chat"></span></div>
+        
+        <!-- Gradient strip at bottom -->
+        <div class="banner-gradient"></div>
+      </div>
+    </div>
+
+    <!-- Sub-Headline Section -->
+    <div class="hero-usp reveal">
+        <h2 class="usp-title">Outsourced Support, In-House Feel ❤️</h2>
+        <p class="usp-desc">
+          Never miss a ping again. We build fully managed teams who embody your voice, align with your values, and bring deep expertise to every customer interaction.
+        </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing-hero {
+    padding: 100px 0 100px;
+    background-color: var(--bg-primary);
+    overflow: hidden;
+  }
+
+  .container--smart {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .hero-banner-outer {
+    padding: 0 1.5rem;
+    margin-bottom: 8rem;
+  }
+
+  .hero-banner {
+    background-color: var(--bg-secondary);
+    border-radius: 60px;
+    padding: 140px 2rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 520px;
+    overflow: hidden;
+  }
+
+  .banner-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(180deg, rgba(248, 244, 225, 0) 0%, rgba(186, 230, 253, 0.4) 33%, rgba(254, 202, 202, 0.4) 66%, rgba(209, 250, 229, 0.4) 100%);
+    opacity: 0.8;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    text-align: center;
+    position: relative;
+    z-index: 10;
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 8vw, 4.5rem); /* Using ~4.5rem for Hugo's 85px H1 with 19px base */
+    font-weight: 400; /* Minimal look matches HugoInc */
+    line-height: 1;
+    color: #000;
+    letter-spacing: -0.04em;
+    margin-bottom: 2.5rem;
+  }
+
+  .btn-black-pill {
+    background: #000;
+    color: #fff;
+    padding: 1.2rem 2.8rem;
+    border-radius: 100px;
+    font-weight: 500;
+    font-size: 1.1rem;
+    display: inline-block;
+    transition: var(--transition);
+    text-decoration: none;
+  }
+
+  .btn-black-pill:hover {
+    transform: scale(1.05);
+    background: #222;
+  }
+
+  /* Avatars with Rings */
+  .avatar-float {
+    position: absolute;
+    z-index: 5;
+  }
+
+  .avatar-ring {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 8px solid #fff;
+    padding: 2px;
+    background: #fff;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+
+  .avatar-ring img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .badge {
+    position: absolute;
+    top: 5px;
+    right: -5px;
+    width: 36px;
+    height: 36px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    padding: 6px;
+    z-index: 10;
+  }
+
+  /* Specific Positions */
+  .av-1 { left: 8%; top: 12%; }
+  .av-2 { left: 4%; bottom: 15%; }
+  .av-3 { left: 22%; top: 40%; }
+  .av-4 { right: 8%; top: 15%; }
+  .av-5 { right: 18%; bottom: 25%; }
+  .av-6 { right: 4%; bottom: 10%; }
+
+  @media (max-width: 1024px) {
+    .avatar-float { display: none; }
+    .hero-banner { padding: 80px 1rem; border-radius: 40px; }
+    .hero-title { font-size: 3.5rem; }
+  }
+
+  /* USP Styles */
+  .hero-usp {
+    background-color: var(--bg-secondary);
+    text-align: center;
+    padding: 8rem 2rem;
+    border-radius: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .usp-title {
+    font-size: clamp(2rem, 4vw, 2.85rem); /* ~54px on 19px base */
+    font-weight: 500;
+    margin-bottom: 2rem;
+    color: #000;
+    letter-spacing: -0.03em;
+  }
+
+  .usp-desc {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #444;
+    max-width: 800px;
+    margin: 0 auto;
+    font-weight: 400;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initPricingHero = () => {
+    gsap.to('.pricing-hero .reveal', {
+      opacity: 1,
+      y: 0,
+      duration: 1.2,
+      stagger: 0.1,
+      ease: "power3.out"
+    });
+
+    // Floating animation
+    gsap.utils.toArray('.avatar-float').forEach((av: any, i) => {
+      gsap.to(av, {
+        y: i % 2 === 0 ? 15 : -15,
+        x: i % 3 === 0 ? 10 : -10,
+        repeat: -1,
+        yoyo: true,
+        duration: 3 + i,
+        ease: "sine.inOut"
+      });
+    });
+  };
+
+  window.addEventListener('load', initPricingHero);
+</script>

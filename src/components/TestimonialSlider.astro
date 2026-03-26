@@ -1,0 +1,352 @@
+---
+interface Testimonial {
+  image: string;
+  logo: string;
+  quote: string;
+  author: string;
+  role: string;
+}
+
+const testimonials: Testimonial[] = [
+  {
+    image: '/testimonial_portrait_male.png', 
+    logo: 'Outschool',
+    quote: "Everyone on my Hugo team could have successfully interviewed for our team in Brooklyn. That is important to me. We're getting top-tier talent without the big city price tag.",
+    author: 'Chris M.',
+    role: 'Chief Operating Officer'
+  },
+  {
+    image: '/testimonial_portrait_female.png', 
+    logo: 'Sakara',
+    quote: "hiredesk brought real expertise and flexibility to our operation. They helped us improve response times and satisfaction.",
+    author: 'Sarah S.',
+    role: 'VP of Growth'
+  }
+];
+---
+
+<section class="testimonial-slider-section">
+  <div class="container">
+    <div class="slider-overflow">
+      <div class="testimonials-track" id="testimonialTrack">
+        {testimonials.map((t, i) => (
+          <div class="testimonial-slide" data-index={i}>
+            <div class="slide-inner">
+              <!-- Left: Image with yellow circles -->
+              <div class="image-box">
+                <div class="main-circle">
+                  <div class="image-wrapper">
+                    <img src={t.image} alt={t.author} />
+                  </div>
+                  <!-- Decorative small circle -->
+                  <div class="small-circle"></div>
+                </div>
+              </div>
+
+              <!-- Right: Content -->
+              <div class="content-box">
+                <div class="logo-wrap">
+                  <span class="company-name">{t.logo}</span>
+                </div>
+                
+                <div class="quote-wrap">
+                  <span class="quote-icon open">
+                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M15 15Q10 15 10 20M10 20Q10 25 15 25" stroke="black" stroke-width="4" stroke-linecap="round"/></svg>
+                  </span>
+                  
+                  <p class="quote-text">{t.quote}</p>
+                  
+                  <span class="quote-icon close">
+                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M25 15Q30 15 30 20M30 20Q30 25 25 25" stroke="black" stroke-width="4" stroke-linecap="round"/></svg>
+                  </span>
+                </div>
+
+                <div class="author-meta">
+                  <span class="name">{t.author}</span>
+                  <span class="role">{t.role}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Bottom Progress Bar -->
+    <div class="progress-bar-wrap">
+       <div class="progress-bar">
+         {testimonials.map((_, i) => (
+           <div class="progress-segment" data-index={i}>
+              <div class="progress-fill"></div>
+           </div>
+         ))}
+       </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonial-slider-section {
+    background-color: #FDFCF6;
+    padding: 4rem 0; /* More breathing room */
+    position: relative;
+    overflow: hidden;
+  }
+
+  .container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
+
+  .slider-overflow {
+    width: 100%;
+    overflow: hidden; /* Mask the other slides */
+  }
+
+  .testimonials-track {
+    display: flex;
+    width: 100%;
+    will-change: transform;
+  }
+
+  .testimonial-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    padding: 0 2rem;
+  }
+
+  .slide-inner {
+    display: flex;
+    align-items: center;
+    gap: 8rem;
+  }
+
+  /* Left Image Box */
+  .image-box {
+    flex: 0 0 240px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+
+  .main-circle {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    border: 6px solid #FFDC00;
+    position: relative;
+    background: #E0F7FA;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: visible;
+  }
+
+  .image-wrapper {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+  }
+
+  .image-wrapper img {
+    width: 110%;
+    height: 110%;
+    object-fit: cover;
+    transform: translateY(10%);
+  }
+
+  .small-circle {
+    position: absolute;
+    bottom: 20px;
+    right: -10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #FFDC00;
+    z-index: 10;
+    border: 6px solid #FDFCF6;
+  }
+
+  /* Right Content Box */
+  .content-box {
+    flex: 1;
+    text-align: left;
+  }
+
+  .logo-wrap {
+    margin-bottom: 2rem;
+    height: 24px;
+  }
+  .company-name {
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #444;
+    opacity: 0.6;
+  }
+
+  .quote-wrap {
+    position: relative;
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .quote-icon {
+    flex-shrink: 0;
+    opacity: 0.9;
+  }
+  .quote-icon.open { margin-right: 2rem; }
+  .quote-icon.close { margin-left: 2rem; }
+
+  .quote-text {
+    font-size: 1.35rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #000;
+    max-width: 600px;
+    letter-spacing: -0.01em;
+  }
+
+  .author-meta { display: flex; flex-direction: column; }
+  .name { font-weight: 800; font-size: 1.3rem; color: #000; margin-bottom: 0.3rem; }
+  .role { font-size: 1.05rem; color: #666; font-weight: 600; }
+
+  /* Progress Bar */
+  .progress-bar-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+  }
+
+  .progress-bar {
+    display: flex;
+    height: 8px;
+    width: 450px;
+    gap: 8px;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #EBEBEB;
+  }
+
+  .progress-segment {
+    flex: 1;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    background-color: #EBEBEB;
+  }
+
+  .progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #FFDC00;
+    transform: translateX(-100%);
+    transition: none;
+  }
+
+  .progress-segment.past .progress-fill {
+    transform: translateX(0);
+    background-color: #000;
+  }
+
+  @media (max-width: 1024px) {
+    .slide-inner { flex-direction: column; gap: 4rem; text-align: center; }
+    .content-box { text-align: center; }
+    .quote-wrap { flex-direction: column; }
+    .quote-icon { display: none; }
+    .image-box { flex: auto; }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+
+  class TestimonialSlider {
+    section: HTMLElement | null;
+    track: HTMLElement | null;
+    slides: HTMLElement[];
+    fills: HTMLElement[];
+    segments: HTMLElement[];
+    currentIndex: number;
+    duration: number;
+
+    constructor() {
+      this.section = document.querySelector('.testimonial-slider-section');
+      if (!this.section) {
+        this.track = null;
+        this.slides = [];
+        this.fills = [];
+        this.segments = [];
+        this.currentIndex = 0;
+        this.duration = 5; // seconds
+        return;
+      }
+
+      this.track = this.section.querySelector('#testimonialTrack');
+      this.slides = Array.from(this.section.querySelectorAll('.testimonial-slide'));
+      this.fills = Array.from(this.section.querySelectorAll('.progress-fill'));
+      this.segments = Array.from(this.section.querySelectorAll('.progress-segment'));
+      this.currentIndex = 0;
+      this.duration = 5;
+
+      this.init();
+    }
+
+    init() {
+      if (this.slides.length === 0) return;
+      this.animateNext();
+    }
+
+    animateNext() {
+      const fill = this.fills[this.currentIndex];
+      const segment = this.segments[this.currentIndex];
+
+      // Reset segment classes
+      this.segments.forEach((seg, i) => {
+         if (i < this.currentIndex) seg.classList.add('past');
+         else seg.classList.remove('past');
+      });
+
+      // Animate the fill
+      gsap.fromTo(fill, 
+        { x: "-100%" }, 
+        { 
+          x: "0%", 
+          duration: this.duration, 
+          ease: "none",
+          onComplete: () => {
+            this.currentIndex = (this.currentIndex + 1) % this.slides.length;
+            
+            // If we looped back to 0, clear all past classes
+            if (this.currentIndex === 0) {
+               this.segments.forEach(seg => seg.classList.remove('past'));
+               this.fills.forEach(f => gsap.set(f, { x: "-100%" }));
+            }
+
+            // Move the track
+            gsap.to(this.track, {
+               x: `-${this.currentIndex * 100}%`,
+               duration: 0.8,
+               ease: "power2.inOut"
+            });
+
+            this.animateNext();
+          }
+        }
+      );
+    }
+  }
+
+  window.addEventListener('load', () => {
+    new TestimonialSlider();
+  });
+</script>

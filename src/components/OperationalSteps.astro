@@ -1,0 +1,403 @@
+---
+const steps = [
+  {
+    number: 1,
+    title: "Deep dive into your goals and team structure.",
+    content: "We take the time to understand your unique needs and goals. Our talent becomes an extension of your team, supporting your customer experience initiatives within your strategic direction, timelines and budgets."
+  },
+  {
+    number: 2,
+    title: "We design a customized solution for you.",
+    content: "Our experts craft a bespoke operational framework tailored specifically to your business model, ensuring seamless integration and maximum efficiency."
+  },
+  {
+    number: 3,
+    title: "Review and assemble your dream team.",
+    content: "Hand-select top-tier professionals from our elite talent pool who perfectly match your culture and technical requirements."
+  },
+  {
+    number: 4,
+    title: "We'll implement a dedicated training program.",
+    content: "Before going live, your team undergoes rigorous, brand-specific training to master your processes, tools, and brand voice."
+  },
+  {
+    number: 5,
+    title: "Go Live & schedule check-ins!",
+    content: "Launch your operation with confidence. We provide continuous support and regular performance reviews to ensure all KPIs are exceeded."
+  }
+];
+---
+
+<section class="operational-steps">
+  <div class="container--wide">
+    <div class="steps-header reveal">
+      <h2>Launch in 5 easy steps</h2>
+      <p>We source, train, and assemble your new team in as little as 2 weeks. Once you go live, we continuously work to ensure you hit KPIs.</p>
+    </div>
+
+    <div class="steps-layout">
+      <!-- Left: Interactive Accordion -->
+      <div class="steps-list reveal">
+        {steps.map((step, i) => (
+          <div class={`step-item ${i === 0 ? 'active' : ''}`} data-index={i}>
+            <div class="step-header">
+              <span class="step-title">{step.number}. {step.title}</span>
+              <div class="step-toggle">
+                <span class="plus">+</span>
+                <span class="minus">-</span>
+              </div>
+            </div>
+            <div class="step-content">
+              <div class="content-inner">
+                <p>{step.content}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+
+      </div>
+
+      <!-- Right: Geometric Graphic -->
+      <div class="steps-graphic reveal">
+        <div class="graphic-container">
+           {/* Honeycomb grid mirroring the Hero Section's shape */}
+           <svg viewBox="0 0 400 400" class="geometric-svg" id="stepsGeometric">
+              <g class="bg-grid">
+                {Array.from({ length: 16 }).map((_, i) => {
+                  const row = Math.floor(i / 4);
+                  const col = i % 4;
+                  const x = 70 + col * 85 + (row % 2 === 0 ? 0 : 42);
+                  const y = 80 + row * 75;
+                  
+                  return (
+                    <circle 
+                      cx={x} cy={y} 
+                      r={38} 
+                      class="dot-bg"
+                      fill="none"
+                      stroke="#F1E6CC"
+                      stroke-width="1.8"
+                    />
+                  );
+                })}
+              </g>
+
+              {/* Solid Reveal Layer */}
+              <g class="solid-layer">
+                 {Array.from({ length: 16 }).map((_, i) => {
+                  const row = Math.floor(i / 4);
+                  const col = i % 4;
+                  const x = 70 + col * 85 + (row % 2 === 0 ? 0 : 42);
+                  const y = 80 + row * 75;
+                  return (
+                    <circle 
+                      cx={x} cy={y} 
+                      r={38} 
+                      id={`dot-solid-${i}`}
+                      class="dot-solid"
+                      fill="transparent"
+                      stroke="none"
+                    />
+                  );
+                })}
+              </g>
+
+              {/* Animated Snakes Layer */}
+              <g class="snake-layer">
+                {Array.from({ length: 16 }).map((_, i) => {
+                  const row = Math.floor(i / 4);
+                  const col = i % 4;
+                  const cx = 70 + col * 85 + (row % 2 === 0 ? 0 : 42);
+                  const cy = 80 + row * 75;
+                  
+                  return (
+                    <path 
+                      class="step-snake" 
+                      id={`step-snake-${i}`}
+                      d={`M ${cx} ${cy - 38} A 38 38 0 1 1 ${cx} ${cy + 38}`}
+                      stroke="none"
+                      stroke-width="10"
+                      stroke-linecap="round"
+                      fill="none"
+                    />
+                  );
+                })}
+              </g>
+           </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Centered CTA -->
+    <div class="steps-cta-center reveal">
+      <button class="btn-smart-black">Book a Meeting</button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .operational-steps {
+    background-color: #FDFCF6;
+    padding: 3.5rem 0;
+    overflow: hidden;
+  }
+
+  .container--wide {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
+
+  /* Header */
+  .steps-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+  }
+
+  h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+    color: #000;
+  }
+
+  .steps-header p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.4;
+  }
+
+  /* Layout */
+  .steps-layout {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media (max-width: 1024px) {
+    .steps-layout { grid-template-columns: 1fr; gap: 4rem; }
+    .steps-graphic { order: -1; }
+  }
+
+  /* Accordion */
+  .steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .step-item {
+    background: #fff;
+    border: 1.2px solid rgba(0,0,0,0.06); 
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .step-header {
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .step-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #000;
+  }
+
+  .step-toggle {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    position: relative;
+  }
+
+  .plus, .minus {
+    position: absolute;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  .step-item.active .plus { opacity: 0; transform: rotate(90deg); }
+  .step-item.active .minus { opacity: 1; transform: rotate(0); }
+  .step-item:not(.active) .minus { opacity: 0; transform: rotate(-90deg); }
+
+  .step-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .step-item.active .step-content {
+    max-height: 200px;
+  }
+
+  .content-inner {
+    padding: 0 1.5rem 1.25rem;
+  }
+
+  .content-inner p {
+    font-size: 0.9rem;
+    line-height: 1.45;
+    color: #333;
+  }
+
+  /* CTA */
+  .steps-cta-center {
+    margin-top: 4rem; /* More space for global centering */
+    text-align: center;
+    width: 100%;
+  }
+
+  .btn-smart-black {
+    background: #000;
+    color: #fff;
+    padding: 0.75rem 2.8rem; /* Bolder button width */
+    border-radius: 100px;
+    font-size: 0.95rem; 
+    font-weight: 800;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  /* Graphic */
+  .graphic-container {
+    width: 100%;
+    max-width: 360px;
+    position: relative;
+    margin-left: auto;
+  }
+
+  .geometric-svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .step-snake {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .dot-solid {
+    transition: opacity 0.6s ease;
+  }
+
+  /* Reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initStepsGraphic = () => {
+    // Official Branding Colors
+    const stepColors = ['#FFDC00', '#4DD0E1', '#738AC9', '#5C60A6', '#FF4081'];
+    const items = document.querySelectorAll('.step-item');
+    const snakes = document.querySelectorAll('.step-snake');
+    const solidDots = document.querySelectorAll('.dot-solid');
+
+    // Reveal animations
+    gsap.to('.operational-steps .reveal', {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      stagger: 0.15,
+      scrollTrigger: {
+        trigger: '.operational-steps',
+        start: "top 75%"
+      }
+    });
+
+    // 1. Initial State for Snakes
+    snakes.forEach((snake, i) => {
+      const path = snake as SVGPathElement;
+      const length = path.getTotalLength();
+      gsap.set(path, { strokeDasharray: `50 ${length}`, strokeDashoffset: length });
+    });
+
+    // 2. Continuous Living Animation
+    gsap.to('.dot-bg', {
+       scale: 1.05,
+       duration: 4,
+       repeat: -1,
+       yoyo: true,
+       stagger: { amount: 1.5, from: "random" },
+       ease: "sine.inOut"
+    });
+
+    // 3. Selection Logic
+    const updateGraphic = (idx: number) => {
+      const color = stepColors[idx];
+
+      items.forEach((item, i) => {
+        if (i === idx) {
+           gsap.to(item, { backgroundColor: `${color}20`, borderColor: color, duration: 0.4 });
+        } else {
+           gsap.to(item, { backgroundColor: '#fff', borderColor: 'rgba(0,0,0,0.06)', duration: 0.4 });
+        }
+      });
+
+      // Animate solid fills and snakes
+      solidDots.forEach((dot, i) => {
+         const isSelected = i % 5 === idx || (i + idx) % 4 === 0;
+         const path = snakes[i] as SVGPathElement;
+         const length = path.getTotalLength();
+
+         if (isSelected) {
+            // Fill dot with subtle transparency
+            gsap.to(dot, { 
+               fill: color, 
+               opacity: 0.15, 
+               scale: 1, 
+               duration: 0.8,
+               ease: "power2.out"
+            });
+            
+            // Trigger Snake
+            gsap.killTweensOf(path);
+            gsap.set(path, { stroke: color, opacity: 0.95 });
+            gsap.fromTo(path, 
+               { strokeDashoffset: length }, 
+               { strokeDashoffset: -50, duration: 2.5, repeat: -1, ease: "linear", delay: Math.random() * 0.5 }
+            );
+         } else {
+            gsap.to(dot, { fill: 'transparent', opacity: 0, duration: 0.5 });
+            gsap.to(path, { opacity: 0, duration: 0.5 });
+         }
+      });
+    };
+
+    items.forEach((item, i) => {
+      item.addEventListener('click', () => {
+        items.forEach(el => el.classList.remove('active'));
+        item.classList.add('active');
+        updateGraphic(i);
+      });
+    });
+
+    // Initial Trigger
+    updateGraphic(0);
+  };
+
+  window.addEventListener('load', () => {
+     initStepsGraphic();
+  });
+</script>

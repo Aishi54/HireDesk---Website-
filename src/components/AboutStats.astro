@@ -1,0 +1,143 @@
+---
+const stats = [
+  {
+    value: "4,500+",
+    label:
+      "Employees Worldwide & 250K vetted Professionals in our Sphere methodology",
+    color: "#4DD0E1", // Cyan
+    lightColor: "rgba(77, 208, 225, 0.08)",
+  },
+  {
+    value: "98%",
+    label: "Retention Rate",
+    color: "#66BB6A", // Green
+    lightColor: "rgba(102, 187, 106, 0.08)",
+  },
+  {
+    value: "65%",
+    label: "Female Workforce",
+    color: "#5C60A6", // Purple (Brand)
+    lightColor: "rgba(92, 96, 166, 0.08)",
+  },
+  {
+    value: "30%",
+    label: "More cost-effective than outsourcing in India & Philippines",
+    color: "#FF7043", // Orange/Red
+    lightColor: "rgba(255, 112, 67, 0.08)",
+  },
+];
+---
+
+<section class="about-stats">
+  <div class="container--smart">
+    <div class="stats-grid">
+      {
+        stats.map((stat, index) => (
+          <div
+            class="stat-card reveal"
+            style={`--accent: ${stat.color}; --bg-accent: ${stat.lightColor}; --delay: ${index * 0.1}s`}
+          >
+            <div class="stat-value">{stat.value}</div>
+            <p class="stat-label">{stat.label}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-stats {
+    padding: 30px 0 50px; /* More compact */
+    background-color: var(--bg-primary);
+  }
+
+  .container--smart {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 1024px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .stat-card {
+    background: #fff;
+    border: 1.25px solid var(--accent); /* Thinner border */
+    border-radius: 12px;
+    padding: 2rem 1.25rem; /* More compact padding */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 180px; /* Reduced min-height */
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .stat-card:hover {
+    transform: translateY(-5px);
+    background-color: var(--bg-accent);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  }
+
+  .stat-value {
+    font-size: clamp(2rem, 4vw, 3rem); /* Scaled down value */
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-label {
+    font-size: 0.85rem; /* Scaled down label */
+    color: #333;
+    font-weight: 600;
+    line-height: 1.4;
+    max-width: 220px;
+    margin: 0 auto;
+  }
+
+  /* Reveal logic */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initAboutStats = () => {
+    gsap.to(".about-stats .reveal", {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      stagger: 0.15,
+      scrollTrigger: {
+        trigger: ".about-stats",
+        start: "top 85%",
+      },
+    });
+  };
+
+  window.addEventListener("load", initAboutStats);
+</script>

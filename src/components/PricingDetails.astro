@@ -1,0 +1,215 @@
+---
+const featuresLeft = [
+  'Omnichannel support',
+  'Scale up or down with just 24 hour notice',
+  'Onboarding, Management, QA, Training, WFM included',
+  'Team lead(s) included',
+  'Quality assurance and reporting'
+];
+
+const featuresRight = [
+  '365/24/7 coverage in 60+ languages',
+  '100% dedicated to your account',
+  'AI-enabled helpdesk solutions',
+  'Seasonal & holiday support',
+  '...and a lot more!'
+];
+---
+
+<section class="pricing-details">
+  <div class="container container--smart">
+    <div class="pricing-card reveal">
+      <div class="card-left">
+        <h3 class="card-title">Dedicated<br/>Teams</h3>
+        <div class="rate-wrap">
+          <span class="rate-prefix">Starting at</span>
+          <div class="rate-value">$11/hr</div>
+          <span class="rate-suffix">per agent</span>
+        </div>
+      </div>
+
+      <div class="card-right">
+        <div class="card-subtitle">Full-time, rigorously vetted teams, month-to-month contracts</div>
+        <div class="features-grid">
+          <div class="feature-col">
+            {featuresLeft.map(feature => (
+              <div class="feature-item">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="check-icon">
+                   <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.5"/>
+                   <path d="M7 12.5L10.5 16L17 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>{feature}</span>
+              </div>
+            ))}
+          </div>
+
+          <div class="feature-col">
+            {featuresRight.map(feature => (
+              <div class="feature-item">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="check-icon">
+                   <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.5"/>
+                   <path d="M7 12.5L10.5 16L17 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>{feature}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing-details {
+    padding: 100px 0;
+    background-color: var(--bg-primary);
+  }
+
+  .container--smart {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
+
+  .pricing-card {
+    background: #fff;
+    border: 1.5px solid rgba(77, 208, 225, 0.4);
+    border-radius: 24px;
+    padding: 5rem 6rem;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 100px;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.03);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pricing-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, rgba(77, 208, 225, 0.4) 0%, rgba(92, 96, 166, 0.4) 100%);
+    border-radius: 24px;
+    z-index: -1;
+  }
+
+  @media (max-width: 1024px) {
+    .pricing-card {
+      grid-template-columns: 1fr;
+      padding: 4rem 3rem;
+      gap: 60px;
+      text-align: center;
+    }
+  }
+
+  .card-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1.5px solid rgba(0,0,0,0.05);
+    padding-right: 2rem;
+  }
+
+  @media (max-width: 1024px) {
+    .card-left { border-right: none; padding-right: 0; }
+  }
+
+  .card-title {
+    font-size: 3.5rem;
+    font-weight: 500;
+    line-height: 1.05;
+    margin-bottom: 3.5rem;
+    letter-spacing: -0.04em;
+    color: #000;
+  }
+
+  .rate-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .rate-prefix {
+    font-size: 1.25rem;
+    color: #666;
+    font-weight: 500;
+  }
+
+  .rate-value {
+    font-size: 4.5rem;
+    font-weight: 800;
+    color: #000;
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .rate-suffix {
+    font-size: 1.25rem;
+    color: #000;
+    font-weight: 600;
+  }
+
+  /* Right Side Features */
+  .card-subtitle {
+     font-size: 1.35rem;
+     font-weight: 700;
+     color: #000;
+     margin-bottom: 3.5rem;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .features-grid { grid-template-columns: 1fr; }
+  }
+
+  .feature-item {
+     display: flex;
+     align-items: flex-start;
+     gap: 1.25rem;
+     font-size: 1.15rem;
+     font-weight: 500;
+     line-height: 1.4;
+     color: #000;
+  }
+
+  .check-icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    color: #000;
+  }
+
+  /* Reveal logic */
+  .reveal { opacity: 0; transform: translateY(30px); }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initPricingDetails = () => {
+    gsap.to('.pricing-details .reveal', {
+      opacity: 1,
+      y: 0,
+      duration: 1.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: '.pricing-details',
+        start: 'top 85%'
+      }
+    });
+  };
+
+  window.addEventListener('load', initPricingDetails);
+</script>

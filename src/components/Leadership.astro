@@ -1,0 +1,194 @@
+---
+const leadership = [
+  { name: 'Emily Slota', title: 'President', link: '#', image: '/assets/sarah-sakara.png' },
+  { name: 'Orinola Gbadebo-Smith', title: 'Chief Executive', link: '#', image: '/assets/male-botm.png' },
+  { name: 'Simone Bartlett', title: 'Chief Operating Officer', link: '#', image: '/assets/female-faire.png' },
+  { name: 'Niel Harper', title: 'Information Security', link: '#', image: '/assets/lead-niel.png' },
+  { name: 'Travis Low', title: 'CX, AI & T&S Practice Leader', link: '#', image: '/assets/lead-travis.png' },
+  { name: 'Taire Avbovbo', title: 'Pilots & New Client Operations', link: '#', image: '/assets/lead-taire.png' },
+  { name: 'Ian McGuire', title: 'US Operations', link: '#', image: '/assets/lead-ian.png' },
+  { name: 'Funmi Ajala', title: 'Customer Support Operations', link: '#', image: '/assets/lead-funmi.png' }
+];
+---
+
+<section class="leadership-section">
+  <div class="container--smart">
+     <div class="header-wrap reveal">
+       <span class="sub-tag">The visionaries</span>
+       <h2 class="section-title">Global <span style="color: #4DD0E1;">Leadership</span></h2>
+     </div>
+
+     <div class="lead-grid">
+       {leadership.map((person, index) => (
+         <div class="lead-item reveal" style={`--delay: ${index * 0.05}s`}>
+           <div class="portrait-wrap">
+             {person.image ? (
+               <img src={person.image} alt={person.name} class="lead-img" />
+             ) : (
+               <div class="placeholder-img" style={`background: ${index % 2 === 0 ? '#5C60A6' : '#FFDC00'}; opacity: 0.1`}>
+                 <span class="initials">{person.name.charAt(0)}</span>
+               </div>
+             )}
+             <div class="lead-hover">
+               <a href={person.link} class="ln-pill">LinkedIn</a>
+             </div>
+           </div>
+           <div class="lead-meta">
+             <h3 class="lead-name">{person.name}</h3>
+             <p class="lead-title">{person.title}</p>
+           </div>
+         </div>
+       ))}
+     </div>
+  </div>
+</section>
+
+<style>
+  .leadership-section {
+    padding: 4rem 0 6rem; /* More compact */
+    background-color: #FDFCF6;
+  }
+
+  .container--smart {
+     max-width: 1240px;
+     margin: 0 auto;
+     padding: 0 4rem;
+  }
+
+  .header-wrap {
+    margin-bottom: 3.5rem; /* Reduced space */
+    text-align: left;
+  }
+
+  .sub-tag {
+    font-size: 0.75rem; /* Smaller sub-tag */
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #888;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .section-title {
+    font-size: clamp(1.5rem, 3.2vw, 2.1rem); /* Matching page scale */
+    font-weight: 500;
+    margin-top: 0.5rem;
+    letter-spacing: -0.02em;
+    color: #1a1a1a;
+  }
+
+  /* Grid Styling */
+  .lead-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem 1.75rem; /* Tightened grid */
+  }
+
+  @media (max-width: 1100px) { .lead-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 800px) { .lead-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem 1.25rem; } }
+  @media (max-width: 500px) { .lead-grid { grid-template-columns: 1fr; } }
+
+  .lead-item {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .portrait-wrap {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 16px; /* Sharper 'smart' corner */
+    background-color: #fff;
+    overflow: hidden;
+    position: relative;
+    border: 1.25px solid rgba(0,0,0,0.05); /* Thinner border */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.02);
+  }
+
+  .lead-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .lead-item:hover .lead-img { transform: scale(1.05); }
+
+  .lead-hover {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.15); /* More subtle overlay */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    backdrop-filter: blur(2px);
+  }
+
+  .lead-item:hover .lead-hover { opacity: 1; }
+
+  .ln-pill {
+    background: #fff;
+    color: #000;
+    padding: 0.5rem 1.15rem;
+    border-radius: 100px;
+    font-size: 0.8rem; /* Smaller text on pill */
+    font-weight: 700;
+    text-decoration: none;
+    transform: translateY(10px);
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .lead-item:hover .ln-pill { transform: translateY(0); }
+
+  .lead-meta { margin-top: 0.25rem; }
+
+  .lead-name {
+     font-size: 0.95rem; /* Sharper, smaller name */
+     font-weight: 700;
+     margin-bottom: 0.15rem;
+     color: #1a1a1a;
+  }
+
+  .lead-title {
+    font-size: 0.8rem; /* Smaller title */
+    color: #666;
+    font-weight: 500;
+    line-height: 1.35;
+  }
+
+  .placeholder-img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .initials { font-size: 2.2rem; font-weight: 900; opacity: 0.15; }
+
+  /* Reveal */
+  .reveal { opacity: 0; transform: translateY(20px); }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initLeadership = () => {
+    gsap.to('.leadership-section .reveal', {
+      opacity: 1, y: 0,
+      duration: 1.2,
+      stagger: 0.08,
+      scrollTrigger: {
+        trigger: '.leadership-section',
+        start: 'top 80%'
+      }
+    });
+  };
+
+  window.addEventListener('load', initLeadership);
+</script>

@@ -1,0 +1,276 @@
+---
+const testimonials = [
+  {
+    title: "Best BPO We've worked with",
+    text: "With Hugo's assistance, we've been able to 3X our content output with almost 100% audio and video accuracy. Hugo ensures the content is up to standards, and we've been impressed with the ease of collaborating with the team.",
+    companySize: "10,000+",
+    role: "Head of Video Production",
+    industry: "Media",
+    stars: 5,
+    accent: "#E0F7FA"
+  },
+  {
+    title: "Hugo: Consistently Delivering Excellent Outcomes",
+    text: "Thanks to Hugo, we've scaled our affiliate program to more than 800 global ambassadors. The team's work also helped reduce customer support tickets by 50% per month and response times to less than an hour.",
+    companySize: "11-50",
+    role: "VP of Growth",
+    industry: "Gaming",
+    stars: 5,
+    accent: "#E0F7FA"
+  },
+  {
+    title: "Hugo: A Partner with Exceptional Understanding of Our Culture",
+    text: "Hugo has provided strategies and solutions to significantly reduce ticket response times. The team's ability to cater to customers from diverse linguistic backgrounds makes the workflow seamless.",
+    companySize: "51-200",
+    role: "Customer Support Manager",
+    industry: "Food & Beverage",
+    stars: 5,
+    accent: "#E0F7FA"
+  }
+];
+---
+
+<section class="testimonials-grid-section">
+  <div class="container--wide">
+    <!-- Centered Header with Side Awards -->
+    <div class="testimonials-header reveal">
+      <div class="award award-left">
+        <!-- Placeholder for Manifest Award -->
+        <svg width="80" height="100" viewBox="0 0 100 120">
+           <path d="M10 10 L90 10 L90 90 L50 110 L10 90 Z" fill="#711B3E"/>
+           <text x="50" y="40" font-size="10" text-anchor="middle" fill="#fff" font-weight="bold">THE MANIFEST</text>
+           <text x="50" y="60" font-size="12" text-anchor="middle" fill="#fff" font-weight="900">GLOBAL</text>
+           <text x="50" y="85" font-size="10" text-anchor="middle" fill="#fff">★★★★★</text>
+           <text x="50" y="100" font-size="8" text-anchor="middle" fill="#fff">2023</text>
+        </svg>
+      </div>
+      
+      <h2 class="section-title">Validated by experts, valued by customers</h2>
+
+      <div class="award award-right">
+        <!-- Placeholder for Clutch 100 Award -->
+        <svg width="80" height="100" viewBox="0 0 100 120">
+           <path d="M10 10 L90 10 L90 90 L50 110 L10 90 Z" fill="#1B2B3E"/>
+           <text x="50" y="30" font-size="10" text-anchor="middle" fill="#fff">Clutch</text>
+           <text x="50" y="55" font-size="18" text-anchor="middle" fill="#fff" font-weight="900">100</text>
+           <path d="M10 70 L90 70 L80 85 L20 85 Z" fill="#4AC9A1"/>
+           <text x="50" y="80" font-size="8" text-anchor="middle" fill="#000">FASTEST GROWTH</text>
+           <text x="50" y="100" font-size="8" text-anchor="middle" fill="#fff">2023</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- The 3 Cards -->
+    <div class="cards-layout">
+      {testimonials.map((t, index) => (
+        <div class="testimonial-card reveal" style={`--delay: ${index * 0.15}s`}>
+          <div class="card-top">
+            <div class="stars">
+               {Array.from({ length: t.stars }).map(() => (
+                 <span class="star">★</span>
+               ))}
+               {t.stars < 5 && <span class="star-empty">★</span>}
+            </div>
+            <div class="card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M10 5 Q15 5 15 10 M15 10 Q15 15 10 15" stroke="black" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <h3 class="card-title">{t.title}</h3>
+          <p class="card-text">{t.text}</p>
+          
+          <div class="card-footer">
+            <p class="company-size">Company Size: {t.companySize}</p>
+            <div class="footer-divider"></div>
+            <p class="author-role">{t.role}</p>
+            <p class="author-industry">Industry: {t.industry}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom Buttons -->
+    <div class="testimonials-actions reveal">
+      <a href="#" class="btn-black pill">Clutch Reviews</a>
+      <a href="#" class="btn-black pill outline">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials-grid-section {
+    background: #FDFCF6;
+    padding: 2.5rem 0 4rem;
+  }
+
+  .container--wide {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
+
+  /* Header Alignment */
+  .testimonials-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem; /* REDUCED FROM 7rem */
+    gap: 2rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 4vw, 3.2rem);
+    font-weight: 500;
+    text-align: center;
+    max-width: 800px;
+    color: #000;
+  }
+
+  @media (max-width: 900px) {
+    .testimonials-header {
+       flex-direction: column;
+       text-align: center;
+    }
+    .award { order: 1; }
+    .section-title { order: 0; }
+  }
+
+  /* Cards Grid */
+  .cards-layout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; /* Reduced from 2.5rem */
+    margin-bottom: 3rem; /* Reduced from 6rem */
+  }
+
+  @media (max-width: 1024px) {
+    .cards-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .testimonial-card {
+    background: #E0F7FA; 
+    border-radius: 16px;
+    padding: 1.5rem 1.25rem; /* Drastically reduced */
+    display: flex;
+    flex-direction: column;
+    min-height: 360px; /* Reduced from 480 */
+    transition: all 0.4s ease;
+  }
+
+  .testimonial-card:hover { border: 2px solid #000; transform: translateY(-5px); }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem; /* Reduced from 2.5rem */
+  }
+
+  .stars {
+    color: #000;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+  }
+
+  .card-title {
+    font-size: 1.1rem; /* Reduced from 1.25rem */
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 0.8rem; /* Reduced */
+    color: #000;
+  }
+
+  .card-text {
+    font-size: 0.85rem; /* Reduced from 0.95 */
+    line-height: 1.45;
+    color: #333;
+    margin-bottom: auto;
+    font-weight: 500;
+    opacity: 0.9;
+  }
+
+  .card-footer {
+    margin-top: 2rem;
+  }
+
+  .company-size {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+  }
+
+  .footer-divider {
+    height: 1px;
+    background: rgba(0,0,0,0.1);
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .author-role {
+    font-size: 1rem;
+    font-weight: 800;
+    margin-bottom: 0.2rem;
+    color: #000;
+  }
+
+  .author-industry {
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 600;
+  }
+
+  /* Actions */
+  .testimonials-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .btn-black {
+    display: inline-block;
+    background: #000;
+    color: #fff;
+    padding: 0.8rem 2.2rem;
+    border-radius: 100px;
+    font-size: 0.95rem;
+    font-weight: 800;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-black.outline {
+    background: transparent;
+    border: 2px solid #000;
+    color: #000;
+  }
+
+  /* Reveal logic */
+  .reveal { opacity: 0; transform: translateY(30px); }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initTestimonials = () => {
+    gsap.to('.testimonials-grid-section .reveal', {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      stagger: 0.15,
+      scrollTrigger: {
+        trigger: '.testimonials-grid-section',
+        start: 'top 75%'
+      }
+    });
+  };
+
+  window.addEventListener('load', initTestimonials);
+</script>

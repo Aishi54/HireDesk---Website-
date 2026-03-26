@@ -1,0 +1,93 @@
+<div class="floating-container right">
+  <!-- Avatar 4 -->
+  <div class="float-item avatar a4">
+    <div class="ring-gradient"></div>
+    <div class="avatar-inner">
+      <img src="/assets/male-botm.png" alt="" />
+    </div>
+  </div>
+
+  <!-- Icon 3: Share -->
+  <div class="float-item icon i3">
+    <div class="yellow-circle">
+      <svg viewBox="0 0 24 24" fill="black"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M9 11L15 7M9 13L15 17" stroke="black" stroke-width="2"/></svg>
+    </div>
+  </div>
+
+  <!-- Avatar 5 -->
+  <div class="float-item avatar a5">
+    <div class="ring-gradient"></div>
+    <div class="avatar-inner">
+      <img src="/assets/ashley-petersen.png" alt="" />
+    </div>
+  </div>
+
+  <!-- Icon 4: HubSpot -->
+  <div class="float-item icon i4">
+    <div class="yellow-circle">
+      <svg viewBox="0 0 24 24" fill="black"><circle cx="12" cy="12" r="4"/><path d="M12 4V8M4 12H8M12 16V20M16 12H20" stroke="black" stroke-width="2"/></svg>
+    </div>
+  </div>
+
+  <!-- Avatar 6 -->
+  <div class="float-item avatar a6">
+    <div class="ring-gradient"></div>
+    <div class="avatar-inner">
+      <img src="/assets/sarah-sakara.png" alt="" />
+    </div>
+  </div>
+</div>
+
+<style>
+  .floating-container {
+    position: absolute;
+    width: 380px;
+    height: 480px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .right { right: 40px; }
+
+  .float-item {
+    position: absolute;
+    transition: transform 0.3s ease;
+  }
+
+  /* Avatar styles */
+  .avatar { width: 120px; height: 120px; }
+  .avatar-inner { border-radius: 50%; background: #fff; padding: 8px; overflow: hidden; position: relative; z-index: 2; height: 100%; }
+  .avatar-inner img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .ring-gradient { position: absolute; top: -4px; right: -4px; bottom: -4px; left: -4px; border-radius: 50%; background: linear-gradient(135deg, #7B61FF, #EBE6FF); z-index: 1; opacity: 0.6; }
+
+  /* Icon styles */
+  .icon { width: 60px; height: 60px; }
+  .yellow-circle { width: 100%; height: 100%; border-radius: 50%; background-color: #F8F4E1; display: flex; align-items: center; justify-content: center; padding: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+
+  /* Positions */
+  .a4 { top: 0; right: 80px; }
+  .a5 { top: 220px; right: 0; }
+  .a6 { top: 380px; right: 140px; }
+
+  .i3 { top: 140px; right: 280px; }
+  .i4 { top: 300px; right: 250px; }
+
+  @media (max-width: 1200px) { .floating-container { display: none; } }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  const items = document.querySelectorAll('.float-item');
+  items.forEach((item, i) => {
+    gsap.to(item, {
+      y: '+=20',
+      x: '+=10',
+      duration: 3 + i * 0.5,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      delay: i * 0.2
+    });
+  });
+</script>

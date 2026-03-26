@@ -1,0 +1,141 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const faqs = [
+  {
+    question: "How long does it take to launch a team?",
+    answer: "We typically assemble and launch your dedicated team in just 2 weeks, including brand-specific training."
+  },
+  {
+    question: "How do you handle quality control?",
+    answer: "Our recruiting process has a 2% acceptance rate. Once hired, teams undergo rigorous audits and weekly performance reviews."
+  },
+  {
+    question: "Do you offer flexible scaling?",
+    answer: "Yes. Our SurgeProtect model allows you to scale your team up or down with just 24 hours' notice."
+  },
+  {
+    question: "What industries do you serve?",
+    answer: "We specialize in technology, e-commerce, healthcare, and finance where complex customer interactions are required."
+  }
+];
+---
+
+<Layout title="FAQs — HireDesk">
+  <section class="faqs-hero">
+    <div class="container--smart">
+      <div class="header-small reveal">
+        <span class="tagline">RESOURCES</span>
+        <h1>Frequently Asked Questions</h1>
+        <p>Everything you need to know about scaling your team with HireDesk.</p>
+      </div>
+
+      <div class="faqs-list">
+        {faqs.map((faq, i) => (
+          <div class="faq-card reveal">
+            <h3 class="faq-question">{faq.question}</h3>
+            <p class="faq-answer">{faq.answer}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="cta-bottom reveal">
+        <p>Still have questions?</p>
+        <a href="/contact" class="btn btn-black">Get in touch</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .faqs-hero {
+    background-color: #FDFCF6;
+    padding: 6rem 0;
+    min-height: 80vh;
+  }
+
+  .container--smart {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
+
+  .header-small {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+
+  .tagline {
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    font-weight: 500;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: #000;
+  }
+
+  .header-small p {
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .faqs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .faq-card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.06);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .faq-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.04);
+  }
+
+  .faq-question {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: #000;
+  }
+
+  .faq-answer {
+    line-height: 1.6;
+    color: #444;
+    font-size: 1rem;
+    opacity: 0.85;
+  }
+
+  .cta-bottom {
+    margin-top: 6rem;
+    text-align: center;
+  }
+
+  .cta-bottom p {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .container--smart { padding: 0 2rem; }
+    .faqs-hero { padding: 4rem 0; }
+  }
+</style>

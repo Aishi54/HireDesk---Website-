@@ -1,0 +1,146 @@
+<section class="resource-card section-padding">
+  <div class="container resource-inner">
+    <div class="card reveal">
+      <div class="card-left">
+        <div class="badge-mini">Featured</div>
+        <h3 class="card-title">30 Days with book of the month</h3>
+        <p class="card-desc">Book of the Month Club (BOTM) promised something different: full access to their back catalog of books. This caught our attention.</p>
+        <div class="card-link">
+          Read the Case Study
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
+      </div>
+      <div class="card-right">
+        <div class="book-graphic">
+          <div class="book-circles">
+            <div class="circle circle-1"></div>
+            <div class="circle circle-2"></div>
+            <div class="circle circle-3"></div>
+          </div>
+          <div class="book-logo">
+            <span class="logo-text">B</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-padding {
+    padding: 6rem 0;
+  }
+
+  .card {
+    background-color: var(--color-blue-light);
+    border-radius: 2rem;
+    padding: 4rem;
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.05);
+  }
+
+  @media (max-width: 1024px) {
+    .card {
+      flex-direction: column;
+      padding: 3rem;
+      gap: 2rem;
+    }
+  }
+
+  .card-left {
+    flex: 1;
+  }
+
+  .badge-mini {
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: rgba(0,0,0,0.05);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 2rem;
+  }
+
+  .card-title {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .card-desc {
+    font-size: clamp(1rem, 1.2vw, 1.25rem);
+    line-height: 1.5;
+    color: var(--color-grey);
+    margin-bottom: 2.5rem;
+    max-width: 450px;
+  }
+
+  .card-link {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: var(--transition);
+  }
+
+  .card:hover .card-link {
+    gap: 1.2rem;
+  }
+
+  .card-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+
+  .book-graphic {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    background-color: var(--color-yellow);
+    border-radius: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(-10deg);
+  }
+
+  .book-logo {
+    font-size: 6rem;
+    font-weight: 900;
+  }
+
+  .book-circles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  .circle {
+    position: absolute;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 50%;
+  }
+
+  .circle-1 { inset: -20px; }
+  .circle-2 { inset: -40px; }
+  .circle-3 { inset: -60px; }
+</style>

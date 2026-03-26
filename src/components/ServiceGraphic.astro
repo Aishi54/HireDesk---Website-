@@ -1,0 +1,185 @@
+<div class="service-graphic-wrapper">
+  <div class="graphic-container">
+    <svg viewBox="0 0 700 600" class="service-svg" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        {Array.from({ length: 30 }).map((_, i) => (
+          <clipPath id={`circleClip-${i}`}>
+            <circle cx="0" cy="0" r="35" />
+          </clipPath>
+        ))}
+      </defs>
+
+      <!-- Grid of Circles (Triangular) -->
+      <g class="circle-grid">
+        {/* Row 1 (Top): 4 circles */}
+        {[0, 1, 2, 3].map(i => (
+          <circle cx={200 + i * 100} cy={50} r="45" class="grid-circle" />
+        ))}
+        {/* Row 2: 5 circles */}
+        {[0, 1, 2, 3, 4].map(i => (
+          <circle cx={150 + i * 100} cy={130} r="45" class="grid-circle" />
+        ))}
+        {/* Row 3: 6 circles (with Avatars) */}
+        {[0, 1, 2, 3, 4, 5].map(i => (
+          <circle cx={100 + i * 100} cy={210} r="45" class="grid-circle" />
+        ))}
+        {/* Row 4: 5 circles */}
+        {[0, 1, 2, 3, 4].map(i => (
+          <circle cx={150 + i * 100} cy={290} r="45" class="grid-circle" />
+        ))}
+        {/* Row 5: 4 circles */}
+        {[0, 1, 2, 3].map(i => (
+          <circle cx={200 + i * 100} cy={370} r="45" class="grid-circle" />
+        ))}
+        {/* Row 6: 3 circles (with Icons) */}
+        {[0, 1, 2].map(i => (
+          <circle cx={250 + i * 100} cy={450} r="45" class="grid-circle" />
+        ))}
+        {/* Row 7: 1 circle (Bottom) */}
+        {[0].map(i => (
+          <circle cx={350} cy={530} r="45" class="grid-circle" />
+        ))}
+      </g>
+
+      <!-- Fluid Snaking Paths (based on image 3) -->
+      <g class="snakes">
+        <path class="snake s1" d="M150 130 Q100 130 100 210 T200 210 Q250 210 250 130" />
+        <path class="snake s2" d="M400 50 Q450 50 450 130 T550 130 Q600 130 600 210" />
+        <path class="snake s3" d="M500 290 Q550 290 550 210 T450 210 Q400 210 400 290" />
+        <path class="snake s4" d="M350 450 Q350 530 350 530 Q350 610 400 530" />
+      </g>
+
+      <!-- Content Nodes -->
+      <g class="content-nodes">
+        {/* Avatars on Row 3 */}
+        <g class="node avatar-node" transform="translate(100, 210)">
+          <circle r="38" fill="white" />
+          <image href="/assets/female-faire.png" x="-38" y="-38" width="76" height="76" clip-path="url(#circleClip-0)" />
+        </g>
+        <g class="node avatar-node" transform="translate(200, 210)">
+          <circle r="38" fill="white" />
+          <image href="/assets/male-botm.png" x="-38" y="-38" width="76" height="76" clip-path="url(#circleClip-1)" />
+        </g>
+        <g class="node avatar-node" transform="translate(350, 210)">
+          <circle r="38" fill="white" />
+          <image href="/assets/sarah-sakara.png" x="-38" y="-38" width="76" height="76" clip-path="url(#circleClip-2)" />
+        </g>
+        <g class="node avatar-node" transform="translate(500, 210)">
+          <circle r="38" fill="white" />
+          <image href="/assets/ashley-petersen.png" x="-38" y="-38" width="76" height="76" clip-path="url(#circleClip-3)" />
+        </g>
+
+        {/* Icons */}
+        <g class="node icon-node" transform="translate(350, 130)">
+           <path d="M-10 -8 L0 2 L10 -8 L0 12 L-10 -8" stroke="black" stroke-width="2.5" fill="none" />
+        </g>
+        <g class="node icon-node" transform="translate(250, 450)">
+           <path d="M-8 0 L-2 6 L10 -6" stroke="black" stroke-width="3" fill="none" />
+        </g>
+        <g class="node icon-node" transform="translate(350, 450)">
+           <circle r="15" stroke="black" stroke-width="2" fill="none" />
+           <path d="M-4 -4 L4 0 L-4 4 Z" fill="black" />
+        </g>
+        <g class="node icon-node" transform="translate(450, 450)">
+           <circle r="8" cx="-5" cy="-2" fill="black" />
+           <circle r="8" cx="5" cy="-2" fill="black" />
+           <path d="M-10 10 Q0 15 10 10" stroke="black" stroke-width="2" fill="none" />
+        </g>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<style>
+  .service-graphic-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    aspect-ratio: 1/1;
+  }
+
+  .graphic-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .service-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .grid-circle {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.5);
+    stroke-width: 6;
+  }
+
+  .snake {
+    fill: none;
+    stroke: var(--theme-color, #7B61FF);
+    stroke-width: 12;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 10px rgba(123, 97, 255, 0.25));
+  }
+
+  .node circle {
+    stroke: #fff;
+    stroke-width: 2;
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  
+  const initServiceGraphic = () => {
+    // 1. Snake Animation
+    gsap.utils.toArray('.snake').forEach((snake: any, i) => {
+      const length = snake.getTotalLength();
+      
+      gsap.set(snake, {
+        strokeDasharray: length,
+        strokeDashoffset: length
+      });
+
+      gsap.to(snake, {
+        strokeDashoffset: 0,
+        duration: 3 + i,
+        repeat: -1,
+        yoyo: true,
+        ease: "power2.inOut",
+        delay: i * 0.5
+      });
+    });
+
+    // 2. Avatar Pulse
+    gsap.to('.avatar-node', {
+      scale: 1.05,
+      duration: 2,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      stagger: 0.3
+    });
+
+    // 3. Parallax
+    const wrapper = document.querySelector('.service-graphic-wrapper');
+    const svg = document.querySelector('.service-svg');
+    if (wrapper && svg) {
+      document.addEventListener('mousemove', (e) => {
+        const { clientX, clientY } = e;
+        const { left, top, width, height } = wrapper.getBoundingClientRect();
+        const x = (clientX - (left + width/2)) / (width/2);
+        const y = (clientY - (top + height/2)) / (height/2);
+        gsap.to(svg, { rotateX: -y * 10, rotateY: x * 10, duration: 1.2, ease: "power2.out" });
+      });
+    }
+  };
+
+  window.addEventListener('load', initServiceGraphic);
+</script>

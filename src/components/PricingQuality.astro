@@ -1,0 +1,193 @@
+---
+const pillars = [
+  {
+    icon: 'scaling',
+    title: 'Scaling',
+    desc: 'From VC-backed startups to global brands, we make scaling your support operations easy, adapting to your evolving needs.'
+  },
+  {
+    icon: 'adaptive',
+    title: 'Adaptive Coverage',
+    desc: 'Never be short-handed or overstaffed. We’re always on, always responsive and always have trained backup agents ensuring uninterrupted coverage.'
+  },
+  {
+    icon: 'integration',
+    title: 'Seamless Integration',
+    desc: 'From Zendesk to custom apps and solutions, we’ve mastered your tool stack. We’re ready to work from day one to deliver exceptional customer experiences.'
+  }
+];
+---
+
+<section class="pricing-quality">
+  <div class="container container--smart">
+    <!-- Header Section -->
+    <div class="quality-header reveal">
+       <div class="badges-wrap">
+          <img src="https://hugoinc.com/_next/static/media/clutch.85e3c1a8.svg" alt="Clutch 100" class="badge-icon" />
+          <img src="https://hugoinc.com/_next/static/media/good-firms.f293a595.svg" alt="Top BPO" class="badge-icon" />
+       </div>
+       <h2 class="section-title">
+          Quality through Versatility 
+          <span class="icon-check-square">
+             <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="2" width="20" height="20" rx="4" fill="#66BB6A"/>
+                <path d="M7 12L10.5 15.5L17 9" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+             </svg>
+          </span>
+       </h2>
+       <p class="section-subtitle">Assemble your dream team in less than 2 weeks.</p>
+    </div>
+
+    <!-- Pillars Grid -->
+    <div class="pillars-grid">
+       {pillars.map((pillar, index) => (
+         <div class="pillar-card reveal" style={`--delay: ${index * 0.15}s`}>
+            <div class="pillar-icon-wrap">
+               {pillar.icon === 'scaling' && (
+                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4DD0E1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M23 6l-9.5 9.5-5-5L1 18M23 6v6M23 6h-6"/>
+                 </svg>
+               )}
+               {pillar.icon === 'adaptive' && (
+                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5C60A6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                 </svg>
+               )}
+               {pillar.icon === 'integration' && (
+                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#66BB6A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                 </svg>
+               )}
+            </div>
+            <h3 class="pillar-title">{pillar.title}</h3>
+            <p class="pillar-desc">{pillar.desc}</p>
+         </div>
+       ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing-quality {
+    padding: 140px 0;
+    background-color: var(--bg-primary);
+  }
+
+  .container--smart {
+     max-width: 1300px;
+     margin: 0 auto;
+     padding: 0 4rem;
+  }
+
+  /* Header Styles */
+  .quality-header {
+    text-align: center;
+    margin-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .badges-wrap {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .badge-icon {
+    width: 140px;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.05));
+  }
+
+  .section-title {
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    color: #000;
+    line-height: 1.05;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-subtitle {
+     font-size: 1.5rem;
+     font-weight: 700;
+     color: #000;
+     letter-spacing: -0.02em;
+  }
+
+  /* Pillars Grid */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  @media (max-width: 1024px) {
+    .pillars-grid { grid-template-columns: 1fr; max-width: 600px; margin: 0 auto; }
+  }
+
+  .pillar-card {
+    background: #fff;
+    border: 1.5px solid rgba(77, 208, 225, 0.4);
+    border-radius: 20px;
+    padding: 3.5rem 3rem;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.03);
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .pillar-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.06);
+    background-color: rgba(77, 208, 225, 0.05);
+  }
+
+  .pillar-icon-wrap {
+    margin-bottom: 2.5rem;
+  }
+
+  .pillar-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
+  }
+
+  .pillar-desc {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: #333;
+    font-weight: 500;
+  }
+
+  /* Reveal logic */
+  .reveal { opacity: 0; transform: translateY(40px); }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initPricingQuality = () => {
+    gsap.to('.pricing-quality .reveal', {
+      opacity: 1,
+      y: 0,
+      duration: 1.2,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: '.pricing-quality',
+        start: 'top 80%'
+      }
+    });
+  };
+
+  window.addEventListener('load', initPricingQuality);
+</script>

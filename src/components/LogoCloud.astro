@@ -1,0 +1,117 @@
+---
+interface Props {
+  background?: string;
+  padding?: string;
+  hideTitle?: boolean;
+}
+
+const { 
+  background = "var(--bg-primary)", 
+  padding = "3rem 0 6rem",
+  hideTitle = false
+} = Astro.props;
+
+const currentLogos = [
+  { name: 'Outschool', url: 'https://cdn.simpleicons.org/outschool/000000' },
+  { name: 'Topicals', url: 'https://cdn.simpleicons.org/topicals/000000' },
+  { name: 'Upwork', url: 'https://cdn.simpleicons.org/upwork/000000' },
+  { name: 'Gifthealth', url: 'https://cdn.simpleicons.org/gifthealth/000000' },
+  { name: 'ByteDance', url: 'https://cdn.simpleicons.org/bytedance/000000' },
+  { name: 'Attentive', url: 'https://cdn.simpleicons.org/attentive/000000' },
+  { name: 'Aurora', url: 'https://cdn.simpleicons.org/aurora/000000' }
+];
+---
+
+<section class="logo-cloud" style={`background-color: ${background}; padding: ${padding};`}>
+  <div class="container--wide logo-cloud-inner">
+    {!hideTitle && <p class="logo-title reveal">TRUSTED BY LEADERS IN TECHNOLOGY</p>}
+    
+    <div class="logo-marquee-wrapper reveal">
+      <div class="logo-marquee">
+        <div class="marquee-content">
+          {[...currentLogos, ...currentLogos, ...currentLogos].map(logo => (
+            <div class="logo-item" title={logo.name}>
+              <img src={logo.url} alt={logo.name} class="logo-img" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .logo-cloud {
+    overflow: hidden;
+    position: relative;
+    z-index: 5;
+  }
+
+  .logo-title {
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #444;
+    opacity: 0.6;
+    margin-bottom: 2.5rem;
+  }
+
+  .logo-marquee-wrapper {
+    position: relative;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+  }
+
+  .logo-marquee {
+    display: flex;
+    white-space: nowrap;
+    position: relative;
+    width: 100%;
+    /* Mask for soft edges */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  }
+
+  .marquee-content {
+    display: flex;
+    animation: marquee 40s linear infinite;
+    gap: 7rem;
+    padding: 1rem 0;
+    align-items: center;
+  }
+
+  .logo-item {
+    flex-shrink: 0;
+    filter: brightness(0); /* Pure black */
+    opacity: 1; 
+    transition: var(--transition);
+    cursor: default;
+  }
+
+  .logo-item:hover {
+    transform: scale(1.1);
+  }
+
+  .logo-img {
+    height: 32px;
+    width: auto;
+    max-width: 160px;
+    object-fit: contain;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-33.33%); }
+  }
+
+  @media (max-width: 768px) {
+    .marquee-content {
+      gap: 3.5rem;
+    }
+    .logo-img {
+      height: 26px;
+    }
+  }
+</style>

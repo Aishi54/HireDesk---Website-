@@ -1,0 +1,262 @@
+---
+interface Benefit {
+  icon: string;
+  badgeColor: string;
+  title: string;
+  description: string;
+}
+
+const benefits: Benefit[] = [
+  {
+    icon: 'clock',
+    badgeColor: '#EBE6FF',
+    title: '24/7/365 Coverage',
+    description: 'Always-on global teams ensure your customers are supported around the clock without gaps or handoffs.'
+  },
+  {
+    icon: 'path',
+    badgeColor: '#C4F1C9',
+    title: 'End-to-End Customer Journey',
+    description: 'From onboarding to retention, we manage every touchpoint with training, QA, WFM, and performance baked in.'
+  },
+  {
+    icon: 'grid',
+    badgeColor: '#FAD4C0',
+    title: 'Every Channel, Seamlessly',
+    description: 'Voice, chat, email, social, and in-app support delivered as one unified customer experience.'
+  },
+  {
+    icon: 'message',
+    badgeColor: '#BEE7F5',
+    title: '60+ Languages, Native Fluency',
+    description: 'University-educated, multilingual agents provide culturally fluent support at global scale.'
+  },
+  {
+    icon: 'award',
+    badgeColor: '#FDFCF6',
+    title: 'University-Educated Teams',
+    description: 'Every Hiredesk teammate is a full-time university graduate with 3+ years of CX experience.'
+  },
+  {
+    icon: 'users',
+    badgeColor: '#D1FADF',
+    title: 'Fully Managed Teams',
+    description: 'Dedicated full-time teams plug directly into your tools, KPIs, and workflows with zero friction.'
+  }
+];
+---
+
+<section class="why-choose">
+  <!-- Top Curve Wrapper -->
+  <div class="curve-top">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+      <path d="M0 100 C480 0 960 0 1440 100" fill="#EBE6FF" />
+    </svg>
+  </div>
+
+  <div class="container--wide">
+    <div class="content-header">
+      <div class="label-wrap reveal">
+        <span class="section-label">The Hiredesk Difference</span>
+      </div>
+
+      <h2 class="section-title reveal">
+        Why Choose <span class="accent-line">Hiredesk</span>
+      </h2>
+
+      <p class="section-desc reveal">
+        A fully managed, global support model built for scale, quality, and long-term partnership.
+      </p>
+    </div>
+
+    <div class="benefits-grid">
+      {benefits.map((benefit, i) => (
+        <div class="benefit-card reveal" style={`--delay: ${i * 0.1}s;`}>
+           <div class="icon-badge" style={`background-color: ${benefit.badgeColor};`}>
+              <div class="badge-icon-wrap">
+                 {benefit.icon === 'clock' && <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>}
+                 {benefit.icon === 'path' && <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"><path d="M5 21a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2H5z"/><path d="M17 21v-8H7v8"/><path d="M7 3v5h8"/></svg>}
+                 {benefit.icon === 'grid' && <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>}
+                 {benefit.icon === 'message' && <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.1A8.38 8.38 0 0 1 4 12.1 8.5 8.5 0 0 1 8.7 4.5 8.38 8.38 0 0 1 12.5 4a8.5 8.5 0 0 1 8.5 8.5v.5z"/></svg>}
+                 {benefit.icon === 'award' && <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"><circle cx="12" cy="8" r="7"/><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.11"/></svg>}
+                 {benefit.icon === 'users' && <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>}
+              </div>
+           </div>
+           <h3 class="benefit-title">{benefit.title}</h3>
+           <p class="benefit-desc">{benefit.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="cta-wrap reveal">
+       <a href="/contact" class="btn btn-black-pill">Connect with us</a>
+    </div>
+  </div>
+
+  <!-- Bottom Wave Divider -->
+  <div class="curve-bottom">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+       <path d="M0 100 Q720 0 1440 100 V100 H0 Z" fill="#fff" />
+    </svg>
+  </div>
+</section>
+
+<style>
+  .why-choose {
+    background-color: #EBE6FF;
+    position: relative;
+    padding: 40px 0 100px; /* Compact */
+    z-index: 10;
+  }
+
+  .curve-top {
+    position: absolute;
+    top: -80px; /* Reduced */
+    left: 0;
+    width: 100%;
+    height: 80px;
+  }
+  .curve-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+  }
+  .curve-top svg, .curve-bottom svg { width: 100%; height: 100%; }
+
+  .container--wide {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
+
+  .content-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .section-label {
+    font-size: 0.9rem; /* Scaled down */
+    font-weight: 550;
+    color: #444;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    margin-bottom: 2rem;
+    display: block;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem); /* Matching page scale */
+    font-weight: 500;
+    color: #000;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+  }
+
+  .accent-line {
+    position: relative;
+    display: inline-block;
+  }
+
+  .accent-line::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: url("data:image/svg+xml,%3Csvg width='200' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 10 Q100 2 195 10' stroke='black' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center;
+    background-size: contain;
+    opacity: 0.6;
+  }
+
+  .section-desc {
+    font-size: 0.95rem; /* Denser, smarter profile */
+    line-height: 1.5;
+    color: #444;
+    font-weight: 400;
+    max-width: 540px;
+    margin: 2.5rem auto 0;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem; /* Tightened gap */
+    margin-bottom: 4rem;
+  }
+
+  .benefit-card {
+    background-color: #FDFCF6;
+    border-radius: 20px;
+    border: 1.25px solid rgba(0,0,0,0.15); /* Refined border */
+    padding: 2.5rem 2rem; /* Compact padding */
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .benefit-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.04);
+  }
+
+  .icon-badge {
+    width: 44px; /* Scaled down */
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.75rem;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .badge-icon-wrap { width: 22px; height: 22px; }
+
+  .benefit-title {
+    font-size: 1.15rem; /* Scaled down 'Smart' scale */
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.01em;
+  }
+
+  .benefit-desc {
+    font-size: 0.85rem; /* Denser profile */
+    line-height: 1.45;
+    color: #555;
+    font-weight: 500;
+  }
+
+  .cta-wrap { text-align: center; }
+
+  @media (max-width: 1200px) { .benefits-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 768px) { .benefits-grid { grid-template-columns: 1fr; } .container--wide { padding: 0 2rem; } }
+
+  .reveal { opacity: 0; transform: translateY(30px); }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initWhyChoose = () => {
+    gsap.to('.why-choose .reveal', {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      stagger: 0.1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: '.why-choose',
+        start: 'top 80%'
+      }
+    });
+  };
+
+  window.addEventListener('load', initWhyChoose);
+</script>

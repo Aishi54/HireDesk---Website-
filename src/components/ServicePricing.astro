@@ -1,0 +1,257 @@
+---
+interface PricingProps {
+  title?: string;
+  price?: string;
+  unit?: string;
+  features?: string[];
+}
+
+const { 
+  title = "Dedicated Teams",
+  price = "$11",
+  unit = "per agent",
+  features = [
+    "Omnichannel support",
+    "365/24/7 coverage in 60+ languages",
+    "Scale up or down with just 24 hour notice",
+    "100% dedicated to your account",
+    "Onboarding, Management, QA, Training, WFM included",
+    "AI-enabled helpdesk solutions",
+    "Team lead(s) included",
+    "Seasonal & holiday peak management"
+  ]
+} = Astro.props;
+---
+
+<section class="service-pricing">
+  <div class="container">
+    <div class="header text-center">
+      <h2 class="section-title reveal">
+        <span class="header-icon left">✈️</span>
+        Outsourced Support, In-House Feel
+        <span class="header-icon right">❤️</span>
+      </h2>
+      <p class="section-desc reveal">
+        Never miss a ping again. We build fully managed teams who embody your voice, align with your values, and bring deep expertise to every customer interaction.
+      </p>
+    </div>
+
+    <!-- The Professional Card -->
+    <div class="pricing-card-outer reveal">
+      <div class="pricing-card">
+        <div class="card-left">
+          <h3 class="pkg-title">{title}</h3>
+          <div class="price-wrap">
+            <span class="price-label">Starting at</span>
+            <div class="price-val">
+              <span class="amount">{price}/hr</span>
+            </div>
+            <span class="unit">{unit}</span>
+          </div>
+        </div>
+
+        <div class="card-right">
+          <p class="features-label">Full-time, rigorously vetted teams, month-to-month contracts</p>
+          <ul class="features-list">
+            {features.map((feature: string) => (
+              <li class="feature-item">
+                <div class="check-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .service-pricing {
+    background-color: #FDFCF6;
+    padding: 60px 0 80px; /* Compact padding */
+    position: relative;
+    z-index: 10;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+  }
+
+  .header {
+    max-width: 800px;
+    margin: 0 auto 50px;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem); /* Matching page scale */
+    font-weight: 500;
+    color: #000;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+  }
+
+  .header-icon { font-size: 0.8em; }
+
+  .section-desc {
+    font-size: 0.95rem; /* Denser, smarter profile */
+    color: #444;
+    line-height: 1.5;
+    font-weight: 400;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Professional Card with Glow Border */
+  .pricing-card-outer {
+    position: relative;
+    background: linear-gradient(135deg, #FF3D00, #FFC400, #00E5FF, #7B61FF);
+    padding: 1.25px; /* Thinner border for 'smart' look */
+    border-radius: 20px; /* Reduced radius */
+    box-shadow: 0 20px 50px rgba(0,0,0,0.06);
+    transition: transform 0.4s ease;
+  }
+
+  .pricing-card-outer:hover { transform: translateY(-5px); }
+
+  .pricing-card {
+    background-color: #fff;
+    border-radius: 19px;
+    display: flex;
+    padding: 2.5rem 2.25rem; /* More compact */
+    gap: 3rem;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-left {
+    flex: 0 0 280px;
+    text-align: center;
+    border-right: 1.25px solid #F2F2F2;
+    padding-right: 3rem;
+  }
+
+  .pkg-title {
+    font-size: 1.8rem; /* Scaled down 'Smart' scale */
+    font-weight: 500;
+    color: #000;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+    line-height: 1.1;
+  }
+
+  .price-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .price-label {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .amount {
+    font-size: 3.2rem; /* Scaled down amount */
+    font-weight: 500;
+    color: #000;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .unit {
+    font-size: 0.85rem;
+    color: #888;
+    font-weight: 500;
+    margin-top: 0.5rem;
+  }
+
+  .card-right { flex: 1; }
+
+  .features-label {
+    font-size: 0.95rem; /* Denser profile */
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 1.75rem;
+  }
+
+  .features-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem 2.5rem; /* Tighter layout */
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    font-size: 0.85rem; /* Reduced font size */
+    font-weight: 500;
+    color: #333;
+    line-height: 1.4;
+  }
+
+  .check-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border: 1.25px solid #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    margin-top: 0.1rem;
+  }
+  .check-icon svg { width: 12px; height: 12px; }
+
+  @media (max-width: 1024px) {
+    .pricing-card { flex-direction: column; padding: 2.5rem 1.75rem; text-align: center; }
+    .card-left { flex: auto; border-right: none; padding-right: 0; padding-bottom: 2rem; border-bottom: 1.25px solid #F2F2F2; width: 100%; margin-bottom: 2rem; }
+    .features-list { grid-template-columns: 1fr; gap: 1rem; }
+    .amount { font-size: 4rem; }
+  }
+
+  .reveal { opacity: 0; transform: translateY(30px); }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  window.addEventListener('load', () => {
+    gsap.to('.service-pricing .reveal', {
+      opacity: 1,
+      y: 0,
+      duration: 1.2,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: '.service-pricing',
+        start: 'top 80%'
+      }
+    });
+
+    // Suble gradient pulse
+    gsap.to('.pricing-card-outer', {
+      boxShadow: "0 40px 80px rgba(123, 97, 255, 0.15)",
+      repeat: -1,
+      yoyo: true,
+      duration: 3,
+      ease: "sine.inOut"
+    });
+  });
+</script>

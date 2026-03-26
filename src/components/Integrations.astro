@@ -1,0 +1,200 @@
+---
+const techLogos = [
+  { name: 'Shopify', url: 'https://cdn.simpleicons.org/shopify/000000' },
+  { name: 'Slack', url: 'https://cdn.simpleicons.org/slack/000000' },
+  { name: 'Stripe', url: 'https://cdn.simpleicons.org/stripe/000000' },
+  { name: 'Trello', url: 'https://cdn.simpleicons.org/trello/000000' },
+  { name: 'Zendesk', url: 'https://cdn.simpleicons.org/zendesk/000000' },
+  { name: 'Intercom', url: 'https://cdn.simpleicons.org/intercom/000000' },
+  { name: 'Monday.com', url: 'https://cdn.simpleicons.org/mondaydotcom/000000' }
+];
+---
+
+<section class="integrations-marquee-section" id="integrations">
+  <!-- Dynamic Brand Strips (Top) -->
+  <div class="brand-strips-top">
+    <div class="strip strip-1" data-color="purple">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0 120 C 480 20, 960 20, 1440 120 L 1440 120 L 0 120 Z" fill="#5C60A6"/></svg>
+    </div>
+    <div class="strip strip-2" data-color="blue">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0 120 C 480 60, 960 60, 1440 120 L 1440 120 L 0 120 Z" fill="#738AC9"/></svg>
+    </div>
+  </div>
+
+  <div class="container--wide">
+    <div class="integrations-header">
+      <h2 class="reveal">
+        We integrate seamlessly with <br/>
+        technology built for scale & <br/>
+        customer excellence.
+      </h2>
+      <div class="header-action reveal">
+        <a href="#" class="btn btn-black pill">Build your Team</a>
+      </div>
+    </div>
+
+    <!-- Clean Marquee -->
+    <div class="marquee-reveal-container reveal">
+      <div class="tech-marquee">
+        <div class="marquee-content marquee-move">
+          {[...techLogos, ...techLogos].map((logo) => (
+            <div class="logo-item" title={logo.name}>
+              <span class="logo-name">{logo.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .integrations-marquee-section {
+    background: var(--bg-primary); /* Use global off-white background */
+    padding: 0 0 1rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .brand-strips-top {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+  }
+
+  .strip {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  /* Layering the strips */
+  .strip-1 { z-index: 2; }
+  .strip-2 { z-index: 1; }
+
+  .strip svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .container--wide {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 4rem;
+    text-align: center;
+  }
+
+  /* Header */
+  .integrations-header {
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  h2 {
+    font-size: clamp(1.8rem, 3.2vw, 2.4rem); /* Shrunk to 'Smart' scale */
+    font-weight: 500;
+    line-height: 1.15;
+    margin-bottom: 2.5rem; /* Reduced space */
+    color: #000;
+    letter-spacing: -0.02em;
+  }
+
+  /* Clean Marquee */
+  .tech-marquee {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  }
+
+  .marquee-content {
+    display: flex;
+    gap: 8rem;
+    padding: 2rem 0;
+    align-items: center;
+    white-space: nowrap;
+    animation: marquee-move 40s linear infinite;
+  }
+
+  .logo-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #000;
+    opacity: 0.9;
+    transition: all 0.3s ease;
+  }
+
+  .logo-name {
+    font-size: clamp(1.4rem, 2vw, 1.8rem);
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    font-family: var(--font-main);
+  }
+
+  @keyframes marquee-move {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @media (max-width: 1024px) {
+    .container--wide { padding: 0 2rem; }
+    h2 { font-size: 2rem; }
+    .marquee-content { gap: 4rem; }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initIntegrationsAnimations = () => {
+    // Brand strips reveal animation
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.integrations-marquee-section',
+        start: 'top 70%',
+        toggleActions: 'play none none none'
+      }
+    });
+
+    timeline.from('.brand-strips-top .strip-1', {
+      xPercent: -100,
+      duration: 1.4,
+      ease: 'power3.out'
+    });
+
+    timeline.from('.brand-strips-top .strip-2', {
+      xPercent: 100,
+      duration: 1.4,
+      ease: 'power3.out'
+    }, '-=1.0');
+
+    gsap.to('.reveal', {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      stagger: 0.15,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: '.integrations-marquee-section',
+        start: "top 60%"
+      }
+    });
+  };
+
+  window.addEventListener('load', initIntegrationsAnimations);
+</script>
