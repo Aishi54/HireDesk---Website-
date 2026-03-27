@@ -36,25 +36,38 @@ const steps = [
     </div>
 
     <div class="steps-layout">
-      <!-- Left: Interactive Accordion -->
-      <div class="steps-list reveal">
-        {steps.map((step, i) => (
-          <div class={`step-item ${i === 0 ? 'active' : ''}`} data-index={i}>
-            <div class="step-header">
-              <span class="step-title">{step.number}. {step.title}</span>
-              <div class="step-toggle">
-                <span class="plus">+</span>
-                <span class="minus">-</span>
-              </div>
-            </div>
-            <div class="step-content">
-              <div class="content-inner">
-                <p>{step.content}</p>
-              </div>
-            </div>
+      <!-- Left: Interactive Accordion / Slider -->
+      <div class="steps-slider-viewport">
+        <!-- Mobile Navigation Arrows (STRICT MOBILE ONLY) -->
+        <div class="mobile-only">
+          <div class="mobile-nav-arrows">
+            <button class="nav-arrow prev-btn" aria-label="Previous">
+              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="none"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button class="nav-arrow next-btn" aria-label="Next">
+              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="none"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
           </div>
-        ))}
+        </div>
 
+        <div class="steps-list reveal" id="stepsList">
+          {steps.map((step, i) => (
+            <div class={`step-item ${i === 0 ? 'active' : ''}`} data-index={i}>
+              <div class="step-header">
+                <span class="step-title">{step.number}. {step.title}</span>
+                <div class="step-toggle desktop-only">
+                  <span class="plus">+</span>
+                  <span class="minus">-</span>
+                </div>
+              </div>
+              <div class="step-content">
+                <div class="content-inner">
+                  <p>{step.content}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       <!-- Right: Geometric Graphic -->
@@ -185,12 +198,96 @@ const steps = [
   }
 
   /* Accordion */
+  .steps-slider-viewport {
+    position: relative;
+    width: 100%;
+  }
+
+  /* Desktop Grid */
   .steps-list {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+    width: 100%;
   }
 
+  /* Navigation Arrows - Strictly hidden by default (Desktop) */
+  .mobile-nav-arrows {
+    display: none !important;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .nav-arrow {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #000;
+    color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  }
+
+  .nav-arrow:active { transform: scale(0.9); }
+
+  @media (max-width: 1024px) {
+    .steps-layout { 
+      grid-template-columns: 1fr; 
+      gap: 3rem; 
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .steps-header { text-align: center; }
+    
+    .steps-slider-viewport {
+      overflow: hidden;
+      width: 100%;
+      padding: 0 1rem;
+    }
+
+    .steps-list {
+      flex-direction: row;
+      gap: 1.25rem;
+      width: max-content;
+      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    
+    .mobile-nav-arrows { display: flex !important; } /* Force show on mobile */
+    .desktop-only { display: none !important; }
+
+    .step-item {
+      flex: 0 0 280px; 
+      width: 280px;
+      padding-bottom: 1.25rem;
+      text-align: center;
+    }
+    .step-header {
+      justify-content: center;
+      padding: 1.5rem 1.25rem 0.5rem;
+    }
+    .step-content {
+      max-height: none !important;
+      opacity: 1 !important;
+    }
+    .content-inner {
+      padding: 0 1.25rem;
+    }
+    .content-inner p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #555;
+    }
+    .steps-graphic { order: -1; transform: scale(0.9); }
+  }
+
+  /* Accordion (Desktop Only Logic) */
   .step-item {
     background: #fff;
     border: 1.2px solid rgba(0,0,0,0.06); 
@@ -201,29 +298,30 @@ const steps = [
   }
 
   .step-header {
-    padding: 1rem 1.5rem;
+    padding: 1.25rem 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
   .step-title {
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: #000;
   }
 
   .step-toggle {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     background: #000;
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     position: relative;
+    flex-shrink: 0;
   }
 
   .plus, .minus {
@@ -231,9 +329,11 @@ const steps = [
     transition: opacity 0.3s, transform 0.3s;
   }
 
+  /* Reset toggle visibility for Desktop */
   .step-item.active .plus { opacity: 0; transform: rotate(90deg); }
   .step-item.active .minus { opacity: 1; transform: rotate(0); }
   .step-item:not(.active) .minus { opacity: 0; transform: rotate(-90deg); }
+  .step-item:not(.active) .plus { opacity: 1; transform: rotate(0); }
 
   .step-content {
     max-height: 0;
@@ -242,16 +342,16 @@ const steps = [
   }
 
   .step-item.active .step-content {
-    max-height: 200px;
+    max-height: 200px; /* Only active on desktop */
   }
 
   .content-inner {
-    padding: 0 1.5rem 1.25rem;
+    padding: 0 1.5rem 1.5rem;
   }
 
   .content-inner p {
-    font-size: 0.9rem;
-    line-height: 1.45;
+    font-size: 0.95rem;
+    line-height: 1.5;
     color: #333;
   }
 
@@ -260,6 +360,17 @@ const steps = [
     margin-top: 4rem; /* More space for global centering */
     text-align: center;
     width: 100%;
+  }
+
+  /* Global Visibility Utilities */
+  .mobile-only {
+    display: none !important;
+  }
+
+  @media (max-width: 1024px) {
+    .mobile-only {
+      display: block !important;
+    }
   }
 
   .btn-smart-black {
@@ -316,6 +427,7 @@ const steps = [
     const items = document.querySelectorAll('.step-item');
     const snakes = document.querySelectorAll('.step-snake');
     const solidDots = document.querySelectorAll('.dot-solid');
+    let currentIndex = 0; // Shared state for slider and desktop
 
     // Reveal animations
     gsap.to('.operational-steps .reveal', {
@@ -348,6 +460,7 @@ const steps = [
 
     // 3. Selection Logic
     const updateGraphic = (idx: number) => {
+      currentIndex = idx; // Link slider index to graphic
       const color = stepColors[idx];
 
       items.forEach((item, i) => {
@@ -365,7 +478,6 @@ const steps = [
          const length = path.getTotalLength();
 
          if (isSelected) {
-            // Fill dot with subtle transparency
             gsap.to(dot, { 
                fill: color, 
                opacity: 0.15, 
@@ -374,7 +486,6 @@ const steps = [
                ease: "power2.out"
             });
             
-            // Trigger Snake
             gsap.killTweensOf(path);
             gsap.set(path, { stroke: color, opacity: 0.95 });
             gsap.fromTo(path, 
@@ -388,14 +499,65 @@ const steps = [
       });
     };
 
+    // Mobile Slider Logic
+    const initStepsSlider = () => {
+      const sliderList = document.getElementById('stepsList');
+      const prevBtn = document.querySelector('.prev-btn');
+      const nextBtn = document.querySelector('.next-btn');
+
+      if (!sliderList || !prevBtn || !nextBtn) return;
+
+      const updateSliderUI = () => {
+        if (window.innerWidth > 1024) {
+          gsap.set(sliderList, { x: 0 });
+          return;
+        }
+
+        const cardWidth = 280;
+        const gap = 20; // 1.25rem
+        const moveX = -(currentIndex * (cardWidth + gap));
+
+        gsap.to(sliderList, {
+          x: moveX,
+          duration: 0.6,
+          ease: "power2.out"
+        });
+
+        // Update button visual state
+        (prevBtn as HTMLElement).style.opacity = currentIndex === 0 ? '0.3' : '1';
+        (nextBtn as HTMLElement).style.opacity = currentIndex === items.length - 1 ? '0.3' : '1';
+      };
+
+      prevBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateSliderUI();
+          updateGraphic(currentIndex);
+        }
+      });
+
+      nextBtn.addEventListener('click', () => {
+        if (currentIndex < items.length - 1) {
+          currentIndex++;
+          updateSliderUI();
+          updateGraphic(currentIndex);
+        }
+      });
+
+      window.addEventListener('resize', updateSliderUI);
+    };
+
     items.forEach((item, i) => {
       item.addEventListener('click', () => {
-        items.forEach(el => el.classList.remove('active'));
-        item.classList.add('active');
+        if (window.innerWidth > 1024) {
+          items.forEach(el => el.classList.remove('active'));
+          item.classList.add('active');
+        }
         updateGraphic(i);
       });
     });
 
+    initStepsSlider();
     // Initial Trigger
     updateGraphic(0);
   };

@@ -63,14 +63,16 @@ const services = [
         <div class="arc-spacer"></div>
       </div>
 
-      <!-- Mobile Navigation Arrows -->
-      <div class="mobile-nav-arrows">
-        <button class="nav-arrow prev-btn" aria-label="Previous">
-          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="none"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <button class="nav-arrow next-btn" aria-label="Next">
-          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="none"><path d="M9 18l6-6-6-6"/></svg>
-        </button>
+      <!-- Mobile Navigation Arrows (STRICT MOBILE ONLY) -->
+      <div class="mobile-only">
+        <div class="mobile-nav-arrows">
+          <button class="nav-arrow prev-btn" aria-label="Previous">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="none"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="nav-arrow next-btn" aria-label="Next">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="none"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
       </div>
 
       <div class="slider-viewport">
@@ -129,11 +131,22 @@ const services = [
   }
 
   .services-header p {
-    font-size: 0.95rem; /* Denser, smarter profile */
+    font-size: 0.95rem;
     color: #444;
     max-width: 600px;
     line-height: 1.5;
     font-weight: 400;
+  }
+
+  /* Global Visibility Utilities */
+  .mobile-only {
+    display: none !important;
+  }
+
+  @media (max-width: 1024px) {
+    .mobile-only {
+      display: block !important;
+    }
   }
 
   .grid-container {
@@ -184,7 +197,7 @@ const services = [
 
   /* Navigation Arrows - Hidden on Desktop */
   .mobile-nav-arrows {
-    display: none;
+    display: none !important; /* Force hide on website view */
     justify-content: space-between;
     position: absolute;
     top: 50%;
