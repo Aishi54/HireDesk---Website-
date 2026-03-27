@@ -48,118 +48,89 @@ import Graphic from './Graphic.astro';
 
 <style>
   .hero {
-    min-height: calc(100vh - 100px);
+    min-height: 85vh; /* Increased from 75vh */
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    align-items: center;
     background-color: var(--bg-primary);
-    padding: 3rem 0 1rem;
-    position: relative;
+    padding: 4rem 0 6rem; /* Substantial bottom buffer */
     overflow: hidden;
   }
 
   .hero-wrapper {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr; /* Slightly favor graphic */
+    grid-template-columns: 1fr 1fr;
     align-items: center;
-    gap: 2rem;
+    gap: 6rem;
     width: 100%;
-    margin-top: -20px; /* Pull up balance */
-  }
-
-  @media (max-width: 1024px) {
-    .hero-wrapper {
-      grid-template-columns: 1fr;
-      text-align: center;
-      gap: 4rem;
-    }
+    max-width: 1280px;
+    margin: 0 auto;
   }
 
   .hero-content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding-left: 2rem;
+    text-align: left;
+    max-width: 540px;
+    order: 2; /* Content on right per latest request */
   }
 
-  @media (max-width: 1024px) {
-    .hero-content {
-      align-items: center;
-      padding-left: 0;
-      order: 1;
-    }
-    .hero-graphic {
-      order: 2;
-    }
-  }
-
-  /* Tagline Styling */
+  /* Tagline Styling - Precise Alignment */
   .tagline-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.15rem;
-    margin-bottom: 1.25rem;
+    gap: 0.1rem;
+    margin-bottom: 1rem; /* Reduced margin */
   }
 
   .tagline {
-    font-size: 1rem;
-    font-weight: 500;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
     color: var(--color-black);
+    line-height: 1;
   }
 
   .tagline-underline {
     height: 2px;
     background: var(--color-black);
-    width: 40px;
-    transform: scaleX(0);
+    width: 32px;
     transform-origin: left;
-    transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
-  }
-
-  .reveal.tagline-container[style*="opacity: 1"] .tagline-underline {
-    transform: scaleX(1);
   }
 
   /* Typography */
   .hero-title {
-    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-    line-height: 1.1;
-    margin-bottom: 0.75rem;
+    font-size: clamp(2.5rem, 4.5vw, 4rem);
+    line-height: 1;
+    margin-bottom: 1.25rem;
     font-weight: 500;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.04em;
     color: #000;
   }
 
   .hero-description {
-    font-size: 0.9rem;
-    line-height: 1.35;
-    color: #333;
-    margin-bottom: 1.25rem;
-    max-width: 360px;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: #444;
+    margin-bottom: 2rem;
+    max-width: 520px;
   }
 
   .hero-actions {
-    margin-bottom: 1.25rem;
-  }
-
-  .btn-black {
-    padding: 0.5rem 1.1rem;
-    font-size: 0.85rem;
+    margin-bottom: 2.5rem;
   }
 
   /* Featured Card */
   .featured-card {
     background-color: #E0F7FA;
-    border-radius: 10px;
-    padding: 0.75rem;
+    border-radius: 12px;
+    padding: 1rem 1.25rem; /* Ultra-compact */
     width: 100%;
-    max-width: 340px;
+    max-width: 440px;
     position: relative;
-    overflow: hidden;
-    scale: 0.95;
-    transform-origin: left top;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
   }
 
   .card-inner {
@@ -169,78 +140,104 @@ import Graphic from './Graphic.astro';
   }
 
   .card-circle {
-    width: 70px;
-    height: 70px;
+    width: 55px;
+    height: 55px;
     flex-shrink: 0;
     border-radius: 50%;
     overflow: hidden;
     background: white;
     border: 2px solid white;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
   }
 
   .card-label {
     display: block;
-    font-weight: 600;
-    font-size: 0.9rem;
+    font-weight: 800;
+    font-size: 0.8rem;
     margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #000;
   }
 
   .card-text {
     font-size: 0.85rem;
     line-height: 1.4;
-    color: #333;
-  }
-
-  .card-progress {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: rgba(0,0,0,0.04);
-  }
-
-  .progress-bar {
-    width: 35%;
-    height: 100%;
-    background: var(--color-black);
+    color: #444;
   }
 
   .hero-graphic {
-    display: flex;
-    justify-content: center;
     position: relative;
     z-index: 1;
-    margin-top: -3.5rem; /* Pull up to align with heading */
+    display: flex;
+    justify-content: center;
+    order: 1; /* Graphic on left per latest screen */
+    width: 100%;
   }
 
-  /* Responsive Adjustments */
+  /* Responsive Adjustments (The UI you liked for Mobile) */
   @media (max-width: 1024px) {
-    .featured-card {
+    .hero {
+      padding: 1.5rem 0 3rem; /* Reduced top padding significantly */
+      min-height: auto; /* Allow content to dictate height */
+    }
+    .hero-wrapper {
+      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 2.5rem; /* Tighter vertical gap */
+    }
+    .hero-content {
+      align-items: center;
+      text-align: center;
       margin: 0 auto;
       max-width: 100%;
+      order: 2;
     }
-    
     .hero-graphic {
-      margin-top: -2rem;
-      transform: scale(0.8);
+      order: 1;
+      justify-content: center;
+      transform: scale(0.9);
+      margin-bottom: 2.5rem;
+    }
+    .tagline-container {
+      align-items: center;
+      text-align: center;
+    }
+    .tagline-underline {
+      transform-origin: center;
+      margin: 0 auto;
+    }
+    .hero-title {
+      font-size: 2.8rem;
     }
   }
 
   @media (max-width: 640px) {
     .hero-title {
-      font-size: 2.2rem;
+      font-size: 2.4rem;
     }
-    
+    .hero-description {
+      font-size: 1rem;
+    }
+    .featured-card {
+      max-width: 100%;
+      padding: 1.25rem;
+    }
     .card-inner {
       flex-direction: column;
       text-align: center;
-      gap: 0.75rem;
+      gap: 1rem;
     }
-    
     .card-circle {
+      width: 55px;
+      height: 55px;
       margin: 0 auto;
+    }
+    .card-label, .card-text {
+      text-align: center;
     }
   }
 </style>

@@ -32,13 +32,12 @@ const testimonials: Testimonial[] = [
         {testimonials.map((t, i) => (
           <div class="testimonial-slide" data-index={i}>
             <div class="slide-inner">
-              <!-- Left: Image with yellow circles -->
-              <div class="image-box">
+              <!-- Left: Image with yellow circles (Desktop Only) -->
+              <div class="image-box desktop-only">
                 <div class="main-circle">
                   <div class="image-wrapper">
                     <img src={t.image} alt={t.author} />
                   </div>
-                  <!-- Decorative small circle -->
                   <div class="small-circle"></div>
                 </div>
               </div>
@@ -50,20 +49,29 @@ const testimonials: Testimonial[] = [
                 </div>
                 
                 <div class="quote-wrap">
-                  <span class="quote-icon open">
+                  <span class="quote-icon open desktop-only">
                      <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M15 15Q10 15 10 20M10 20Q10 25 15 25" stroke="black" stroke-width="4" stroke-linecap="round"/></svg>
                   </span>
                   
                   <p class="quote-text">{t.quote}</p>
                   
-                  <span class="quote-icon close">
+                  <span class="quote-icon close desktop-only">
                      <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M25 15Q30 15 30 20M30 20Q30 25 25 25" stroke="black" stroke-width="4" stroke-linecap="round"/></svg>
                   </span>
                 </div>
 
                 <div class="author-meta">
-                  <span class="name">{t.author}</span>
-                  <span class="role">{t.role}</span>
+                  <div class="image-box mobile-only">
+                    <div class="main-circle small">
+                      <div class="image-wrapper">
+                        <img src={t.image} alt={t.author} />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="name-role-group">
+                    <span class="name">{t.author}</span>
+                    <span class="role">{t.role}</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -88,8 +96,7 @@ const testimonials: Testimonial[] = [
 <style>
   .testimonial-slider-section {
     background-color: #FDFCF6;
-    padding: 4rem 0; /* More breathing room */
-    position: relative;
+    padding: 6rem 0;
     overflow: hidden;
   }
 
@@ -97,11 +104,6 @@ const testimonials: Testimonial[] = [
     max-width: 1300px;
     margin: 0 auto;
     padding: 0 4rem;
-  }
-
-  .slider-overflow {
-    width: 100%;
-    overflow: hidden; /* Mask the other slides */
   }
 
   .testimonials-track {
@@ -120,10 +122,12 @@ const testimonials: Testimonial[] = [
     display: flex;
     align-items: center;
     gap: 8rem;
+    max-width: 1100px;
+    margin: 0 auto;
   }
 
-  /* Left Image Box */
-  .image-box {
+  /* Image Box (Desktop) */
+  .image-box.desktop-only {
     flex: 0 0 240px;
     display: flex;
     justify-content: center;
@@ -140,7 +144,12 @@ const testimonials: Testimonial[] = [
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    overflow: visible;
+  }
+
+  .main-circle.small {
+    width: 60px;
+    height: 60px;
+    border-width: 2px;
   }
 
   .image-wrapper {
@@ -148,14 +157,17 @@ const testimonials: Testimonial[] = [
     height: 100%;
     border-radius: 50%;
     overflow: hidden;
-    position: relative;
-    z-index: 2;
   }
 
   .image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .main-circle:not(.small) .image-wrapper img {
     width: 110%;
     height: 110%;
-    object-fit: cover;
     transform: translateY(10%);
   }
 
@@ -171,7 +183,7 @@ const testimonials: Testimonial[] = [
     border: 6px solid #FDFCF6;
   }
 
-  /* Right Content Box */
+  /* Content */
   .content-box {
     flex: 1;
     text-align: left;
@@ -179,19 +191,17 @@ const testimonials: Testimonial[] = [
 
   .logo-wrap {
     margin-bottom: 2rem;
-    height: 24px;
   }
+
   .company-name {
     font-size: 0.9rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #444;
-    opacity: 0.6;
+    color: var(--color-primary);
   }
 
   .quote-wrap {
-    position: relative;
     margin-bottom: 3rem;
     display: flex;
     align-items: center;
@@ -205,23 +215,32 @@ const testimonials: Testimonial[] = [
   .quote-icon.close { margin-left: 2rem; }
 
   .quote-text {
-    font-size: 1.35rem;
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
     font-weight: 500;
     line-height: 1.4;
     color: #000;
-    max-width: 600px;
     letter-spacing: -0.01em;
   }
 
-  .author-meta { display: flex; flex-direction: column; }
-  .name { font-weight: 800; font-size: 1.3rem; color: #000; margin-bottom: 0.3rem; }
+  .author-meta {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .name { font-weight: 800; font-size: 1.3rem; color: #000; margin-bottom: 0.2rem; }
   .role { font-size: 1.05rem; color: #666; font-weight: 600; }
+
+  .name-role-group {
+    display: flex;
+    flex-direction: column;
+  }
 
   /* Progress Bar */
   .progress-bar-wrap {
     display: flex;
     justify-content: center;
-    margin-top: 2.5rem;
+    margin-top: 4rem;
   }
 
   .progress-bar {
@@ -239,7 +258,6 @@ const testimonials: Testimonial[] = [
     height: 100%;
     position: relative;
     overflow: hidden;
-    background-color: #EBEBEB;
   }
 
   .progress-fill {
@@ -250,7 +268,6 @@ const testimonials: Testimonial[] = [
     width: 100%;
     background-color: #FFDC00;
     transform: translateX(-100%);
-    transition: none;
   }
 
   .progress-segment.past .progress-fill {
@@ -258,12 +275,36 @@ const testimonials: Testimonial[] = [
     background-color: #000;
   }
 
+  /* Utility */
+  .mobile-only { display: none; }
+
   @media (max-width: 1024px) {
-    .slide-inner { flex-direction: column; gap: 4rem; text-align: center; }
-    .content-box { text-align: center; }
-    .quote-wrap { flex-direction: column; }
-    .quote-icon { display: none; }
-    .image-box { flex: auto; }
+    .testimonial-slider-section { padding: 3rem 0; }
+    .container { padding: 0 1.5rem; }
+    .desktop-only { display: none !important; }
+    .mobile-only { display: flex !important; }
+
+    .slide-inner {
+      flex-direction: column;
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 16px;
+      gap: 1.25rem;
+      max-width: 340px;
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+    }
+    .quote-text { font-size: 1.05rem; text-align: left; }
+    .logo-wrap { margin-bottom: 0.5rem; }
+    .quote-wrap { margin-bottom: 1.25rem; }
+    .author-meta {
+      border-top: 1px solid rgba(0,0,0,0.06);
+      padding-top: 1.25rem;
+      gap: 1rem;
+      width: 100%;
+    }
+    .progress-bar { width: 100%; max-width: 260px; height: 6px; }
+    .progress-bar-wrap { margin-top: 2rem; }
   }
 </style>
 

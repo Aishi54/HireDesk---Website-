@@ -50,7 +50,7 @@ const services = [
     </div>
 
     <div class="grid-container">
-      <!-- Arcs positioned precisely over the gaps -->
+      <!-- Arcs (Desktop Only) -->
       <div class="arcs-overlay">
         <div class="arc-spacer"></div>
         <svg class="arc-svg" viewBox="0 0 100 40">
@@ -63,25 +63,36 @@ const services = [
         <div class="arc-spacer"></div>
       </div>
 
-      <div class="services-grid">
-        {services.map((service) => (
-          <div class="service-card reveal" style={`--accent: ${service.color}`}>
-            <div class="card-inner">
-              <div class="card-icon-wrapper">
-                <div class="card-icon" set:html={service.icon}></div>
-                <!-- Orbital Ring -->
-                <svg class="orbital-ring" viewBox="0 0 100 100">
-                  <circle cx="50" cy="50" r="45" stroke="var(--accent)" stroke-width="2" stroke-dasharray="20 150" fill="none" class="orbit-path" />
-                </svg>
-              </div>
-              <h3 class="card-title">{service.title}</h3>
-              <p class="card-text">{service.description}</p>
-              <div class="card-footer">
-                <a href="#" class="btn-learn">Learn More</a>
+      <!-- Mobile Navigation Arrows -->
+      <div class="mobile-nav-arrows">
+        <button class="nav-arrow prev-btn" aria-label="Previous">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="none"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="nav-arrow next-btn" aria-label="Next">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="none"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+
+      <div class="slider-viewport">
+        <div class="services-grid" id="servicesGrid">
+          {services.map((service) => (
+            <div class="service-card reveal" style={`--accent: ${service.color}`}>
+              <div class="card-inner">
+                <div class="card-icon-wrapper">
+                  <div class="card-icon" set:html={service.icon}></div>
+                  <svg class="orbital-ring" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="45" stroke="var(--accent)" stroke-width="2" stroke-dasharray="20 150" fill="none" class="orbit-path" />
+                  </svg>
+                </div>
+                <h3 class="card-title">{service.title}</h3>
+                <p class="card-text">{service.description}</p>
+                <div class="card-footer">
+                  <a href="#" class="btn-learn">Learn More</a>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   </div>
@@ -128,16 +139,17 @@ const services = [
   .grid-container {
     position: relative;
     width: 100%;
+    overflow: visible;
   }
 
-  /* Precise Arcs */
+  /* Precise Arcs (Desktop Only) */
   .arcs-overlay {
     position: absolute;
-    top: -45px; /* Sits above the grid */
+    top: -45px;
     left: 0;
     right: 0;
     display: grid;
-    grid-template-columns: 1fr 100px 1fr 100px 1fr; /* Spacers and arcs */
+    grid-template-columns: 1fr 100px 1fr 100px 1fr;
     align-items: end;
     pointer-events: none;
     z-index: 10;
@@ -153,28 +165,102 @@ const services = [
     .arcs-overlay { display: none; }
   }
 
-  /* Grid Layout */
+  /* Slider Viewport */
+  .slider-viewport {
+    width: 100%;
+    position: relative;
+    overflow: visible; /* Grid logic for desktop */
+  }
+
+  /* Grid Layout (Desktop) */
   .services-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
     position: relative;
     z-index: 2;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
   }
+
+  /* Navigation Arrows - Hidden on Desktop */
+  .mobile-nav-arrows {
+    display: none;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    left: -1rem;
+    right: -1rem;
+    transform: translateY(-50%);
+    z-index: 50;
+    pointer-events: none;
+  }
+
+  .nav-arrow {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #000;
+    color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    pointer-events: auto;
+    transition: all 0.3s ease;
+  }
+
+  .nav-arrow:active { transform: scale(0.9); }
 
   @media (max-width: 1024px) {
     .services-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
-  @media (max-width: 640px) {
-    .services-grid { grid-template-columns: 1fr; }
+  @media (max-width: 768px) {
+    .services-wrapper { 
+      padding-top: 3rem;
+      padding-bottom: 7rem; /* Added significant room for arrows */
+    }
+    
+    .mobile-nav-arrows {
+      display: flex;
+      top: auto;
+      bottom: -4.5rem; /* Pushed slightly further below the viewport */
+      left: 50%;
+      right: auto;
+      transform: translateX(-50%);
+      width: 125px;
+      gap: 1.25rem;
+      pointer-events: auto; /* Ensure they are clickable */
+    }
+
+    .slider-viewport {
+      overflow: visible; /* Prevents arrows/card shadows from being cut */
+      width: 100%;
+      padding: 0 1.5rem; /* Gives cards breathing room at the screen edges */
+    }
+
+    .services-grid {
+      display: flex;
+      gap: 1.25rem;
+      grid-template-columns: none;
+      will-change: transform;
+    }
+
+    .service-card {
+      flex: 0 0 280px;
+      width: 280px;
+    }
+    
+    .arcs-overlay { display: none; }
   }
 
   /* Compact Smart Card */
   .service-card {
     background: #fff;
     border-radius: 20px;
-    padding: 1.5rem 1.25rem; /* Drastically reduced to make them smart */
+    padding: 1.5rem 1.25rem;
     text-align: center;
     border: 1px solid rgba(0,0,0,0.06);
     outline: 2px solid var(--accent);
@@ -277,7 +363,7 @@ const services = [
   gsap.registerPlugin(ScrollTrigger);
 
   const initServicesAnimations = () => {
-    gsap.to('.reveal', {
+    gsap.to('.service-card.reveal', {
       opacity: 1,
       y: 0,
       duration: 1,
@@ -289,7 +375,7 @@ const services = [
       }
     });
 
-    // Suble floating animation for icons
+    // Suble floating animation
     gsap.to('.card-icon-wrapper', {
        y: -10,
        duration: 2.5,
@@ -299,22 +385,74 @@ const services = [
        ease: "sine.inOut"
     });
 
-    // Orbital rotation (Hero-style moving elements)
+    // Orbital rotation
     gsap.to('.orbit-path', {
-      strokeDashoffset: -170, // Total circum approx 170
+      strokeDashoffset: -170,
       duration: 3,
       repeat: -1,
       ease: "none",
       stagger: 0.2
     });
-
-    gsap.to('.orbital-ring', {
-      rotate: 360,
-      duration: 10,
-      repeat: -1,
-      ease: "none"
-    });
   };
 
-  window.addEventListener('load', initServicesAnimations);
+  const initServicesSlider = () => {
+    const grid = document.getElementById('servicesGrid');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    const cards = document.querySelectorAll('.service-card');
+    
+    if (!grid || !prevBtn || !nextBtn || cards.length === 0) return;
+
+    let currentIndex = 0;
+    const totalCards = cards.length;
+
+    const updateSlider = () => {
+      if (window.innerWidth > 768) {
+        grid.style.transform = 'none';
+        return;
+      }
+
+      const cardWidth = 280; // Match CSS
+      const gap = 16; // 1rem
+      const moveAmount = currentIndex * (cardWidth + gap);
+      
+      gsap.to(grid, {
+        x: -moveAmount,
+        duration: 0.6,
+        ease: "power2.out"
+      });
+
+      // Update button states
+      // @ts-ignore
+      prevBtn.style.opacity = currentIndex === 0 ? '0.3' : '1';
+      // @ts-ignore
+      prevBtn.style.pointerEvents = currentIndex === 0 ? 'none' : 'auto';
+      // @ts-ignore
+      nextBtn.style.opacity = currentIndex === totalCards - 1 ? '0.3' : '1';
+      // @ts-ignore
+      nextBtn.style.pointerEvents = currentIndex === totalCards - 1 ? 'none' : 'auto';
+    };
+
+    prevBtn.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateSlider();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentIndex < totalCards - 1) {
+        currentIndex++;
+        updateSlider();
+      }
+    });
+
+    window.addEventListener('resize', updateSlider);
+    updateSlider(); // Init state
+  };
+
+  window.addEventListener('load', () => {
+    initServicesAnimations();
+    initServicesSlider();
+  });
 </script>
