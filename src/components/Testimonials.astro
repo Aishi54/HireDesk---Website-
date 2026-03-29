@@ -232,6 +232,22 @@ const testimonials = [
     gap: 1.5rem;
   }
 
+  @media (max-width: 768px) {
+    .testimonials-actions {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      padding: 0 1rem;
+    }
+    .btn-black {
+      width: 100%;
+      max-width: 280px; /* Smart width for mobile buttons */
+      text-align: center;
+      padding: 1rem 0; /* Bolder button height */
+    }
+  }
+
   .btn-black {
     display: inline-block;
     background: #000;

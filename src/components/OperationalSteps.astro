@@ -38,14 +38,22 @@ const steps = [
     <div class="steps-layout">
       <!-- Left: Interactive Accordion / Slider -->
       <div class="steps-slider-viewport">
-        <!-- Mobile Navigation Arrows (STRICT MOBILE ONLY) -->
+        <!-- Mobile Navigation Controls (Yellow Circle Style) -->
         <div class="mobile-only">
-          <div class="mobile-nav-arrows">
+          <div class="mobile-nav-controls">
             <button class="nav-arrow prev-btn" aria-label="Previous">
-              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="none"><path d="M15 18l-6-6 6-6"/></svg>
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
             </button>
+            
+            <!-- Pagination Dots -->
+            <div class="pagination-dots">
+              {steps.map((_, i) => (
+                <div class={`dot ${i === 0 ? 'active' : ''}`} data-index={i}></div>
+              ))}
+            </div>
+
             <button class="nav-arrow next-btn" aria-label="Next">
-              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="none"><path d="M9 18l6-6-6-6"/></svg>
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </button>
           </div>
         </div>
@@ -212,29 +220,47 @@ const steps = [
   }
 
   /* Navigation Arrows */
-  .mobile-nav-arrows {
+  .mobile-nav-controls {
     display: none;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
   }
 
   .nav-arrow {
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    background: #000;
-    color: #fff;
+    background: #54c6d7; /* Viking blue circle per request */
+    color: #000;
     border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     transition: all 0.3s ease;
   }
 
   .nav-arrow:active { transform: scale(0.9); }
+
+  /* Pagination Dots */
+  .pagination-dots {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1.5px solid #000;
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  
+  .dot.active {
+    background: #000;
+    transform: scale(1.2);
+  }
 
   @media (max-width: 1024px) {
     .steps-layout { 
@@ -250,6 +276,8 @@ const steps = [
       overflow: hidden;
       width: 100%;
       padding: 0 1rem;
+      display: flex;
+      flex-direction: column;
     }
 
     .steps-list {
@@ -257,20 +285,36 @@ const steps = [
       gap: 1.25rem;
       width: max-content;
       transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      order: 0;
     }
     
-    .mobile-nav-arrows { display: flex !important; } /* Force show on mobile */
+    .mobile-only {
+      order: 1; /* Moves controls below cards */
+      margin-top: 2.5rem;
+      display: block !important;
+    }
+
+    .mobile-nav-controls {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+    }
     .desktop-only { display: none !important; }
 
     .step-item {
       flex: 0 0 280px; 
       width: 280px;
-      padding-bottom: 1.25rem;
+      padding: 1.5rem 1.25rem 2.5rem; /* Better breathing room */
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 380px; /* Consistent box height for a 'perfect' look */
     }
     .step-header {
       justify-content: center;
-      padding: 1.5rem 1.25rem 0.5rem;
+      padding: 0 0 1rem 0; /* Tightened */
     }
     .step-content {
       max-height: none !important;
@@ -423,7 +467,7 @@ const steps = [
 
   const initStepsGraphic = () => {
     // Official Branding Colors
-    const stepColors = ['#FFDC00', '#4DD0E1', '#738AC9', '#5C60A6', '#FF4081'];
+    const stepColors = ['#54c6d7', '#5b62ad', '#6484c2', '#415a9c', '#31447a'];
     const items = document.querySelectorAll('.step-item');
     const snakes = document.querySelectorAll('.step-snake');
     const solidDots = document.querySelectorAll('.dot-solid');
@@ -502,12 +546,19 @@ const steps = [
     // Mobile Slider Logic
     const initStepsSlider = () => {
       const sliderList = document.getElementById('stepsList');
-      const prevBtn = document.querySelector('.prev-btn');
-      const nextBtn = document.querySelector('.next-btn');
+      const prevBtn = document.querySelector('.operational-steps .prev-btn');
+      const nextBtn = document.querySelector('.operational-steps .next-btn');
+      const dots = document.querySelectorAll('.operational-steps .dot');
 
       if (!sliderList || !prevBtn || !nextBtn) return;
 
       const updateSliderUI = () => {
+        // Update Dots
+        dots.forEach((dot, i) => {
+          if (i === currentIndex) dot.classList.add('active');
+          else dot.classList.remove('active');
+        });
+
         if (window.innerWidth > 1024) {
           gsap.set(sliderList, { x: 0 });
           return;
@@ -526,9 +577,12 @@ const steps = [
         // Update button visual state
         (prevBtn as HTMLElement).style.opacity = currentIndex === 0 ? '0.3' : '1';
         (nextBtn as HTMLElement).style.opacity = currentIndex === items.length - 1 ? '0.3' : '1';
+        (prevBtn as HTMLElement).style.pointerEvents = currentIndex === 0 ? 'none' : 'auto';
+        (nextBtn as HTMLElement).style.pointerEvents = currentIndex === items.length - 1 ? 'none' : 'auto';
       };
 
-      prevBtn.addEventListener('click', () => {
+      prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
         if (currentIndex > 0) {
           currentIndex--;
           updateSliderUI();
@@ -536,7 +590,8 @@ const steps = [
         }
       });
 
-      nextBtn.addEventListener('click', () => {
+      nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
         if (currentIndex < items.length - 1) {
           currentIndex++;
           updateSliderUI();
@@ -545,6 +600,7 @@ const steps = [
       });
 
       window.addEventListener('resize', updateSliderUI);
+      updateSliderUI(); // Initial call
     };
 
     items.forEach((item, i) => {

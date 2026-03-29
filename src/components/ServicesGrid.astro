@@ -63,14 +63,22 @@ const services = [
         <div class="arc-spacer"></div>
       </div>
 
-      <!-- Mobile Navigation Arrows (STRICT MOBILE ONLY) -->
+      <!-- Mobile Navigation Controls (Yellow Circle Style) -->
       <div class="mobile-only">
-        <div class="mobile-nav-arrows">
+        <div class="mobile-nav-controls">
           <button class="nav-arrow prev-btn" aria-label="Previous">
-            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="none"><path d="M15 18l-6-6 6-6"/></svg>
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
           </button>
+          
+          <!-- Pagination Dots -->
+          <div class="pagination-dots">
+            {services.map((_, i) => (
+              <div class={`dot ${i === 0 ? 'active' : ''}`} data-index={i}></div>
+            ))}
+          </div>
+
           <button class="nav-arrow next-btn" aria-label="Next">
-            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="none"><path d="M9 18l6-6-6-6"/></svg>
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
         </div>
       </div>
@@ -195,27 +203,48 @@ const services = [
     transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
   }
 
-  .mobile-nav-arrows {
+  .mobile-nav-controls {
     display: none;
   }
 
   .nav-arrow {
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    background: #000;
-    color: #fff;
+    background: #54c6d7; /* Viking blue circle per request */
+    color: #000;
     border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     transition: all 0.3s ease;
     pointer-events: auto;
   }
 
   .nav-arrow:active { transform: scale(0.9); }
+
+  /* Pagination Dots */
+  .pagination-dots {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1.5px solid #000;
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  
+  .dot.active {
+    background: #000;
+    transform: scale(1.2);
+  }
 
   @media (max-width: 1024px) {
     .services-grid { grid-template-columns: repeat(2, 1fr); }
@@ -227,22 +256,30 @@ const services = [
       padding-bottom: 5rem;
     }
     
-    .mobile-nav-arrows {
+    .mobile-nav-controls {
       display: flex;
-      margin-top: 2.5rem;
-      position: relative;
-      left: 0;
-      transform: none;
-      width: 100%;
+      margin-top: 3rem; /* Push below cards */
       justify-content: center;
-      gap: 1.25rem;
+      align-items: center;
+      gap: 1.5rem;
       pointer-events: auto;
+      width: 100%;
+    }
+
+    .grid-container {
+      display: flex;
+      flex-direction: column;
     }
 
     .slider-viewport {
-      overflow: visible; /* Prevents arrows/card shadows from being cut */
+      order: 0;
+      overflow: visible;
       width: 100%;
-      padding: 0 1.5rem; /* Gives cards breathing room at the screen edges */
+      padding: 0 1.5rem;
+    }
+
+    .mobile-only {
+      order: 1; /* Moves controls below cards */
     }
 
     .services-grid {
@@ -411,13 +448,20 @@ const services = [
     const totalCards = cards.length;
 
     const updateSlider = () => {
+      // Update Dots
+      const dots = document.querySelectorAll('.pagination-dots .dot');
+      dots.forEach((dot, i) => {
+        if (i === currentIndex) dot.classList.add('active');
+        else dot.classList.remove('active');
+      });
+
       if (window.innerWidth > 768) {
         grid.style.transform = 'none';
         return;
       }
-
-      const cardWidth = 280; // Match CSS
-      const gap = 16; // 1rem
+      
+      const cardWidth = 280; 
+      const gap = 20; // 1.25rem * 16 (approx)
       const moveAmount = currentIndex * (cardWidth + gap);
       
       gsap.to(grid, {
@@ -437,14 +481,16 @@ const services = [
       nextBtn.style.pointerEvents = currentIndex === totalCards - 1 ? 'none' : 'auto';
     };
 
-    prevBtn.addEventListener('click', () => {
+    prevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       if (currentIndex > 0) {
         currentIndex--;
         updateSlider();
       }
     });
 
-    nextBtn.addEventListener('click', () => {
+    nextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       if (currentIndex < totalCards - 1) {
         currentIndex++;
         updateSlider();

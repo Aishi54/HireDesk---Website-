@@ -63,7 +63,7 @@ const {
           const cy = 120 + row * 105;
           
           // Use themeColor if provided, otherwise cycle through default gradients/colors
-          const colors = ['url(#purpleGrad)', 'url(#blueGrad)', '#4DD0E1', '#FFDC00'];
+          const colors = ['url(#purpleGrad)', 'url(#blueGrad)', '#54c6d7', '#5b62ad'];
           const color = themeColor ? themeColor : colors[i % colors.length];
           
           return (
@@ -128,8 +128,8 @@ const {
     z-index: 0;
     pointer-events: none;
   }
-  .blob-purple { background: #5C60A6; top: 10%; left: 0; }
-  .blob-blue { background: #1AC4D3; bottom: 10%; right: 0; }
+  .blob-purple { background: #5b62ad; top: 10%; left: 0; }
+  .blob-blue { background: #54c6d7; bottom: 10%; right: 0; }
 
   .hero-svg { width: 100%; height: 100%; overflow: visible; z-index: 2; transform: scale(1.15); }
 

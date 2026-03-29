@@ -53,7 +53,7 @@
           <input type="email" id="emailInput" placeholder="Enter Business Email" class="email-field" />
         </div>
         <div class="form-actions">
-           <button id="finalSubmit" class="btn btn-black">Next</button>
+           <button id="finalSubmit" class="btn btn-smart-white">Next</button>
         </div>
       </div>
 
@@ -62,7 +62,7 @@
           <h2 class="step-title">Thank you! Our experts will contact you shortly.</h2>
           <p class="final-desc">We’ve received your request and are preparing a custom strategy for you.</p>
           <div class="form-actions">
-             <a href="/" class="btn btn-black">Return Home</a>
+             <a href="/" class="btn btn-smart-white">Return Home</a>
           </div>
        </div>
     </div>
@@ -82,11 +82,11 @@
 <style>
   .form-wrapper {
     width: 100%;
-    max-width: 1000px;
+    max-width: 800px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
   }
 
   /* Progress Bar Styling */
@@ -100,7 +100,7 @@
   .progress-bar {
     width: 100%;
     height: 12px;
-    background: #FFF9E6;
+    background: #E8EAF6;
     border-radius: 6px;
     overflow: hidden;
     position: relative;
@@ -110,22 +110,22 @@
   .progress-fill {
     width: 25%;
     height: 100%;
-    background: linear-gradient(90deg, #4DD0E1 0%, #66BB6A 50%, #5C60A6 100%);
+    background: linear-gradient(90deg, #54c6d7 0%, #6484c2 100%);
     border-radius: 6px;
     transition: width 0.6s cubic-bezier(0.19, 1, 0.22, 1);
   }
 
   /* Form Card Styling - Tightened Hugo Yellow */
   .form-card {
-    background: #FEE775;
+    background: #5b62ad;
     border-radius: 24px;
-    padding: 3rem 2rem 2rem;
-    min-height: 420px;
+    padding: 2.5rem 2rem;
+    min-height: 400px;
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.15);
   }
 
   @media (max-width: 768px) {
@@ -135,7 +135,6 @@
   .steps-box {
     position: relative;
     width: 100%;
-    min-height: 320px; /* Fixed height for stability */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -162,10 +161,10 @@
   }
 
   .step-title {
-    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-size: clamp(1.8rem, 3.5vw, 2.2rem);
     font-weight: 700;
-    color: #000;
-    margin-bottom: 1.5rem; /* TIGHTENED */
+    color: #fff;
+    margin-bottom: 2rem; 
     letter-spacing: -0.04em;
     line-height: 1.1;
   }
@@ -181,22 +180,23 @@
 
   .option-pill {
     width: 100%;
-    background: #FFFCF1;
-    color: #000;
-    padding: 1.15rem; /* REFINED */
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    padding: 1rem; 
     border-radius: 100px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.25s ease;
-    border: 1.5px solid transparent;
-    font-family: var(--font-main);
+    transition: all 0.3s ease;
+    border: 1.5px solid rgba(255,255,255,0.1);
+    font-family: inherit;
   }
 
   .option-pill:hover {
     background: #fff;
-    border: 2px solid #000; /* MATCH REFERENCE */
-    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   }
 
   /* Email Field */
@@ -208,13 +208,13 @@
 
   .email-field {
     width: 100%;
-    background: #FFFCF1;
-    color: #000;
-    padding: 1.1rem 2rem; /* TIGHTENED */
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    padding: 1.25rem 2rem; 
     border-radius: 100px;
     font-size: 1.15rem;
     font-weight: 600;
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1.5px solid rgba(255,255,255,0.15);
     outline: none;
     text-align: center;
   }
@@ -240,8 +240,9 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    background: #F4DF5B;
-    border: none;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.2);
     padding: 0.8rem 1.75rem;
     border-radius: 100px;
     font-size: 1.1rem;
@@ -251,16 +252,34 @@
   }
 
   .btn-back:hover {
-    background: #EED739;
+    background: rgba(255,255,255,0.2);
     transform: translateX(-5px);
   }
 
   .final-desc {
     font-size: 1.25rem;
     font-weight: 500;
-    color: #333;
+    color: rgba(255,255,255,0.9);
     margin-bottom: 2.5rem;
     max-width: 500px;
+  }
+
+  .btn-smart-white {
+    display: inline-block;
+    background: #fff;
+    color: #000;
+    padding: 1rem 2.5rem;
+    border-radius: 100px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-smart-white:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
   }
 </style>
 

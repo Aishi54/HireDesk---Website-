@@ -3,9 +3,9 @@
 :root {
   --bg-primary: #FDFCF6;
   --bg-secondary: #F8F4E1;
-  --color-primary: #5C60A6; /* Hiredesk Dark Purple */
-  --color-secondary: #738AC9; /* Hiredesk Light Blue */
-  --color-accent: #4DD0E1; /* Hiredesk Cyan */
+  --color-primary: #5b62ad; /* Scampi Purple */
+  --color-secondary: #6484c2; /* Danube Blue */
+  --color-accent: #54c6d7; /* Viking Blue */
   --color-black: #000000;
   --color-grey: #666666;
   
@@ -27,7 +27,7 @@ html, body {
   background-color: var(--bg-primary);
   color: var(--color-black);
   font-family: var(--font-main);
-  font-size: 17px; /* Reduced from 19px to avoid 'huge' look */
+  font-size: 16px; /* Standard 'Smart' scale */
   line-height: 1.5;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -107,10 +107,22 @@ img {
   color: var(--color-black);
 }
 
+.btn-outline-white {
+  background-color: transparent;
+  border: 1.2px solid #ffffff;
+  color: #ffffff;
+}
+
 .btn-outline:hover, .btn-secondary:hover {
   background-color: var(--color-black) !important;
   border-color: var(--color-black);
   color: #fff !important;
+}
+
+.btn-outline-white:hover {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-color: #ffffff;
 }
 
 .btn:active {

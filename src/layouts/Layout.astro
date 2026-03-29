@@ -6,9 +6,11 @@ import Footer from '../components/Footer.astro';
 interface Props {
 	title: string;
 	description?: string;
+	hideNav?: boolean;
+	hideFooter?: boolean;
 }
 
-const { title, description = "Hiredesk — Built to make you better." } = Astro.props;
+const { title, description = "Hiredesk — Built to make you better.", hideNav = false, hideFooter = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -31,10 +33,10 @@ const { title, description = "Hiredesk — Built to make you better." } = Astro.
 	</head>
 	<body>
 		<div id="smooth-wrapper">
-			<Navbar />
+			{!hideNav && <Navbar />}
 			<main id="smooth-content">
 				<slot />
-				<Footer />
+				{!hideFooter && <Footer />}
 			</main>
 		</div>
 
