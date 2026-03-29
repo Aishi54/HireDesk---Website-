@@ -1,0 +1,138 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Cookie Policy | Hiredesk">
+  <div class="policy-page">
+    <div class="container--smart">
+      <header class="policy-header reveal">
+        <h1 class="page-title">Cookie Policy</h1>
+        <p class="last-updated">Last Updated: March 29, 2026</p>
+      </header>
+
+      <div class="policy-content reveal">
+        <section>
+          <h2>1. What are Cookies?</h2>
+          <p>Cookies are small text files stored on your device that help web designers and developers provide more seamless experiences. Each cookie is unique to your web browser and contains anonymous information such as a unique identifier, site name, and some digits.</p>
+        </section>
+
+        <section>
+          <h2>2. How We Use Cookies</h2>
+          <p>Hiredesk uses cookies to understand how visitors engage with our digital ecosystem. This allows us to optimize performance, enhance security, and deliver content that resonates with your professional interests. We employ both persistent and session-based cookies to achieve this.</p>
+        </section>
+
+        <section>
+          <h2>3. Types of Cookies</h2>
+          <p>We utilize the following categories of cookies:</p>
+          <ul>
+            <li class="cookie-type"><strong>Strictly Necessary:</strong> Critical for the fundamental operations of the site.</li>
+            <li class="cookie-type"><strong>Analytical:</strong> Helping us understand traffic and user patterns.</li>
+            <li class="cookie-type"><strong>Functional:</strong> Storing your preferences for a personalized return visit.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4. Your Control</h2>
+          <p>Most browsers enable you to refuse, delete, or manage cookies through their settings. Please be advised that disabling certain cookies might impact the performance or accessibility of specific site features.</p>
+        </section>
+
+        <section>
+          <h2>5. Third-Party Cookies</h2>
+          <p>Occasionally, we partner with trusted analytical providers like Google Analytics to help us understand site usage. These services use their own cookies to generate reports about visitor interactions at a high level of metadata.</p>
+        </section>
+
+        <section>
+          <h2>6. Updates to This Policy</h2>
+          <p>This Cookie Policy is subject to change as we evolve our technology and services. We encourage you to review this page periodically for any refinements.</p>
+        </section>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .policy-page {
+    padding: 100px 0 60px;
+    background-color: var(--bg-primary);
+    min-height: 100vh;
+  }
+
+  .container--smart {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .policy-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .page-title {
+    font-size: clamp(2.8rem, 6vw, 4.2rem);
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.04em;
+    color: #000;
+    line-height: 1;
+  }
+
+  .last-updated {
+    font-size: 0.95rem;
+    color: #666;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .policy-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  .policy-content h2 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: #000;
+    letter-spacing: -0.02em;
+  }
+
+  .policy-content p {
+    font-size: 1.1rem;
+    line-height: 1.65;
+    color: #333;
+    opacity: 0.9;
+  }
+
+  .policy-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .cookie-type {
+    font-size: 1.1rem;
+    color: #333;
+    padding-left: 2rem;
+    position: relative;
+    font-weight: 400;
+  }
+
+  .cookie-type::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    width: 12px;
+    height: 12px;
+    background: #54c6d7;
+    border-radius: 50%;
+  }
+
+  .reveal { opacity: 0; transform: translateY(30px); }
+</style>

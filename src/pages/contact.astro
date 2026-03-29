@@ -1,0 +1,121 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact Us | Hiredesk">
+  <div class="contact-page">
+    <div class="container--smart">
+      <header class="contact-header reveal">
+        <h1 class="page-title">Connect with us.</h1>
+        <p class="section-desc">Have a question or ready to scale? We're here to help you build your dream operation.</p>
+      </header>
+
+      <div class="contact-grid">
+         <div class="contact-info reveal">
+            <div class="info-block">
+               <h4>General Inquiries</h4>
+               <p><a href="mailto:hello@hiredesk.com">hello@hiredesk.com</a></p>
+            </div>
+            <div class="info-block">
+               <h4>New Partnerships</h4>
+               <p><a href="mailto:partners@hiredesk.com">partners@hiredesk.com</a></p>
+            </div>
+            <div class="info-block">
+               <h4>Global HQ</h4>
+               <address>
+                  123 Brand Avenue, <br/>
+                  Suite 400 <br/>
+                  New York, NY 10001
+               </address>
+            </div>
+            <div class="social-minimal">
+               <a href="#">𝕏</a>
+               <a href="#">LinkedIn</a>
+               <a href="#">Instagram</a>
+            </div>
+         </div>
+
+         <div class="contact-action reveal">
+            <div class="cta-card">
+               <h3>Ready for a deep dive?</h3>
+               <p>Our onboarding process is fast, efficient, and entirely focused on your success. Let's start the conversation.</p>
+               <a href="/get-started" class="btn btn-black-pill">Get Started</a>
+            </div>
+         </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .contact-page {
+    padding: 100px 0 60px;
+    background-color: var(--bg-primary);
+    min-height: 100vh;
+  }
+
+  .container--smart {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .contact-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .page-title {
+    font-size: clamp(3rem, 7vw, 5.2rem);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.04em;
+    color: #000;
+    line-height: 0.95;
+  }
+
+  .section-desc {
+    font-size: 1.2rem;
+    color: #444;
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 500;
+    opacity: 0.8;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+  }
+
+  @media (max-width: 1024px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 5rem; text-align: center; }
+  }
+
+  .info-block { margin-bottom: 3.5rem; }
+  .info-block h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.15em; color: #888; margin-bottom: 1.25rem; font-weight: 700; }
+  .info-block p, .info-block address { font-size: 1.6rem; color: #000; font-weight: 600; line-height: 1.2; font-style: normal; }
+  .info-block a:hover { color: var(--color-primary); }
+
+  .social-minimal { display: flex; gap: 2rem; margin-top: 5rem; }
+  .social-minimal a { font-size: 1rem; font-weight: 700; color: #000; opacity: 0.6; transition: opacity 0.3s; }
+  .social-minimal a:hover { opacity: 1; text-decoration: underline; }
+
+  @media (max-width: 1024px) { .social-minimal { justify-content: center; } }
+
+  .cta-card {
+    background-color: #fff;
+    padding: 4rem 3.5rem;
+    border-radius: 40px;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 40px 100px rgba(0,0,0,0.03);
+    text-align: center;
+  }
+
+  .cta-card h3 { font-size: 2.2rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+  .cta-card p { font-size: 1.05rem; line-height: 1.5; color: #555; margin-bottom: 3rem; font-weight: 500; }
+
+  .reveal { opacity: 0; transform: translateY(30px); }
+</style>

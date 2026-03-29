@@ -1,0 +1,106 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Careers | Hiredesk - Join Our Dream Team">
+  <div class="careers-page">
+    <div class="container--smart">
+      <header class="careers-header reveal">
+        <h1 class="page-title">The brightest minds, <br/> united.</h1>
+        <p class="section-desc">We’re building a world-class operation where talent thrives, complexity is embraced, and our teams build careers that last.</p>
+      </header>
+
+      <div class="careers-stats reveal">
+         <div class="stat-item">
+            <span class="stat-num">2%</span>
+            <span class="stat-label">Acceptance Rate</span>
+         </div>
+         <div class="stat-item">
+            <span class="stat-num">100%</span>
+            <span class="stat-label">University Graduates</span>
+         </div>
+         <div class="stat-item">
+            <span class="stat-num">3.5y</span>
+            <span class="stat-label">Average Tenure</span>
+         </div>
+      </div>
+
+      <div class="careers-cta-block reveal">
+         <div class="cta-inner">
+            <h2 class="cta-title">Join our global network.</h2>
+            <p>Ready to bring your expertise to world-class brands? We’re always looking for proactive problem-solvers who embrace complexity.</p>
+            <div class="cta-buttons">
+                <a href="mailto:careers@hiredesk.com" class="btn btn-black-pill">Send your CV</a>
+            </div>
+         </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .careers-page {
+    padding: 100px 0 60px;
+    background-color: var(--bg-primary);
+    min-height: 100vh;
+  }
+
+  .container--smart {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .careers-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .page-title {
+    font-size: clamp(3rem, 7vw, 5.2rem);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.04em;
+    color: #000;
+    line-height: 0.95;
+  }
+
+  .section-desc {
+    font-size: 1.25rem;
+    color: #444;
+    max-width: 680px;
+    margin: 0 auto;
+    font-weight: 500;
+    opacity: 0.8;
+  }
+
+  .careers-stats {
+    display: flex;
+    justify-content: center;
+    gap: 8rem;
+    margin-bottom: 10rem;
+  }
+
+  @media (max-width: 768px) {
+    .careers-stats { flex-direction: column; gap: 4rem; text-align: center; }
+  }
+
+  .stat-item { display: flex; flex-direction: column; gap: 0.5rem; }
+  .stat-num { font-size: 4rem; font-weight: 800; color: #000; letter-spacing: -0.04em; }
+  .stat-label { font-size: 0.85rem; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.15em; }
+
+  .careers-cta-block {
+    background-color: #5b62ad; /* Scampi Purple for branding */
+    border-radius: 60px;
+    padding: 6rem 4rem;
+    color: #fff;
+    text-align: center;
+  }
+
+  .cta-title { font-size: 3rem; font-weight: 600; margin-bottom: 1.5rem; letter-spacing: -0.03em; }
+  .careers-cta-block p { font-size: 1.15rem; opacity: 0.9; margin-bottom: 3.5rem; max-width: 500px; margin-inline: auto; font-weight: 400; }
+
+  .btn-black-pill { background: #000; color: #fff; padding: 1.25rem 3.5rem; font-size: 1rem; font-weight: 800; }
+
+  .reveal { opacity: 0; transform: translateY(30px); }
+</style>

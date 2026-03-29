@@ -1,0 +1,72 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ServiceHero from "../../components/ServiceHero.astro";
+import WhatYouGet from "../../components/WhatYouGet.astro";
+import ServiceFeatures from "../../components/ServiceFeatures.astro";
+import ServicesStats from '../../components/ServicesStats.astro';
+import OperationalSteps from '../../components/OperationalSteps.astro';
+import WhyChoose from '../../components/WhyChoose.astro';
+import LogoCloud from "../../components/LogoCloud.astro";
+---
+
+<Layout
+  title="Email Support | Hiredesk - Precision communication for world-class brands"
+>
+  <ServiceHero
+    title="Email Support"
+    description="Deliver thoughtful, precise, and timely responses that turn every support ticket into a meaningful brand moment."
+    bgColor="#F0F9FF"
+  >
+    <LogoCloud
+      slot="bottom"
+      background="transparent"
+      padding="0 0 3rem"
+      hideTitle={true}
+    />
+  </ServiceHero>
+
+  <WhatYouGet
+    title="Email Support"
+    description="Your brand’s voice, delivered with surgical precision. We manage high-volume ticketing with a human touch, ensuring zero backlogs and 100% resolution."
+  />
+
+  <ServiceFeatures
+    cards={[
+      {
+        icon: "video",
+        title: "Ticketing Mastery",
+        features: ["Zendesk / Intercom / Gorgias", "Zero backlog management", "Macro optimization"],
+      },
+      {
+        icon: "report",
+        title: "Deeper Context",
+        features: [
+          "Complex troubleshooting",
+          "Knowledge base updates",
+          "Cross-department sync",
+        ],
+      },
+      {
+        icon: "support",
+        title: "Personalization",
+        features: ["Brand voice alignment", "Human-first responses", "Emotional intelligence"],
+      },
+    ]}
+  />
+
+  <ServicesStats
+    stats={[
+      { number: '15m', label: 'Initial Response Time' },
+      { number: '99%', label: 'SLA Achievement' },
+      { number: '85%', label: 'First Contact Resolution' },
+      { number: '24/7', label: 'Global Inbox Coverage' }
+    ]}
+    title="Email Precision at Scale"
+    description="Highly-trained teams ready to master your most complex communications."
+  />
+
+  <WhyChoose />
+
+  <OperationalSteps />
+
+</Layout>
