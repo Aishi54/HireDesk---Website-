@@ -63,26 +63,6 @@ const services = [
         <div class="arc-spacer"></div>
       </div>
 
-      <!-- Mobile Navigation Controls (Yellow Circle Style) -->
-      <div class="mobile-only">
-        <div class="mobile-nav-controls">
-          <button class="nav-arrow prev-btn" aria-label="Previous">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-          </button>
-          
-          <!-- Pagination Dots -->
-          <div class="pagination-dots">
-            {services.map((_, i) => (
-              <div class={`dot ${i === 0 ? 'active' : ''}`} data-index={i}></div>
-            ))}
-          </div>
-
-          <button class="nav-arrow next-btn" aria-label="Next">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
-        </div>
-      </div>
-
       <div class="slider-viewport">
         <div class="services-grid" id="servicesGrid">
           {services.map((service) => (
@@ -102,6 +82,25 @@ const services = [
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Controls (Pinned to End of Cards) -->
+      <div class="mobile-only">
+        <div class="mobile-nav-controls">
+          <button class="nav-arrow prev-btn" aria-label="Previous">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          </button>
+          
+          <div class="pagination-dots">
+            {services.map((_, i) => (
+              <div class={`dot ${i === 0 ? 'active' : ''}`} data-index={i}></div>
+            ))}
+          </div>
+
+          <button class="nav-arrow next-btn" aria-label="Next">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
         </div>
       </div>
     </div>
@@ -281,8 +280,9 @@ const services = [
       justify-content: center;
       align-items: center;
       gap: 1.5rem;
-      margin-top: -1rem;
-      padding-bottom: 3rem;
+      margin: 2.5rem 0 0; /* Clear spacing at the 'end' of cards */
+      pointer-events: auto;
+      width: 100%;
     }
   }
 
@@ -453,6 +453,15 @@ const services = [
     };
 
     viewport.addEventListener('scroll', syncSlider);
+
+    prevBtn.addEventListener('click', () => {
+       viewport.scrollBy({ left: -(cards[0].clientWidth + 20), behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+       viewport.scrollBy({ left: (cards[0].clientWidth + 20), behavior: 'smooth' });
+    });
+
     syncSlider(); // Init state
   };
 
