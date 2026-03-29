@@ -262,6 +262,8 @@ const steps = [
   }
 
   @media (max-width: 1024px) {
+    .container--wide { padding: 0; }
+    .steps-header { text-align: center; padding: 0 1.5rem; }
     .steps-layout { 
       grid-template-columns: 1fr; 
       gap: 3rem; 
@@ -269,8 +271,6 @@ const steps = [
       flex-direction: column;
       align-items: center;
     }
-    .steps-header { text-align: center; }
-    
     .steps-slider-viewport {
       overflow-x: auto;
       scroll-snap-type: x mandatory;
