@@ -1,7 +1,7 @@
 ---
-import '../styles/global.css';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
 
 interface Props {
 	title: string;
@@ -10,7 +10,12 @@ interface Props {
 	hideFooter?: boolean;
 }
 
-const { title, description = "Hiredesk — Built to make you better.", hideNav = false, hideFooter = false } = Astro.props;
+const {
+	title,
+	description = "Hiredesk — Built to make you better.",
+	hideNav = false,
+	hideFooter = false,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -22,12 +27,12 @@ const { title, description = "Hiredesk — Built to make you better.", hideNav =
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
-		
+
 		<!-- SEO -->
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
-		
+
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	</head>
@@ -41,56 +46,113 @@ const { title, description = "Hiredesk — Built to make you better.", hideNav =
 		</div>
 
 		<script>
-			import Lenis from 'lenis';
-			import gsap from 'gsap';
-			import { ScrollTrigger } from 'gsap/ScrollTrigger';
+			import Lenis from "lenis";
+			import gsap from "gsap";
+			import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 			gsap.registerPlugin(ScrollTrigger);
 
-			// Initialize Lenis
+			// 1. Premium Smooth Scroll
 			const lenis = new Lenis({
-				duration: 1.2,
+				duration: 1.4,
 				easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-				touchMultiplier: 2,
-				infinite: false,
+				smoothWheel: true,
 			});
 
 			function raf(time: number) {
 				lenis.raf(time);
 				requestAnimationFrame(raf);
 			}
-
 			requestAnimationFrame(raf);
 
-			// Connect GSAP ScrollTrigger to Lenis
-			lenis.on('scroll', ScrollTrigger.update);
+			lenis.on("scroll", ScrollTrigger.update);
 
-			// Global Reveal System with Stagger
-			const setupReveals = () => {
-				const sections = document.querySelectorAll('section, main');
-				
-				sections.forEach(section => {
-					const reveals = section.querySelectorAll('.reveal');
-					if (reveals.length === 0) return;
+			// 2. Global Animation Logic (Zero-Touch HTML)
+			const setupAnimations = () => {
+				// Universal Section Reveals
+				const reveals = document.querySelectorAll(".reveal");
+				reveals.forEach((el) => {
+					gsap.set(el, { opacity: 0, y: 40, scale: 0.98 });
+					
+					ScrollTrigger.create({
+						trigger: el,
+						start: "top 90%",
+						onEnter: () => {
+							gsap.to(el, {
+								opacity: 1,
+								y: 0,
+								scale: 1,
+								duration: 1.2,
+								ease: "power4.out",
+							});
+						},
+						once: true
+					});
+				});
 
-					gsap.to(reveals, {
-						opacity: 1,
-						y: 0,
-						scale: 1,
-						duration: 1.2,
-						stagger: 0.15,
-						ease: "power4.out",
-						scrollTrigger: {
-							trigger: section,
-							start: "top 85%",
-							toggleActions: "play none none none"
-						}
+				// Intelligent Stagger for Grids
+				const grids = document.querySelectorAll(".benefits-grid, .mission-grid, .surge-main-grid");
+				grids.forEach((grid) => {
+					const children = grid.children;
+					gsap.set(children, { opacity: 0, y: 30 });
+
+					ScrollTrigger.create({
+						trigger: grid,
+						start: "top 85%",
+						onEnter: () => {
+							gsap.to(children, {
+								opacity: 1,
+								y: 0,
+								duration: 1,
+								stagger: 0.1,
+								ease: "power3.out"
+							});
+						},
+						once: true
+					});
+				});
+
+				// Mouse-Reactive 3D Depth (JS-Only Tilt)
+				const cards = document.querySelectorAll(".benefit-card, .info-card, .featured-card, .mission-card-inner");
+				cards.forEach((card) => {
+					card.addEventListener("mousemove", (e: any) => {
+						const { offsetX, offsetY, target } = e;
+						const rect = (target as HTMLElement).getBoundingClientRect();
+						const x = (offsetY - rect.height / 2) / 15;
+						const y = (offsetX - rect.width / 2) / 15;
+						gsap.to(card, {
+							rotationX: -x,
+							rotationY: y,
+							transformPerspective: 800,
+							duration: 0.4,
+							ease: "power2.out"
+						});
+					});
+					card.addEventListener("mouseleave", () => {
+						gsap.to(card, { 
+							rotationX: 0, 
+							rotationY: 0, 
+							duration: 0.8, 
+							ease: "elastic.out(1, 0.3)" 
+						});
+					});
+				});
+
+				// Subtle Floating for Graphics
+				const graphics = document.querySelectorAll(".hero-graphic, .brand-logo, .card-circle");
+				graphics.forEach((g, i) => {
+					gsap.to(g, {
+						y: -10,
+						duration: 2 + (i * 0.5),
+						repeat: -1,
+						yoyo: true,
+						ease: "sine.inOut"
 					});
 				});
 			};
 
-			// Run on load
-			window.addEventListener('load', setupReveals);
+			window.addEventListener("load", setupAnimations);
+			document.addEventListener("astro:after-swap", setupAnimations);
 		</script>
 	</body>
 </html>

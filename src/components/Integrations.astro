@@ -22,14 +22,24 @@ const techLogos = [
   </div>
 
   <div class="container--wide">
-    <div class="integrations-header">
-      <h2 class="reveal">
-        We integrate seamlessly with <br/>
-        technology built for scale & <br/>
-        customer excellence.
-      </h2>
+    <div class="integrations-header reveal">
+      <div class="header-content-wrap">
+        <div class="label-box">
+          <span class="label-text">Ecosystem</span>
+          <svg class="label-scribble" viewBox="0 0 100 20">
+            <path d="M5 15 Q50 20 95 15" stroke="black" stroke-width="2" fill="none" class="scribble-path"></path>
+          </svg>
+        </div>
+        <h2 class="section-title">
+          We integrate seamlessly with <br/>
+          technology built for scale.
+          <svg class="title-scribble" viewBox="0 0 300 20">
+            <path d="M10 12 Q150 18 290 12" stroke="black" stroke-opacity="0.1" stroke-width="3" fill="none" class="scribble-path"></path>
+          </svg>
+        </h2>
+      </div>
       <div class="header-action reveal">
-        <a href="#" class="btn btn-black pill">Build your Team</a>
+        <a href="#" class="btn btn-black-pill">Build your Team</a>
       </div>
     </div>
 
@@ -91,19 +101,63 @@ const techLogos = [
     text-align: center;
   }
 
-  /* Header */
+  /* Header (Screenshot Style) */
   .integrations-header {
-    margin-top: 1.5rem;
-    margin-bottom: 3rem;
+    text-align: center;
+    margin-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
-  h2 {
-    font-size: clamp(1.8rem, 3.2vw, 2.4rem); /* Shrunk to 'Smart' scale */
+  .header-content-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  .label-box {
+    position: relative;
+    padding-top: 0.5rem;
+  }
+
+  .label-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #555;
+    text-transform: capitalize;
+    letter-spacing: 0.05em;
+  }
+
+  .label-scribble {
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 12px;
+    pointer-events: none;
+  }
+
+  .section-title {
+    font-size: clamp(2.2rem, 4.5vw, 3.2rem);
     font-weight: 500;
-    line-height: 1.15;
-    margin-bottom: 2.5rem; /* Reduced space */
+    line-height: 1.05;
     color: #000;
-    letter-spacing: -0.02em;
+    position: relative;
+    letter-spacing: -3.0333px;
+    margin: 0;
+  }
+
+  .title-scribble {
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    pointer-events: none;
+    opacity: 0.15;
   }
 
   /* Clean Marquee */

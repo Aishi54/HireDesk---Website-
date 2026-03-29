@@ -3,20 +3,24 @@
 :root {
   --bg-primary: #FDFCF6;
   --bg-secondary: #F8F4E1;
-  --color-primary: #5b62ad; /* Scampi Purple */
-  --color-secondary: #6484c2; /* Danube Blue */
-  --color-accent: #54c6d7; /* Viking Blue */
+  --color-primary: #5b62ad;
+  /* Scampi Purple */
+  --color-secondary: #6484c2;
+  /* Danube Blue */
+  --color-accent: #54c6d7;
+  /* Viking Blue */
   --color-black: #000000;
   --color-grey: #666666;
-  
+
   --font-main: 'Albert Sans', sans-serif;
-  
+
   --max-width: 1440px;
   --container-padding: 2rem;
-  
-  --card-bg: rgba(84, 198, 215, 0.05); /* Light Viking tint for "Smart Card" */
+
+  --card-bg: rgba(84, 198, 215, 0.05);
+  /* Light Viking tint for "Smart Card" */
   --card-shadow: 0 12px 35px rgba(0, 0, 0, 0.04);
-  
+
   --transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
@@ -26,19 +30,27 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   background-color: var(--bg-primary);
   color: var(--color-black);
   font-family: var(--font-main);
-  font-size: 16px; /* Standard 'Smart' scale */
+  font-size: 16px;
+  /* Standard 'Smart' scale */
   line-height: 1.5;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 500; /* Minimal look often uses medium weights instead of extra bold */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+  /* Minimal look often uses medium weights instead of extra bold */
   line-height: 1.1;
   letter-spacing: -0.01em;
 }
@@ -66,7 +78,11 @@ img {
 }
 
 /* --- Global Button System (Premium) --- */
-.btn, .btn-black, .btn-black-pill, .btn-smart-black, [class*="btn-"] {
+.btn,
+.btn-black,
+.btn-black-pill,
+.btn-smart-black,
+[class*="btn-"] {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -75,36 +91,47 @@ img {
   font-weight: 700;
   cursor: pointer;
   border: none;
-  font-size: 0.9rem; /* Refined 'Smart' scale */
+  font-size: 0.9rem;
+  /* Refined 'Smart' scale */
   text-decoration: none;
   white-space: nowrap;
   position: relative;
   overflow: hidden;
   z-index: 1;
-  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1), 
-              box-shadow 0.6s cubic-bezier(0.19, 1, 0.22, 1),
-              background-color 0.4s ease, 
-              color 0.4s ease,
-              letter-spacing 0.4s ease;
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+    box-shadow 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+    background-color 0.4s ease,
+    color 0.4s ease,
+    letter-spacing 0.4s ease;
   letter-spacing: -0.01em;
 }
 
 /* Base colors */
-.btn-black, .btn-black-pill, .btn-smart-black {
-  background-color: var(--color-black);
+.btn-black,
+.btn-black-pill,
+.btn-smart-black {
+  background-color: var(--color-primary);
+  /* Brand Purple as base */
   color: #fff;
+  border: 2px solid var(--color-primary);
 }
 
-/* Elegant Hover Effect */
-.btn:hover, .btn-black:hover, .btn-black-pill:hover, .btn-smart-black:hover, [class*="btn-"]:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 10px 25px rgba(92, 96, 166, 0.15); /* Softer brand glow */
-  background-color: var(--color-primary) !important;
-  color: #fff !important; /* Force white text on hover */
+/* Elegant Hover Effect (Purple Invert) */
+.btn:hover,
+.btn-black:hover,
+.btn-black-pill:hover,
+.btn-smart-black:hover,
+[class*="btn-"]:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(91, 98, 173, 0.2);
+  background-color: #ffffff !important;
+  color: var(--color-primary) !important;
+  border-color: var(--color-primary);
 }
 
 /* Secondary/Outline variant refinement */
-.btn-outline, .btn-secondary {
+.btn-outline,
+.btn-secondary {
   background-color: transparent;
   border: 1.2px solid var(--color-black);
   color: var(--color-black);
@@ -116,7 +143,8 @@ img {
   color: #ffffff;
 }
 
-.btn-outline:hover, .btn-secondary:hover {
+.btn-outline:hover,
+.btn-secondary:hover {
   background-color: var(--color-black) !important;
   border-color: var(--color-black);
   color: #fff !important;
@@ -160,8 +188,15 @@ img {
 }
 
 /* --- Shared Slider Controls (Mobile) --- */
-.mobile-only { display: none !important; }
-@media (max-width: 1024px) { .mobile-only { display: block !important; } }
+.mobile-only {
+  display: none !important;
+}
+
+@media (max-width: 1024px) {
+  .mobile-only {
+    display: block !important;
+  }
+}
 
 .mobile-nav-controls {
   display: flex !important;
@@ -176,20 +211,24 @@ img {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: var(--color-accent); /* Viking Blue */
+  background: var(--color-accent);
+  /* Viking Blue */
   color: #000;
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
   padding: 0;
   outline: none;
 }
 
-.nav-arrow svg { width: 20px; height: 20px; }
+.nav-arrow svg {
+  width: 20px;
+  height: 20px;
+}
 
 .pagination-dots {
   display: flex;

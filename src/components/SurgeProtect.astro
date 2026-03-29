@@ -1,4 +1,5 @@
 ---
+
 ---
 
 <section class="surge-protect">
@@ -14,8 +15,18 @@
     <div class="surge-brand reveal">
       <div class="brand-logo">
         <svg width="45" height="52" viewBox="0 0 50 60">
-           <path d="M5 10 Q25 5 45 10 L45 35 Q45 50 25 55 Q5 50 5 35 Z" fill="none" stroke="white" stroke-width="3.5"/>
-           <path d="M22 15 L32 25 L18 35 L28 45" stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path
+            d="M5 10 Q25 5 45 10 L45 35 Q45 50 25 55 Q5 50 5 35 Z"
+            fill="none"
+            stroke="white"
+            stroke-width="3.5"></path>
+          <path
+            d="M22 15 L32 25 L18 35 L28 45"
+            stroke="white"
+            stroke-width="3.5"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
         </svg>
       </div>
       <div class="brand-text">
@@ -29,7 +40,8 @@
       <!-- Left: Compact Description -->
       <div class="surge-left reveal">
         <p class="desc-text">
-          From expected surges and urgent projects to unexpected demands, we've got your back. Access elite talent instantly, scale down seamlessly.
+          From expected surges and urgent projects to unexpected demands, we've
+          got your back. Access elite talent instantly, scale down seamlessly.
         </p>
         <div class="cta-wrapper">
           <a href="#" class="btn-outline-white">Speak to an expert</a>
@@ -71,21 +83,26 @@
 <style>
   .surge-protect {
     background: linear-gradient(135deg, #54c6d7 0%, #5b62ad 60%, #6484c2 100%);
-    padding: 3.5rem 0; 
+    padding: 3.5rem 0;
     position: relative;
     color: #fff;
   }
 
   /* Wave Dividers - Perfectly Subtle */
-  .wave-top, .wave-bottom {
+  .wave-top,
+  .wave-bottom {
     position: absolute;
     width: 100%;
     height: 40px;
     left: 0;
     z-index: 2;
   }
-  .wave-top { top: -1px; }
-  .wave-bottom { bottom: -1px; }
+  .wave-top {
+    top: -1px;
+  }
+  .wave-bottom {
+    bottom: -1px;
+  }
 
   .container--smart {
     max-width: 1100px; /* SAME AS OPERATIONAL STEPS FOR CONSISTENCY */
@@ -95,34 +112,63 @@
     z-index: 5;
   }
 
-  /* Header Branding - Centered & Smaller */
+  /* Header Branding (Screenshot Style) */
   .surge-brand {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 2.5rem; /* REDUCED FROM 4rem */
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .header-content-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    position: relative;
     text-align: left;
   }
 
-  .brand-logo { transition: transform 0.4s ease; cursor: default; }
-  .brand-logo:hover { transform: scale(1.1); }
-
-  h2 {
-    font-size: clamp(2rem, 4vw, 2.4rem); /* SHRUNK FROM 3.2rem */
-    font-weight: 700;
-    margin: 0;
-    line-height: 0.9;
-    letter-spacing: -0.015em;
+  .label-box {
+    position: relative;
+    padding-top: 0.5rem;
   }
 
-  .brand-text p {
-    font-size: clamp(1rem, 2vw, 1.25rem); /* SHRUNK FROM 1.8rem */
-    font-weight: 500;
-    margin: 0;
-    margin-top: 0.3rem;
+  .label-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.8);
+    text-transform: capitalize;
+    letter-spacing: 0.05em;
+  }
+
+  .label-scribble {
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 12px;
+    pointer-events: none;
+  }
+
+  .section-title {
+    font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.05;
     color: #fff;
-    opacity: 0.9;
+    position: relative;
+    letter-spacing: -3.0333px;
+    margin: 0;
+  }
+
+  .title-scribble {
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    pointer-events: none;
+    opacity: 0.25;
   }
 
   /* Main Grid Alignment */
@@ -134,11 +180,26 @@
   }
 
   @media (max-width: 900px) {
-    .surge-main-grid { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
-    .surge-brand { flex-direction: column; text-align: center; }
-    .surge-brand h2 { font-size: 2.5rem; }
-    .container--smart { padding: 0; }
-    .surge-brand, .surge-main-grid { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .surge-main-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      text-align: center;
+    }
+    .surge-brand {
+      flex-direction: column;
+      text-align: center;
+    }
+    .surge-brand h2 {
+      font-size: 2.5rem;
+    }
+    .container--smart {
+      padding: 0;
+    }
+    .surge-brand,
+    .surge-main-grid {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
   }
 
   .desc-text {
@@ -152,7 +213,9 @@
   }
 
   @media (max-width: 900px) {
-    .desc-text { margin: 0 auto 2.22rem; }
+    .desc-text {
+      margin: 0 auto 2.22rem;
+    }
   }
 
   .btn-smart-black {
@@ -175,14 +238,19 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
     transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   }
 
-  .info-card:hover { transform: translateY(-5px); }
+  .info-card:hover {
+    transform: translateY(-5px);
+  }
 
   @media (max-width: 600px) {
-    .info-card { grid-template-columns: 1fr; padding: 2rem; }
+    .info-card {
+      grid-template-columns: 1fr;
+      padding: 2rem;
+    }
   }
 
   .info-col ul {
@@ -205,7 +273,7 @@
   }
 
   .info-col ul li::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     width: 6px;
@@ -215,36 +283,39 @@
   }
 
   /* Reveal logic */
-  .reveal { opacity: 0; transform: translateY(18px); }
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+  }
 </style>
 
 <script>
-  import gsap from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
 
   gsap.registerPlugin(ScrollTrigger);
 
   const initSurgeProtect = () => {
-    gsap.to('.surge-protect .reveal', {
+    gsap.to(".surge-protect .reveal", {
       opacity: 1,
       y: 0,
       duration: 0.8,
       stagger: 0.15,
       scrollTrigger: {
-        trigger: '.surge-protect',
-        start: 'top 80%'
-      }
+        trigger: ".surge-protect",
+        start: "top 80%",
+      },
     });
 
     // Gentle float for the card
-    gsap.to('.info-card', {
+    gsap.to(".info-card", {
       y: -8,
       duration: 3,
       repeat: -1,
       yoyo: true,
-      ease: 'sine.inOut'
+      ease: "sine.inOut",
     });
   };
 
-  window.addEventListener('load', initSurgeProtect);
+  window.addEventListener("load", initSurgeProtect);
 </script>

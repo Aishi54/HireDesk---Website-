@@ -6,6 +6,12 @@ interface Story {
   quote: string;
   author: string;
   role: string;
+  // Popup Details
+  popupTitle: string;
+  workflows: string[];
+  outputs: string[];
+  teamDetails: string[];
+  results: string[];
 }
 
 const stories: Story[] = [
@@ -15,7 +21,12 @@ const stories: Story[] = [
     color: '#EBE6FF',
     quote: 'Hiredesk understood the nuances of our business and helped us turn customer feedback into meaningful improvements.',
     author: 'Jeremy D.',
-    role: 'Customer Experience Manager'
+    role: 'Customer Experience Manager',
+    popupTitle: 'Delivering High-Quality SMS Support at Scale',
+    workflows: ['Conversational customer support (two-way SMS)', 'Content moderation', 'Workforce management', 'Quality assurance'],
+    outputs: ['26,258 total customer chats handled', '103,228 chats successfully closed', '308,204 personalized outbound messages sent', '24/7/365 coverage across global time zones'],
+    teamDetails: ['Agents trained specifically for SMS-based, real-time customer interactions', '90% onboarding pass rate, exceeding industry benchmark of 60%', 'Distributed delivery model across Africa and North America', 'Dedicated L&D and active performance management'],
+    results: ['+25% uptick in sales', '18% higher productivity than target response rates', 'Consistently accurate conversations with near-zero quality errors (0.09%)', 'Strengthened customer trust through fast, personalized messaging']
   },
   {
     image: '/assets/case-study-2.jpg',
@@ -23,15 +34,25 @@ const stories: Story[] = [
     color: 'rgba(84, 198, 215, 0.15)',
     quote: "hiredesk brought real expertise and flexibility to our operation. They helped us improve response times and satisfaction.",
     author: 'Anna G.',
-    role: 'Customer Experience Leader'
+    role: 'Customer Experience Leader',
+    popupTitle: 'Rapid Scaling for High-Volume Beauty Support',
+    workflows: ['Omnichannel Support (Email, Chat)', 'Social Media Engagement', 'Inventory & Logistics Sync', 'Community Management'],
+    outputs: ['10,000+ weekly inquiries resolved', 'Sub-30 minute average response time', '98% Positive CSAT Rating', 'Dynamic staffing for product launches'],
+    teamDetails: ['Expert beauty-focused agents with deep product knowledge', '100% brand voice alignment coaching', 'Global support availability (PT, ET, GMT)', 'Advanced CRM integration mastery'],
+    results: ['40% reduction in support costs', 'Increased returning customer rate by 15%', 'Seamless management of viral product drops', 'Highly scalable support during peak holiday seasons']
   },
   {
-     image: '/assets/case-study-3.jpg',
-     headline: 'Building Trust for a Parents-for-Parents Marketplace',
-     color: '#F9C5BD',
-     quote: "The team truly understands and reflected the care we strive to offer. We saw a measurable lift in support sentiment.",
-     author: 'Kelsey M.',
-     role: 'Customer Support Lead'
+    image: '/assets/case-study-3.jpg',
+    headline: 'Building Trust for a Parents-for-Parents Marketplace',
+    color: '#F9C5BD',
+    quote: "The team truly understands and reflected the care we strive to offer. We saw a measurable lift in support sentiment.",
+    author: 'Kelsey M.',
+    role: 'Customer Support Lead',
+    popupTitle: 'Empathetic Support for Marketplace Trust',
+    workflows: ['Escalation management', 'Safety & Trust monitoring', 'Proactive customer outreach', 'Policy enforcement'],
+    outputs: ['85% First Contact Resolution', 'High-priority safety tickets resolved in < 1hr', 'Global support coverage', 'Deep policy expertise'],
+    teamDetails: ['Empathetic, parent-focused support specialists', 'Rigorous trust and safety training', 'Cross-departmental collaboration (Tech/Ops)', 'Cultural nuance sensitivity training'],
+    results: ['20% increase in brand trust scores', 'Faster safety response times', 'Enhanced marketplace stability', 'Improved user retention after disputes']
   },
   {
     image: '/assets/case-study-4.jpg',
@@ -39,12 +60,17 @@ const stories: Story[] = [
     color: '#BEE7F5',
     quote: "We needed to scale fast without sacrificing quality. Hiredesk delivered results when we were at a breaking point.",
     author: 'Mark S.',
-    role: 'Operations Director'
+    role: 'Operations Director',
+    popupTitle: 'Precision Backlog Clearance at Scale',
+    workflows: ['Aggressive backlog clearing', 'Queue prioritization', 'Macro & Workflow optimization', 'Feedback loops for tech fixes'],
+    outputs: ['5,000 tickets cleared in 14 days', 'Zero quality regression during scale', '24/7 global support coverage', 'Daily performance reporting'],
+    teamDetails: ['Highly efficient, rapid-speed agents', 'Intensive 2-day technical onboarding', 'Agile team management and rotation', 'Advanced ticketing tool mastery'],
+    results: ['CSAT increased from 75% to 92%', 'Backlog reduced to 0 in 2 weeks', 'Identified 3 core tech issues for long-term fix', 'Restored customer trust during peak crisis']
   }
 ];
 ---
 
-<section class="customer-stories">
+<section class="customer-stories" data-stories={JSON.stringify(stories)}>
   <div class="container">
     <div class="header text-center">
       <h2 class="section-title reveal">
@@ -69,7 +95,7 @@ const stories: Story[] = [
                      <span class="author-name">{story.author}</span>
                      <span class="author-role">{story.role}</span>
                   </div>
-                  <a href="#" class="btn btn-black-pill btn-sm">Read the Full Story</a>
+                  <button class="btn btn-black-pill btn-sm read-full-story">Read the Full Story</button>
                </div>
             </div>
           </div>
@@ -90,6 +116,39 @@ const stories: Story[] = [
           <button class="nav-btn next" aria-label="Next">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
           </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Story Popup Modal -->
+  <div class="story-overlay" id="storyOverlay">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 id="modalTitle">Delivering High-Quality SMS Support at Scale</h3>
+        <button class="close-modal" id="closeModal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      
+      <div class="modal-content">
+        <div class="modal-grid">
+          <div class="modal-col">
+            <h5 class="col-title accent-underline-small">Workflows Supported</h5>
+            <ul id="modalWorkflows"></ul>
+          </div>
+          <div class="modal-col">
+            <h5 class="col-title accent-underline-small">Total Output</h5>
+            <ul id="modalOutputs"></ul>
+          </div>
+          <div class="modal-col">
+            <h5 class="col-title accent-underline-small">Hugo Team</h5>
+            <ul id="modalTeam"></ul>
+          </div>
+          <div class="modal-col">
+            <h5 class="col-title accent-underline-small">Impact & Results</h5>
+            <ul id="modalResults"></ul>
+          </div>
         </div>
       </div>
     </div>
@@ -292,6 +351,188 @@ const stories: Story[] = [
   }
   .dot.active { background-color: #000; }
 
+  .read-full-story { margin-top: auto; }
+
+  /* Modal Styles */
+  .story-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.9); /* Lighter backdrop for minimal look */
+    backdrop-filter: blur(12px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    padding: 2rem;
+  }
+
+  .story-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .modal-container {
+    width: 95%;
+    max-width: 960px; /* More concise width */
+    background-color: #FDFCF6;
+    border-radius: 24px;
+    overflow: hidden;
+    transform: translateY(30px);
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 40px 100px rgba(0,0,0,0.15);
+  }
+
+  .story-overlay.active .modal-container {
+    transform: translateY(0);
+  }
+
+  .modal-header {
+    background-color: #54c6d7;
+    padding: 2.5rem 3.5rem; /* More concise padding */
+    position: relative;
+    color: #000;
+  }
+
+  .modal-header h3 {
+    font-size: clamp(1.4rem, 3vw, 1.8rem); /* Scaled down for conciseness */
+    font-weight: 700;
+    line-height: 1.1;
+    max-width: 85%;
+    letter-spacing: -0.04em;
+  }
+
+  .close-modal {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #000;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .close-modal:hover { transform: scale(1.1); }
+  .close-modal svg { width: 14px; height: 14px; }
+
+  .modal-content {
+    padding: 3rem 3.5rem; /* Tightened padding */
+  }
+
+  .modal-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem; /* More concise gaps */
+  }
+
+  .col-title {
+    font-size: 0.7rem; /* Tiny, clean titles */
+    font-weight: 800;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 2rem;
+    display: inline-block;
+  }
+
+  .accent-underline-small {
+    position: relative;
+  }
+  .accent-underline-small::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: url("data:image/svg+xml,%3Csvg width='100' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 10 Q50 2 98 10' stroke='black' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat left;
+    background-size: contain;
+    opacity: 0.4;
+  }
+
+  .modal-col ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .modal-col li {
+    font-size: 0.85rem; /* Smaller for smarter profile */
+    color: #444;
+    margin-bottom: 1.1rem; /* Tightened spacing */
+    line-height: 1.4;
+    font-weight: 500;
+    position: relative;
+    padding: 0;
+  }
+
+  /* No bullets for minimalist look - use spacing instead */
+  .modal-col li::before {
+    display: none;
+  }
+
+  @media (max-width: 1024px) {
+    .modal-grid { 
+      grid-template-columns: repeat(2, 1fr); 
+      gap: 2rem; 
+    }
+    .modal-header { padding: 2.5rem; }
+    .modal-content { padding: 2.5rem; }
+  }
+
+  @media (max-width: 640px) {
+    .story-overlay { 
+      padding: 0; 
+      align-items: flex-end; /* Mobile Bottom-Sheet Feel */
+    }
+    .modal-container { 
+      width: 100%;
+      border-radius: 24px 24px 0 0; 
+      max-height: 85vh; /* Concise mobile depth */
+      overflow-y: auto;
+    }
+    .modal-grid { 
+      grid-template-columns: 1fr; 
+      gap: 1.5rem; 
+    }
+    .modal-header { 
+      padding: 2rem 1.5rem; 
+      text-align: left;
+    }
+    .modal-header h3 { 
+      font-size: 1.25rem; 
+      max-width: 85%;
+    }
+    .modal-content { 
+      padding: 1.5rem 1.5rem 3rem; 
+    }
+    .col-title { 
+      margin-bottom: 1rem; 
+      font-size: 0.65rem;
+    }
+    .modal-col li {
+      font-size: 0.8rem;
+      margin-bottom: 0.75rem;
+    }
+    .close-modal {
+      top: 1rem;
+      right: 1rem;
+      width: 32px;
+      height: 32px;
+    }
+    .close-modal svg { width: 12px; height: 12px; }
+  }
+
   .reveal { opacity: 0; transform: translateY(30px); }
 </style>
 
@@ -305,9 +546,30 @@ const stories: Story[] = [
     prevBtn: HTMLElement | null;
     nextBtn: HTMLElement | null;
     currentIndex: number;
+    stories: any[];
+
+    // Modal elements
+    overlay: HTMLElement | null;
+    modalTitle: HTMLElement | null;
+    modalWorkflows: HTMLElement | null;
+    modalOutputs: HTMLElement | null;
+    modalTeam: HTMLElement | null;
+    modalResults: HTMLElement | null;
+    closeBtn: HTMLElement | null;
 
     constructor() {
       this.wrapper = document.querySelector('.customer-stories');
+      
+      // Pre-initialize to null to satisfy TS
+      this.overlay = null;
+      this.modalTitle = null;
+      this.modalWorkflows = null;
+      this.modalOutputs = null;
+      this.modalTeam = null;
+      this.modalResults = null;
+      this.closeBtn = null;
+      this.stories = [];
+
       if (!this.wrapper) {
         this.cards = [];
         this.dots = [];
@@ -322,6 +584,19 @@ const stories: Story[] = [
       this.prevBtn = this.wrapper.querySelector('.prev');
       this.nextBtn = this.wrapper.querySelector('.next');
       this.currentIndex = 0;
+
+      // Extract stories from data attribute
+      const storiesData = this.wrapper.getAttribute('data-stories');
+      this.stories = storiesData ? JSON.parse(storiesData) : [];
+
+      // Modal initialization
+      this.overlay = document.getElementById('storyOverlay');
+      this.modalTitle = document.getElementById('modalTitle');
+      this.modalWorkflows = document.getElementById('modalWorkflows');
+      this.modalOutputs = document.getElementById('modalOutputs');
+      this.modalTeam = document.getElementById('modalTeam');
+      this.modalResults = document.getElementById('modalResults');
+      this.closeBtn = document.getElementById('closeModal');
 
       this.init();
     }
@@ -357,22 +632,62 @@ const stories: Story[] = [
       this.updateClasses();
     }
 
+    openModal(index: number) {
+      if (!this.overlay) return;
+      const story = this.stories[index];
+      
+      if (this.modalTitle) this.modalTitle.textContent = story.popupTitle;
+      
+      const setList = (el: HTMLElement | null, items: string[]) => {
+        if (!el) return;
+        el.innerHTML = items.map(item => `<li>${item}</li>`).join('');
+      };
+
+      setList(this.modalWorkflows, story.workflows);
+      setList(this.modalOutputs, story.outputs);
+      setList(this.modalTeam, story.teamDetails);
+      setList(this.modalResults, story.results);
+
+      this.overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    closeModal() {
+      if (!this.overlay) return;
+      this.overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
     addEventListeners() {
       this.nextBtn?.addEventListener('click', () => this.next());
       this.prevBtn?.addEventListener('click', () => this.prev());
+      
       this.dots.forEach((dot: HTMLElement, i: number) => {
         dot.addEventListener('click', () => {
           this.currentIndex = i;
           this.updateClasses();
         });
       });
+
       this.cards.forEach((card: HTMLElement, i: number) => {
-        card.addEventListener('click', () => {
+        // Card navigation
+        card.addEventListener('click', (e) => {
+          const isButton = (e.target as HTMLElement).classList.contains('read-full-story');
+          if (isButton) {
+            this.openModal(i);
+            return;
+          }
+
           if (card.classList.contains('prev-card') || card.classList.contains('next-card')) {
             this.currentIndex = i;
             this.updateClasses();
           }
         });
+      });
+
+      this.closeBtn?.addEventListener('click', () => this.closeModal());
+      this.overlay?.addEventListener('click', (e) => {
+        if (e.target === this.overlay) this.closeModal();
       });
     }
   }

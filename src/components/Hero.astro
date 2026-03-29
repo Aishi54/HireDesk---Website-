@@ -14,7 +14,12 @@ import Graphic from "./Graphic.astro";
       <div class="tagline-container">
         <span class="tagline">Outsourcing+</span>
         <svg class="scribble" viewBox="0 0 100 12" preserveAspectRatio="none">
-          <path d="M0 6 L 100 6" stroke="currentColor" stroke-width="3" fill="none" class="hero-underline" />
+          <path
+            d="M0 6 L 100 6"
+            stroke="currentColor"
+            stroke-width="3"
+            fill="none"
+            class="hero-underline"></path>
         </svg>
       </div>
 
@@ -37,9 +42,12 @@ import Graphic from "./Graphic.astro";
             <img src="/assets/sarah-sakara.png" alt="Paula Weeks" />
           </div>
           <div class="card-content">
-            <span class="card-label">Paula Weeks, FIFA '26 Hospitality Director</span>
+            <span class="card-label"
+              >Paula Weeks, FIFA '26 Hospitality Director</span
+            >
             <p class="card-text">
-              "Paula brings over 20 years of building innovative customer programs to soccer's largest events."
+              "Paula brings over 20 years of building innovative customer
+              programs to soccer's largest events."
             </p>
           </div>
         </div>
@@ -121,7 +129,11 @@ import Graphic from "./Graphic.astro";
   }
 
   .hero-title {
-    font-size: clamp(1.8rem, 3.5vw, 3.1rem); /* Reduced further for compact look */
+    font-size: clamp(
+      1.8rem,
+      3.5vw,
+      3.1rem
+    ); /* Reduced further for compact look */
     line-height: 1.05;
     margin-bottom: 0.75rem;
     font-weight: 600;
@@ -225,31 +237,34 @@ import Graphic from "./Graphic.astro";
 </style>
 
 <script>
-  import gsap from 'gsap';
+  import gsap from "gsap";
 
-  window.addEventListener('load', () => {
+  window.addEventListener("load", () => {
     // 1. Hero Underline Animation
-    const underline = document.querySelector('.hero-underline');
+    const underline = document.querySelector(".hero-underline");
     if (underline instanceof SVGPathElement) {
       const length = underline.getTotalLength();
-      gsap.set(underline, { strokeDasharray: length, strokeDashoffset: length });
-      
+      gsap.set(underline, {
+        strokeDasharray: length,
+        strokeDashoffset: length,
+      });
+
       gsap.to(underline, {
         strokeDashoffset: 0,
         duration: 1.2,
-        ease: 'power2.inOut',
-        delay: 0.6
+        ease: "power2.inOut",
+        delay: 0.6,
       });
     }
 
     // 2. Hero Content Reveal
-    gsap.to('.hero .reveal', {
+    gsap.to(".hero .reveal", {
       opacity: 1,
       y: 0,
       duration: 1,
       stagger: 0.15,
-      ease: 'power3.out',
-      delay: 0.3
+      ease: "power3.out",
+      delay: 0.3,
     });
   });
 </script>

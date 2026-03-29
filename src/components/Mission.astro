@@ -8,55 +8,22 @@
 
   <div class="mission-container">
     <div class="container--wide">
-      <!-- Main Title with Scribbles -->
+      <!-- Main Title with Scribbles (Screenshot Style) -->
       <div class="mission-header reveal">
-        <h2 class="mission-title">
-          <span class="relative-word">
-            Your
-            <svg class="word-scribble underline" viewBox="0 0 100 20"
-              ><path
-                d="M5 15 Q50 20 95 15"
-                stroke="#fff"
-                stroke-width="3"
-                fill="none"
-                class="scribble-path"></path></svg
-            >
-          </span>
-          <span class="relative-word">
-            success
-            <svg class="word-scribble arrow-up" viewBox="0 0 40 40"
-              ><path
-                d="M20 35 Q15 20 25 5 M25 5 L15 15 M25 5 L35 12"
-                stroke="#fff"
-                stroke-width="2.5"
-                fill="none"
-                class="scribble-path"></path></svg
-            >
-          </span>
-          is
-          <span class="relative-word">
-            our
-            <svg class="word-scribble underline" viewBox="0 0 100 20"
-              ><path
-                d="M5 15 Q50 18 95 15"
-                stroke="#fff"
-                stroke-width="3"
-                fill="none"
-                class="scribble-path"></path></svg
-            >
-          </span>
-          <span class="relative-word">
-            mission
-            <svg class="word-scribble arrow-down" viewBox="0 0 40 40"
-              ><path
-                d="M20 5 Q25 20 15 35 M15 35 L5 25 M15 35 L25 28"
-                stroke="#fff"
-                stroke-width="2.5"
-                fill="none"
-                class="scribble-path"></path></svg
-            >
-          </span>
-        </h2>
+        <div class="header-content-wrap">
+          <div class="label-box">
+             <span class="label-text">Our Mission</span>
+             <svg class="label-scribble" viewBox="0 0 100 20">
+                <path d="M5 15 Q50 20 95 15" stroke="#fff" stroke-width="2" fill="none" class="scribble-path"></path>
+             </svg>
+          </div>
+          <h2 class="mission-title">
+            Your success is <span class="accent-line">our mission</span>
+            <svg class="title-scribble" viewBox="0 0 300 20">
+               <path d="M10 12 Q150 18 290 12" stroke="#fff" stroke-opacity="0.3" stroke-width="3" fill="none" class="scribble-path"></path>
+            </svg>
+          </h2>
+        </div>
       </div>
 
       <div class="mission-grid">
@@ -192,8 +159,8 @@
         </div>
       </div>
     </div>
-
-  </div> <!-- End mission-container -->
+  </div>
+  <!-- End mission-container -->
 
   <!-- Bottom Curve -->
   <div class="curve-bottom">
@@ -243,23 +210,66 @@
       height: auto;
     }
 
-    /* Header */
+    /* Header Style Refresh (Screenshot Style) */
     .mission-header {
-      margin-bottom: 3rem; /* Tightened for 'Smart Look' */
+      margin-bottom: 3.5rem;
       text-align: center;
+      display: flex;
+      justify-content: center;
+    }
+
+    .header-content-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.5rem;
+      position: relative;
+    }
+
+    .label-box {
+      position: relative;
+      padding-top: 0.5rem;
+    }
+
+    .label-text {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.7);
+      text-transform: capitalize;
+      letter-spacing: 0.05em;
+    }
+
+    .label-scribble {
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 12px;
+      pointer-events: none;
     }
 
     .mission-title {
-      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
       font-weight: 500;
-      line-height: 1.15;
-      display: inline-flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.1em 0.3em;
+      line-height: 1.05;
       color: #fff;
       position: relative;
-      letter-spacing: -0.02em;
+      letter-spacing: -3.0333px; /* Precise 'Smart' tracking */
+      margin: 0;
+    }
+
+    .title-scribble {
+      position: absolute;
+      bottom: -15px;
+      left: 0;
+      width: 100%;
+      height: 20px;
+      pointer-events: none;
+      opacity: 0.25;
+    }
+
+    .accent-line {
+      position: relative;
+      display: inline-block;
     }
 
     .relative-word {
@@ -389,7 +399,8 @@
       .container--wide {
         padding: 0;
       }
-      .mission-header, .mission-grid {
+      .mission-header,
+      .mission-grid {
         padding-left: 1.5rem;
         padding-right: 1.5rem;
       }
@@ -430,7 +441,7 @@
         strokeDashoffset: -20, // Negative for left-to-right flow
         duration: 1,
         repeat: -1,
-        ease: "none"
+        ease: "none",
       });
 
       // Process nodes stagger appearing

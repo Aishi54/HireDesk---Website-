@@ -27,6 +27,23 @@ const testimonials: Testimonial[] = [
 
 <section class="testimonial-slider-section">
   <div class="container">
+    <div class="testimonials-header reveal">
+      <div class="header-content-wrap">
+        <div class="label-box">
+          <span class="label-text">Client Stories</span>
+          <svg class="label-scribble" viewBox="0 0 100 20">
+            <path d="M5 15 Q50 20 95 15" stroke="black" stroke-width="2" fill="none" class="scribble-path"></path>
+          </svg>
+        </div>
+        <h2 class="section-title">
+          Hear from our partners
+          <svg class="title-scribble" viewBox="0 0 300 20">
+             <path d="M10 12 Q150 18 290 12" stroke="black" stroke-opacity="0.1" stroke-width="3" fill="none" class="scribble-path"></path>
+          </svg>
+        </h2>
+      </div>
+    </div>
+
     <div class="slider-overflow">
       <div class="testimonials-track" id="testimonialTrack">
         {testimonials.map((t, i) => (
@@ -104,6 +121,65 @@ const testimonials: Testimonial[] = [
     max-width: 1300px;
     margin: 0 auto;
     padding: 0 4rem;
+  }
+
+  /* Header (Screenshot Style) */
+  .testimonials-header {
+    text-align: center;
+    margin-bottom: 4.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header-content-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  .label-box {
+    position: relative;
+    padding-top: 0.5rem;
+  }
+
+  .label-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #555;
+    text-transform: capitalize;
+    letter-spacing: 0.05em;
+  }
+
+  .label-scribble {
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 12px;
+    pointer-events: none;
+  }
+
+  .section-title {
+    font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+    font-weight: 500;
+    line-height: 1.05;
+    color: #000;
+    position: relative;
+    letter-spacing: -3.0333px;
+    margin: 0;
+  }
+
+  .title-scribble {
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    pointer-events: none;
+    opacity: 0.15;
   }
 
   .testimonials-track {
