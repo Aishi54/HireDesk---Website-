@@ -35,7 +35,7 @@
   }
 
   .card {
-    background-color: var(--color-blue-light);
+    background-color: var(--card-bg);
     border-radius: 2rem;
     padding: 4rem;
     display: flex;
@@ -44,12 +44,14 @@
     overflow: hidden;
     position: relative;
     cursor: pointer;
+    border: 1px solid rgba(0,0,0,0.03);
     transition: var(--transition);
   }
 
   .card:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 40px 80px rgba(0,0,0,0.05);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 40px 80px rgba(84, 198, 215, 0.15);
+    border-color: var(--color-accent);
   }
 
   @media (max-width: 1024px) {
@@ -114,7 +116,7 @@
     position: relative;
     width: 250px;
     height: 250px;
-    background-color: var(--color-yellow);
+    background-color: #54c6d7; /* Viking Blue */
     border-radius: 3rem;
     display: flex;
     align-items: center;

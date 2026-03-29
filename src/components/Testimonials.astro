@@ -60,35 +60,56 @@ const testimonials = [
       </div>
     </div>
 
-    <!-- The 3 Cards -->
-    <div class="cards-layout">
-      {testimonials.map((t, index) => (
-        <div class="testimonial-card reveal" style={`--delay: ${index * 0.15}s`}>
-          <div class="card-top">
-            <div class="stars">
-               {Array.from({ length: t.stars }).map(() => (
-                 <span class="star">★</span>
-               ))}
-               {t.stars < 5 && <span class="star-empty">★</span>}
+    <!-- The 3 Cards Viewport -->
+    <div class="testimonials-viewport">
+      <div class="cards-layout" id="testimonialGrid">
+        {testimonials.map((t, index) => (
+          <div class="testimonial-card reveal" style={`--delay: ${index * 0.15}s`}>
+            <div class="card-top">
+              <div class="stars">
+                 {Array.from({ length: t.stars }).map(() => (
+                   <span class="star">★</span>
+                 ))}
+                 {t.stars < 5 && <span class="star-empty">★</span>}
+              </div>
+              <div class="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M10 5 Q15 5 15 10 M15 10 Q15 15 10 15" stroke="black" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+              </div>
             </div>
-            <div class="card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M10 5 Q15 5 15 10 M15 10 Q15 15 10 15" stroke="black" stroke-width="3" stroke-linecap="round"/>
-              </svg>
-            </div>
-          </div>
 
-          <h3 class="card-title">{t.title}</h3>
-          <p class="card-text">{t.text}</p>
-          
-          <div class="card-footer">
-            <p class="company-size">Company Size: {t.companySize}</p>
-            <div class="footer-divider"></div>
-            <p class="author-role">{t.role}</p>
-            <p class="author-industry">Industry: {t.industry}</p>
+            <h3 class="card-title">{t.title}</h3>
+            <p class="card-text">{t.text}</p>
+            
+            <div class="card-footer">
+              <p class="company-size">Company Size: {t.companySize}</p>
+              <div class="footer-divider"></div>
+              <p class="author-role">{t.role}</p>
+              <p class="author-industry">Industry: {t.industry}</p>
+            </div>
           </div>
+        ))}
+      </div>
+    </div><!-- End viewport -->
+
+    <!-- Mobile Navigation Controls (Outside viewport to stay fixed) -->
+    <div class="mobile-only">
+      <div class="mobile-nav-controls">
+        <button class="nav-arrow prev-btn" aria-label="Previous">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        
+        <div class="pagination-dots">
+          {testimonials.map((_, i) => (
+            <div class={`dot ${i === 0 ? 'active' : ''}`} data-index={i}></div>
+          ))}
         </div>
-      ))}
+
+        <button class="nav-arrow next-btn" aria-label="Next">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
     </div>
 
     <!-- Bottom Buttons -->
@@ -146,23 +167,58 @@ const testimonials = [
     margin-bottom: 3rem; /* Reduced from 6rem */
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 768px) {
+    .container--wide { padding: 0; }
+    .testimonials-header { padding: 0 1.5rem; }
+
+    .testimonials-viewport {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      -webkit-overflow-scrolling: touch;
+      padding: 1rem 1.5rem 2rem;
+      display: block;
+    }
+    .testimonials-viewport::-webkit-scrollbar { display: none; }
+
     .cards-layout {
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: row;
+      gap: 1.25rem;
+      width: max-content;
+      transform: none !important;
+      margin-bottom: 0;
+    }
+
+    .testimonial-card {
+      flex: 0 0 calc(100vw - 4rem); 
+      max-width: 320px;
+      scroll-snap-align: center;
+      min-height: 400px;
+    }
+
+    .mobile-nav-controls {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+      margin: 1.5rem 0 3rem;
     }
   }
 
   .testimonial-card {
-    background: #E0F7FA; 
-    border-radius: 16px;
-    padding: 1.5rem 1.25rem; /* Drastically reduced */
+    background: rgba(84, 198, 215, 0.06); 
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
     display: flex;
     flex-direction: column;
-    min-height: 360px; /* Reduced from 480 */
-    transition: all 0.4s ease;
+    min-height: 380px;
+    border: 1.2px solid rgba(0,0,0,0.05);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   }
 
-  .testimonial-card:hover { border: 2px solid #000; transform: translateY(-5px); }
+  .testimonial-card:hover { border: 2.5px solid var(--viking-blue); transform: translateY(-8px); }
 
   .card-top {
     display: flex;
@@ -266,8 +322,47 @@ const testimonials = [
     color: #000;
   }
 
+  .nav-arrow {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #54c6d7; /* Viking Blue */
+    color: #000;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+  }
+
+  .pagination-dots {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1.5px solid #000;
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  
+  .dot.active {
+    background: #000;
+    transform: scale(1.2);
+  }
+
   /* Reveal logic */
   .reveal { opacity: 0; transform: translateY(30px); }
+
+  /* Mobile Only Utility */
+  .mobile-only { display: none; }
+  @media (max-width: 768px) { .mobile-only { display: block; } }
 </style>
 
 <script>
@@ -287,6 +382,31 @@ const testimonials = [
         start: 'top 75%'
       }
     });
+
+    // Mobile Slider
+    const viewport = document.querySelector('.testimonials-viewport');
+    const prevBtn = document.querySelector('.testimonials-grid-section .prev-btn');
+    const nextBtn = document.querySelector('.testimonials-grid-section .next-btn');
+    const dots = document.querySelectorAll('.testimonials-grid-section .dot');
+    const items = document.querySelectorAll('.testimonial-card');
+
+    if (viewport && prevBtn && nextBtn && items.length > 0) {
+      const syncSlider = () => {
+        const index = Math.round(viewport.scrollLeft / (items[0].clientWidth + 20));
+        dots.forEach((dot, i) => {
+          if (i === index) dot.classList.add('active');
+          else dot.classList.remove('active');
+        });
+      };
+
+      viewport.addEventListener('scroll', syncSlider);
+      prevBtn.addEventListener('click', () => {
+        viewport.scrollBy({ left: -(items[0].clientWidth + 20), behavior: 'smooth' });
+      });
+      nextBtn.addEventListener('click', () => {
+        viewport.scrollBy({ left: (items[0].clientWidth + 20), behavior: 'smooth' });
+      });
+    }
   };
 
   window.addEventListener('load', initTestimonials);

@@ -14,6 +14,9 @@
   --max-width: 1440px;
   --container-padding: 2rem;
   
+  --card-bg: rgba(84, 198, 215, 0.05); /* Light Viking tint for "Smart Card" */
+  --card-shadow: 0 12px 35px rgba(0, 0, 0, 0.04);
+  
   --transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
@@ -154,4 +157,57 @@ img {
 
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
+}
+
+/* --- Shared Slider Controls (Mobile) --- */
+.mobile-only { display: none !important; }
+@media (max-width: 1024px) { .mobile-only { display: block !important; } }
+
+.mobile-nav-controls {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 1.5rem 0 3rem;
+  width: 100%;
+}
+
+.nav-arrow {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-accent); /* Viking Blue */
+  color: #000;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  padding: 0;
+  outline: none;
+}
+
+.nav-arrow svg { width: 20px; height: 20px; }
+
+.pagination-dots {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1.5px solid #000;
+  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  cursor: pointer;
+}
+
+.dot.active {
+  background: #000;
+  transform: scale(1.2);
 }
