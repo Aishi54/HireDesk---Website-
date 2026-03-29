@@ -27,7 +27,7 @@ html, body {
   background-color: var(--bg-primary);
   color: var(--color-black);
   font-family: var(--font-main);
-  font-size: 19px; /* HugoInc uses ~19px body */
+  font-size: 17px; /* Reduced from 19px to avoid 'huge' look */
   line-height: 1.5;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;

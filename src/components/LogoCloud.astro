@@ -7,7 +7,7 @@ interface Props {
 
 const { 
   background = "var(--bg-primary)", 
-  padding = "3rem 0 6rem",
+  padding = "1.5rem 0 3.5rem",
   hideTitle = false
 } = Astro.props;
 
@@ -77,25 +77,26 @@ const currentLogos = [
   .marquee-content {
     display: flex;
     animation: marquee 40s linear infinite;
-    gap: 7rem;
-    padding: 1rem 0;
+    gap: 7rem; /* Perfect 'Smart' gap */
+    padding: 1.25rem 0;
     align-items: center;
   }
 
   .logo-item {
     flex-shrink: 0;
     filter: brightness(0); /* Pure black */
-    opacity: 1; 
-    transition: var(--transition);
+    opacity: 0.8; /* Subtle for premium feel */
+    transition: all 0.3s ease;
     cursor: default;
   }
 
   .logo-item:hover {
-    transform: scale(1.1);
+    opacity: 1;
+    transform: scale(1.05);
   }
 
   .logo-img {
-    height: 32px;
+    height: 36px; /* Perfect 'Smart' height */
     width: auto;
     max-width: 160px;
     object-fit: contain;
@@ -111,7 +112,7 @@ const currentLogos = [
       gap: 3.5rem;
     }
     .logo-img {
-      height: 26px;
+      height: 30px; /* Sharp mobile logos */
     }
   }
 </style>

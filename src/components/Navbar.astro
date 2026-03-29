@@ -1,52 +1,94 @@
 ---
 const navItems = [
-	{ label: 'Home', href: '/' },
-	{ label: 'Our Services', dropdown: ['Admin Management', 'Customer Support'] },
-	{ label: 'About Us', href: '/about' },
-	{ label: 'Resources', dropdown: ['FAQs'] }
+	{ label: "Home", href: "/" },
+	{
+		label: "Our Services",
+		dropdown: ["Admin Management", "Customer Support"],
+	},
+	{ label: "About Us", href: "/about" },
+	{ label: "Resources", dropdown: ["FAQs"] },
 ];
 ---
 
 <div class="top-banner">
 	<div class="container container--wide">
-		<p>Hiredesk is hiring! Explore our positions and <a href="#">apply today</a>.</p>
+		<p>
+			Hiredesk is hiring! Explore our positions and <a href="#"
+				>apply today</a
+			>.
+		</p>
 	</div>
 </div>
 
 <header class="navbar" id="header">
 	<div class="container container--wide nav-inner">
-		<a href="/" class="logo" aria-label="Hiredesk" style="display: flex; align-items: center; text-decoration: none;">
-			<img src="/assets/hiredesk-logo.png" alt="Hiredesk" class="logo-img" />
+		<a
+			href="/"
+			class="logo"
+			aria-label="Hiredesk"
+			style="display: flex; align-items: center; text-decoration: none;"
+		>
+			<img
+				src="/assets/hiredesk-logo.png"
+				alt="Hiredesk"
+				class="logo-img"
+			/>
 		</a>
 
 		<div class="nav-right">
 			<nav class="nav-links">
-				{navItems.map(item => (
-					<div class="nav-item">
-						<a href={item.href || '#'} class="nav-link">
-							{item.label}
+				{
+					navItems.map((item) => (
+						<div class="nav-item">
+							<a href={item.href || "#"} class="nav-link">
+								{item.label}
+								{item.dropdown && (
+									<svg
+										class="chevron"
+										width="8"
+										height="5"
+										viewBox="0 0 10 6"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M1 1L5 5L9 1"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+										/>
+									</svg>
+								)}
+							</a>
 							{item.dropdown && (
-								<svg class="chevron" width="8" height="5" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-								</svg>
+								<div class="dropdown-menu">
+									{item.dropdown.map((subItem) => {
+										const base =
+											item.label.toLowerCase() ===
+											"our services"
+												? "services"
+												: "resources";
+										return (
+											<a
+												href={`/${base}/${subItem.toLowerCase().replace(/ /g, "-")}`}
+												class="dropdown-link"
+											>
+												{subItem}
+											</a>
+										);
+									})}
+								</div>
 							)}
-						</a>
-						{item.dropdown && (
-							<div class="dropdown-menu">
-								{item.dropdown.map(subItem => {
-									const base = item.label.toLowerCase() === 'our services' ? 'services' : 'resources';
-									return (
-										<a href={`/${base}/${subItem.toLowerCase().replace(/ /g, '-')}`} class="dropdown-link">{subItem}</a>
-									);
-								})}
-							</div>
-						)}
-					</div>
-				))}
+						</div>
+					))
+				}
 			</nav>
 
 			<div class="nav-actions">
-				<a href="/get-started" class="btn btn-black-pill hide-mobile">Get Started</a>
+				<a href="/get-started" class="btn btn-black-pill hide-mobile"
+					>Get Started</a
+				>
 				<button class="mobile-toggle" aria-label="Toggle menu">
 					<div class="hamburger">
 						<span></span>
@@ -61,57 +103,97 @@ const navItems = [
 
 <!-- Mobile Side Drawer -->
 <div class="mobile-menu" id="mobileMenu">
-  <button class="mobile-close" id="mobileClose" aria-label="Close menu">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </button>
-  <div class="mobile-menu-inner">
-    <nav class="mobile-nav-links">
-      {navItems.map(item => (
-        <div class="mobile-nav-item">
-          <div class="mobile-nav-header">
-            <a href={item.href || '#'} class="mobile-nav-link">
-              {item.label}
-            </a>
-            {item.dropdown && (
-              <button class="mobile-dropdown-toggle" aria-label="Toggle dropdown">
-                <svg class="chevron" width="12" height="8" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
-            )}
-          </div>
-          {item.dropdown && (
-            <div class="mobile-dropdown">
-              {item.dropdown.map(subItem => {
-                const base = item.label.toLowerCase() === 'our services' ? 'services' : 'resources';
-                const path = `/${base}/${subItem.toLowerCase().replace(/ /g, '-')}`;
-                return (
-                  <a href={path} class="mobile-dropdown-link">{subItem}</a>
-                );
-              })}
-            </div>
-          )}
-        </div>
-      ))}
-      <a href="/get-started" class="btn btn-black-pill mobile-cta">Get Started</a>
-    </nav>
-  </div>
+	<button class="mobile-close" id="mobileClose" aria-label="Close menu">
+		<svg
+			width="24"
+			height="24"
+			viewBox="0 0 24 24"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+		>
+			<path
+				d="M18 6L6 18M6 6L18 18"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"></path>
+		</svg>
+	</button>
+	<div class="mobile-menu-inner">
+		<nav class="mobile-nav-links">
+			{
+				navItems.map((item) => (
+					<div class="mobile-nav-item">
+						<div class="mobile-nav-header">
+							<a href={item.href || "#"} class="mobile-nav-link">
+								{item.label}
+							</a>
+							{item.dropdown && (
+								<button
+									class="mobile-dropdown-toggle"
+									aria-label="Toggle dropdown"
+								>
+									<svg
+										class="chevron"
+										width="12"
+										height="8"
+										viewBox="0 0 10 6"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M1 1L5 5L9 1"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+										/>
+									</svg>
+								</button>
+							)}
+						</div>
+						{item.dropdown && (
+							<div class="mobile-dropdown">
+								{item.dropdown.map((subItem) => {
+									const base =
+										item.label.toLowerCase() ===
+										"our services"
+											? "services"
+											: "resources";
+									const path = `/${base}/${subItem.toLowerCase().replace(/ /g, "-")}`;
+									return (
+										<a
+											href={path}
+											class="mobile-dropdown-link"
+										>
+											{subItem}
+										</a>
+									);
+								})}
+							</div>
+						)}
+					</div>
+				))
+			}
+			<a href="/get-started" class="btn btn-black-pill mobile-cta"
+				>Get Started</a
+			>
+		</nav>
+	</div>
 </div>
 <div class="mobile-overlay" id="mobileOverlay"></div>
 
 <style>
 	:root {
-		--banner-bg: #E0F7FA; /* Cyan-light banner background */
-		--brand-primary: #5C60A6; /* Purple accent */
+		--banner-bg: #e0f7fa; /* Cyan-light banner background */
+		--brand-primary: #5c60a6; /* Purple accent */
 	}
 
 	.top-banner {
 		background-color: var(--banner-bg);
-		padding: 0.6rem 0;
+		padding: 0.4rem 0; /* Slimmer banner */
 		text-align: center;
-		font-size: 0.85rem;
+		font-size: 0.8rem; /* Smaller font */
 		font-weight: 500;
 		color: #000;
 	}
@@ -135,26 +217,28 @@ const navItems = [
 		}
 	}
 
-  @media (max-width: 768px) {
-    .container--wide {
-      padding: 0 1.25rem;
-    }
-  }
+	@media (max-width: 768px) {
+		.container--wide {
+			padding: 0 1.25rem;
+		}
+	}
 
 	.navbar {
 		position: sticky;
 		top: 0;
 		width: 100%;
 		z-index: 1000;
-		padding: 0.1rem 0; /* Minimized for an ultra-slim profile */
-		background-color: #FDFCF6;
-    transition: background-color 0.3s ease, padding 0.3s ease;
+		padding: 0rem 0; /* Ultra-slim profile */
+		background-color: #fdfcf6;
+		transition:
+			background-color 0.3s ease,
+			padding 0.3s ease;
 	}
 
-  .navbar.scrolled {
-    padding: 0.8rem 0;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-  }
+	.navbar.scrolled {
+		padding: 0.4rem 0; /* More compact scrolling navbar */
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+	}
 
 	.nav-inner {
 		display: flex;
@@ -168,11 +252,36 @@ const navItems = [
 		text-decoration: none;
 	}
 
-  .logo-img {
-    display: block;
-    height: 100px; /* Reduced slightly to keep the header slim */
-    width: auto;
-  }
+	.logo-img {
+		display: block;
+		height: 220px; /* Maximum brand prominence for 'Proper Visible' view */
+		width: auto;
+		transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.navbar.scrolled .logo-img {
+		height: 120px;
+	}
+
+	@media (max-width: 1024px) {
+		.nav-inner {
+			justify-content: center;
+			position: relative;
+			padding: 0.25rem 0; /* Minimized space */
+		}
+		.nav-right {
+			position: absolute;
+			right: 1.25rem;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+		.logo-img {
+			height: 210px; /* Massive mobile logo */
+		}
+		.navbar.scrolled .logo-img {
+			height: 100px;
+		}
+	}
 
 	.nav-right {
 		display: flex;
@@ -210,12 +319,12 @@ const navItems = [
 		min-width: 220px;
 		padding: 1rem 0;
 		border-radius: 16px;
-		box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+		box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 		opacity: 0;
 		visibility: hidden;
 		transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 		z-index: 100;
-		border: 1px solid rgba(0,0,0,0.05);
+		border: 1px solid rgba(0, 0, 0, 0.05);
 	}
 
 	.dropdown-link {
@@ -230,7 +339,7 @@ const navItems = [
 	}
 
 	.dropdown-link:hover {
-		background-color: #FDFCF6;
+		background-color: #fdfcf6;
 		color: #000;
 		padding-left: 1.8rem;
 	}
@@ -276,9 +385,11 @@ const navItems = [
 		transition: all 0.2s ease;
 	}
 
-  @media (max-width: 1024px) {
-    .hide-mobile { display: none; }
-  }
+	@media (max-width: 1024px) {
+		.hide-mobile {
+			display: none;
+		}
+	}
 
 	.mobile-toggle {
 		display: none;
@@ -292,8 +403,8 @@ const navItems = [
 		justify-content: center;
 		position: relative;
 		z-index: 1200; /* Above menu overlay */
-    flex-shrink: 0;
-    margin-right: -4px; /* Adjust for perfect edge alignment */
+		flex-shrink: 0;
+		margin-right: -4px; /* Adjust for perfect edge alignment */
 	}
 
 	@media (max-width: 1024px) {
@@ -326,162 +437,168 @@ const navItems = [
 		transform: translateY(-6px) rotate(-45deg);
 	}
 
-  /* Side Drawer Styles */
-  .mobile-menu {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 280px;
-    height: 100vh;
-    background-color: #FDFCF6;
-    z-index: 1100;
-    transform: translateX(100%);
-    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-    box-shadow: -10px 0 30px rgba(0,0,0,0.05);
-    padding: 100px 1.5rem 2.5rem;
-    display: flex;
-    flex-direction: column;
-  }
+	/* Side Drawer Styles */
+	.mobile-menu {
+		position: fixed;
+		top: 0;
+		right: 0;
+		width: 280px;
+		height: 100vh;
+		background-color: #fdfcf6;
+		z-index: 1100;
+		transform: translateX(100%);
+		transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+		box-shadow: -10px 0 30px rgba(0, 0, 0, 0.05);
+		padding: 100px 1.5rem 2.5rem;
+		display: flex;
+		flex-direction: column;
+	}
 
-  .mobile-menu.active {
-    transform: translateX(0);
-  }
+	.mobile-menu.active {
+		transform: translateX(0);
+	}
 
-  .mobile-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.2);
-    backdrop-filter: blur(4px);
-    z-index: 1050;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s ease;
-  }
+	.mobile-overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.2);
+		backdrop-filter: blur(4px);
+		z-index: 1050;
+		opacity: 0;
+		visibility: hidden;
+		transition: all 0.4s ease;
+	}
 
-  .mobile-overlay.active {
-    opacity: 1;
-    visibility: visible;
-  }
+	.mobile-overlay.active {
+		opacity: 1;
+		visibility: visible;
+	}
 
-  .mobile-nav-links {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
+	.mobile-nav-links {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
 
-  .mobile-nav-link {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #000;
-  }
+	.mobile-nav-link {
+		font-size: 1.5rem;
+		font-weight: 700;
+		color: #000;
+	}
 
-  .mobile-nav-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+	.mobile-nav-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
 
-  .mobile-dropdown-toggle {
-    background: none;
-    border: none;
-    padding: 0.5rem;
-    cursor: pointer;
-    color: #444;
-    transition: transform 0.3s ease;
-  }
+	.mobile-dropdown-toggle {
+		background: none;
+		border: none;
+		padding: 0.5rem;
+		cursor: pointer;
+		color: #444;
+		transition: transform 0.3s ease;
+	}
 
-  .mobile-nav-item.open .mobile-dropdown {
-    max-height: 500px;
-    opacity: 1;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
-  }
+	.mobile-nav-item.open .mobile-dropdown {
+		max-height: 500px;
+		opacity: 1;
+		margin-top: 1rem;
+		margin-bottom: 0.5rem;
+	}
 
-  .mobile-nav-item.open .mobile-dropdown-toggle {
-    transform: rotate(180deg);
-  }
+	.mobile-nav-item.open .mobile-dropdown-toggle {
+		transform: rotate(180deg);
+	}
 
-  .mobile-dropdown {
-    padding-left: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-    border-left: 2.5px solid #E0F7FA;
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-  }
+	.mobile-dropdown {
+		padding-left: 1.25rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.85rem;
+		border-left: 2.5px solid #e0f7fa;
+		max-height: 0;
+		overflow: hidden;
+		opacity: 0;
+		transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+	}
 
-  .mobile-dropdown-link {
-    font-size: 1.1rem;
-    color: #555;
-    font-weight: 500;
-  }
+	.mobile-dropdown-link {
+		font-size: 1.1rem;
+		color: #555;
+		font-weight: 500;
+	}
 
-  .mobile-close {
-    position: absolute;
-    top: 2rem;
-    right: 1.5rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #000;
-    padding: 0.5rem;
-    transition: transform 0.3s ease;
-  }
+	.mobile-close {
+		position: absolute;
+		top: 2rem;
+		right: 1.5rem;
+		background: none;
+		border: none;
+		cursor: pointer;
+		color: #000;
+		padding: 0.5rem;
+		transition: transform 0.3s ease;
+	}
 
-  .mobile-close:hover {
-    transform: rotate(90deg);
-  }
+	.mobile-close:hover {
+		transform: rotate(90deg);
+	}
 
-  .mobile-cta {
-    margin-top: 2rem;
-    text-align: center;
-  }
+	.mobile-cta {
+		margin-top: 2rem;
+		text-align: center;
+	}
 </style>
 
 <script>
-	const header = document.querySelector('#header');
-	const mobileToggle = document.querySelector('.mobile-toggle');
-  const mobileMenu = document.querySelector('#mobileMenu');
-  const mobileOverlay = document.querySelector('#mobileOverlay');
+	const header = document.querySelector("#header");
+	const mobileToggle = document.querySelector(".mobile-toggle");
+	const mobileMenu = document.querySelector("#mobileMenu");
+	const mobileOverlay = document.querySelector("#mobileOverlay");
 
-	mobileToggle?.addEventListener('click', () => {
-		mobileToggle.classList.toggle('active');
-    mobileMenu?.classList.toggle('active');
-    mobileOverlay?.classList.toggle('active');
-    document.body.style.overflow = mobileMenu?.classList.contains('active') ? 'hidden' : '';
+	mobileToggle?.addEventListener("click", () => {
+		mobileToggle.classList.toggle("active");
+		mobileMenu?.classList.toggle("active");
+		mobileOverlay?.classList.toggle("active");
+		document.body.style.overflow = mobileMenu?.classList.contains("active")
+			? "hidden"
+			: "";
 	});
 
-  const closeMenu = () => {
-    mobileToggle?.classList.remove('active');
-    mobileMenu?.classList.remove('active');
-    mobileOverlay?.classList.remove('active');
-    document.body.style.overflow = '';
-  };
+	const closeMenu = () => {
+		mobileToggle?.classList.remove("active");
+		mobileMenu?.classList.remove("active");
+		mobileOverlay?.classList.remove("active");
+		document.body.style.overflow = "";
+	};
 
-  mobileOverlay?.addEventListener('click', closeMenu);
-  document.querySelector('#mobileClose')?.addEventListener('click', closeMenu);
+	mobileOverlay?.addEventListener("click", closeMenu);
+	document
+		.querySelector("#mobileClose")
+		?.addEventListener("click", closeMenu);
 
-  // Mobile Dropdown Toggles
-  const dropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
-  dropdownToggles.forEach(toggle => {
-    toggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const parent = toggle.closest('.mobile-nav-item');
-      parent?.classList.toggle('open');
-    });
-  });
+	// Mobile Dropdown Toggles
+	const dropdownToggles = document.querySelectorAll(
+		".mobile-dropdown-toggle",
+	);
+	dropdownToggles.forEach((toggle) => {
+		toggle.addEventListener("click", (e) => {
+			e.stopPropagation();
+			const parent = toggle.closest(".mobile-nav-item");
+			parent?.classList.toggle("open");
+		});
+	});
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 20) {
-      header?.classList.add('scrolled');
-    } else {
-      header?.classList.remove('scrolled');
-    }
-  });
+	window.addEventListener("scroll", () => {
+		if (window.scrollY > 20) {
+			header?.classList.add("scrolled");
+		} else {
+			header?.classList.remove("scrolled");
+		}
+	});
 </script>

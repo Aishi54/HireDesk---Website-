@@ -1,136 +1,153 @@
 ---
-import Graphic from './Graphic.astro';
+import Graphic from "./Graphic.astro";
 ---
 
 <section class="hero overflow-hidden">
   <div class="container hero-wrapper">
     <!-- Graphic on the left for desktop -->
-    <div class="hero-graphic order-2 lg:order-1">
-      <Graphic />
+    <div class="hero-graphic">
+      <Graphic size={400} />
     </div>
 
     <!-- Content on the right for desktop -->
-    <div class="hero-content order-1 lg:order-2">
+    <div class="hero-content">
       <div class="tagline-container">
         <span class="tagline">Outsourcing+</span>
-        <div class="tagline-underline"></div>
+        <svg class="scribble" viewBox="0 0 100 12" preserveAspectRatio="none">
+          <path d="M0 8 C 20 2, 50 12, 100 4" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" />
+        </svg>
       </div>
-      
+
       <h1 class="hero-title reveal">Built to make you better.</h1>
-      
+
       <p class="hero-description reveal">
-        We're not traditional outsourcers. We build world-class teams — from customer support to AI data solutions — helping you scale faster and smarter.
+        We're not traditional outsourcers. We build world-class teams — from
+        customer support to AI data solutions — helping you scale faster and
+        smarter.
       </p>
-      
+
       <div class="hero-actions reveal">
         <button class="btn btn-black">Build your Dream Team</button>
       </div>
 
-      <!-- Featured Article Card -->
+      <!-- Featured Testimonial Card (Paula Weeks) -->
       <div class="featured-card reveal">
         <div class="card-inner">
-          <div class="card-visual">
-            <div class="card-circle">
-              <img src="/assets/sarah-sakara.png" alt="Featured" />
-            </div>
+          <div class="card-circle">
+            <img src="/assets/sarah-sakara.png" alt="Paula Weeks" />
           </div>
           <div class="card-content">
-            <span class="card-label">30 Days with book of the month</span>
+            <span class="card-label">Paula Weeks, FIFA '26 Hospitality Director</span>
             <p class="card-text">
-              Book of the Month Club (BOTM) promised something different: full access to their back catalog of books.
+              "Paula brings over 20 years of building innovative customer programs to soccer's largest events."
             </p>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Divider Curve -->
+  <div class="curve-bottom">
+    <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M0 0 C 480 100, 960 100, 1440 0 L 1440 100 L 0 100 Z"
+        fill="#FDFCF6"></path>
+    </svg>
+  </div>
 </section>
 
 <style>
   .hero {
-    min-height: 85vh; /* Increased from 75vh */
+    min-height: auto;
     display: flex;
     align-items: center;
     background-color: var(--bg-primary);
-    padding: 4rem 0 6rem; /* Substantial bottom buffer */
+    padding: 2.5rem 0 4rem; /* More compact */
     overflow: hidden;
   }
 
   .hero-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-wrap: nowrap;
     align-items: center;
-    gap: 6rem;
+    justify-content: space-between;
+    gap: 3rem;
     width: 100%;
-    max-width: 1280px;
+    max-width: 1200px;
     margin: 0 auto;
   }
 
+  .hero-graphic {
+    flex: 0 0 420px; /* Precise width control */
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
   .hero-content {
+    flex: 1;
+    max-width: 520px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
-    max-width: 540px;
-    order: 2; /* Content on right per latest request */
+    position: relative;
+    z-index: 2;
   }
 
-  /* Tagline Styling - Precise Alignment */
   .tagline-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.1rem;
-    margin-bottom: 1rem; /* Reduced margin */
+    gap: -4px;
+    margin-bottom: 0.5rem;
+    width: fit-content;
   }
 
   .tagline {
-    font-size: 0.95rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    font-size: 1.05rem;
+    font-weight: 500;
     color: var(--color-black);
     line-height: 1;
   }
 
-  .tagline-underline {
-    height: 2px;
-    background: var(--color-black);
-    width: 32px;
-    transform-origin: left;
+  .scribble {
+    width: 110%;
+    height: 10px;
+    margin-left: -5%;
+    color: #333;
   }
 
-  /* Typography */
   .hero-title {
-    font-size: clamp(2.5rem, 4.5vw, 4rem);
-    line-height: 1;
-    margin-bottom: 1.25rem;
-    font-weight: 500;
+    font-size: clamp(1.8rem, 3.5vw, 3.1rem); /* Reduced further for compact look */
+    line-height: 1.05;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
     letter-spacing: -0.04em;
     color: #000;
   }
 
   .hero-description {
-    font-size: 1.05rem;
+    font-size: 1rem;
     line-height: 1.5;
-    color: #444;
-    margin-bottom: 2rem;
-    max-width: 520px;
+    color: #555;
+    margin-bottom: 1.5rem;
+    max-width: 460px;
   }
 
   .hero-actions {
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.75rem;
   }
 
-  /* Featured Card */
   .featured-card {
-    background-color: #E0F7FA;
+    background-color: #AEEEEE;
     border-radius: 12px;
-    padding: 1rem 1.25rem; /* Ultra-compact */
+    padding: 1rem 1.25rem;
     width: 100%;
-    max-width: 440px;
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    max-width: 480px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
   }
 
   .card-inner {
@@ -145,100 +162,62 @@ import Graphic from './Graphic.astro';
     flex-shrink: 0;
     border-radius: 50%;
     overflow: hidden;
-    background: white;
+    background: #FF8A80;
     border: 2px solid white;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-circle img {
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+    border-radius: 50%;
   }
 
   .card-label {
     display: block;
-    font-weight: 800;
-    font-size: 0.8rem;
-    margin-bottom: 0.25rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-bottom: 0.2rem;
     color: #000;
   }
 
   .card-text {
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     line-height: 1.4;
-    color: #444;
+    color: #333;
   }
 
-  .hero-graphic {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    order: 1; /* Graphic on left per latest screen */
-    width: 100%;
+  .curve-bottom {
+    display: none; /* Hide curve if it takes too much space at 100% */
   }
 
-  /* Responsive Adjustments (The UI you liked for Mobile) */
   @media (max-width: 1024px) {
     .hero {
-      padding: 1.5rem 0 3rem; /* Reduced top padding significantly */
-      min-height: auto; /* Allow content to dictate height */
+      padding: 0rem 0 2rem; /* Reduced top padding significantly */
     }
     .hero-wrapper {
-      grid-template-columns: 1fr;
-      display: flex;
       flex-direction: column;
-      align-items: center;
       text-align: center;
-      gap: 2.5rem; /* Tighter vertical gap */
+      gap: 1.5rem; /* Tighter gap */
+    }
+    .hero-graphic {
+      flex: 0 0 auto;
+      width: 100%;
+      transform: scale(0.9);
     }
     .hero-content {
       align-items: center;
       text-align: center;
-      margin: 0 auto;
       max-width: 100%;
-      order: 2;
-    }
-    .hero-graphic {
-      order: 1;
-      justify-content: center;
-      transform: scale(0.9);
-      margin-bottom: 2.5rem;
     }
     .tagline-container {
       align-items: center;
-      text-align: center;
-    }
-    .tagline-underline {
-      transform-origin: center;
-      margin: 0 auto;
     }
     .hero-title {
-      font-size: 2.8rem;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .hero-title {
-      font-size: 2.4rem;
-    }
-    .hero-description {
-      font-size: 1rem;
-    }
-    .featured-card {
-      max-width: 100%;
-      padding: 1.25rem;
-    }
-    .card-inner {
-      flex-direction: column;
-      text-align: center;
-      gap: 1rem;
-    }
-    .card-circle {
-      width: 55px;
-      height: 55px;
-      margin: 0 auto;
-    }
-    .card-label, .card-text {
-      text-align: center;
+      font-size: 2.5rem;
     }
   }
 </style>
-
