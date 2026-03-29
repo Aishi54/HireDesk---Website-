@@ -287,24 +287,37 @@ const testimonials: Testimonial[] = [
     .slide-inner {
       flex-direction: column;
       background: #fff;
-      padding: 1.5rem;
+      padding: 2.5rem 1.5rem; /* More generous padding */
       border-radius: 16px;
-      gap: 1.25rem;
-      max-width: 340px;
+      gap: 1.5rem; /* Balanced gap */
+      max-width: 380px; /* Slightly wider */
       border: 1px solid rgba(0,0,0,0.06);
       box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+      text-align: center; /* FULL CENTER */
+      align-items: center; /* FULL CENTER */
+      margin: 0 auto;
     }
-    .quote-text { font-size: 1.05rem; text-align: left; }
-    .logo-wrap { margin-bottom: 0.5rem; }
-    .quote-wrap { margin-bottom: 1.25rem; }
-    .author-meta {
-      border-top: 1px solid rgba(0,0,0,0.06);
-      padding-top: 1.25rem;
-      gap: 1rem;
+    .quote-text { 
+      font-size: 1.15rem; 
+      text-align: center; 
+      line-height: 1.4;
+    }
+    .logo-wrap { margin-bottom: 0.75rem; display: flex; justify-content: center; }
+    .quote-wrap { 
+      margin-bottom: 1.5rem; 
+      justify-content: center;
       width: 100%;
     }
+    .author-meta {
+      border-top: 1px solid rgba(0,0,0,0.06);
+      padding-top: 1.5rem;
+      gap: 1rem;
+      width: 100%;
+      justify-content: center; /* FULL CENTER */
+      text-align: center;
+    }
     .progress-bar { width: 100%; max-width: 260px; height: 6px; }
-    .progress-bar-wrap { margin-top: 2rem; }
+    .progress-bar-wrap { margin-top: 3rem; }
   }
 </style>
 
