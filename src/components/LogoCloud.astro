@@ -49,12 +49,12 @@ const currentLogos = [
 
   .logo-title {
     text-align: center;
-    font-size: 0.8rem;
-    font-weight: 700;
+    font-size: 0.75rem; /* More refined */
+    font-weight: 800; /* Bolder */
     text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #444;
-    opacity: 0.6;
+    letter-spacing: 0.2em; /* Wider spacing for premium look */
+    color: var(--color-primary); /* Scampi Purple */
+    opacity: 0.8; 
     margin-bottom: 2.5rem;
   }
 
@@ -109,10 +109,16 @@ const currentLogos = [
 
   @media (max-width: 768px) {
     .marquee-content {
-      gap: 3.5rem;
+      gap: 3.5rem; /* Better breathing room on mobile */
+      animation-duration: 25s; /* Brisk, premium speed */
     }
     .logo-img {
-      height: 30px; /* Sharp mobile logos */
+      height: 36px; /* High-visibility 'Smart' scale on mobile */
+    }
+    .logo-title {
+      font-size: 0.65rem;
+      margin-bottom: 2rem;
+      letter-spacing: 0.25em;
     }
   }
 </style>
