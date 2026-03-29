@@ -3,40 +3,40 @@ const services = [
   {
     title: 'Customer Support',
     description: 'Across time zones, languages, cultures, and channels, we’ll leave your customers feeling great about your brand…even if it’s a bad day.',
-    color: '#1AC4D3',
+    color: '#54c6d7', // Viking Blue
     icon: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M40 70 C 45 60 55 60 60 70" stroke="#1AC4D3" stroke-width="6" stroke-linecap="round"/>
-      <path d="M30 75 C 40 50 60 50 70 75" stroke="#1AC4D3" stroke-width="6" stroke-linecap="round" opacity="0.6"/>
-      <path d="M20 80 C 35 35 65 35 80 80" stroke="#1AC4D3" stroke-width="6" stroke-linecap="round" opacity="0.3"/>
+      <path d="M40 70 C 45 60 55 60 60 70" stroke="#54c6d7" stroke-width="6" stroke-linecap="round"/>
+      <path d="M30 75 C 40 50 60 50 70 75" stroke="#54c6d7" stroke-width="6" stroke-linecap="round" opacity="0.6"/>
+      <path d="M20 80 C 35 35 65 35 80 80" stroke="#54c6d7" stroke-width="6" stroke-linecap="round" opacity="0.3"/>
     </svg>`
   },
   {
     title: 'Data & AI',
     description: 'Process and build with better, less biased, more accurate training data. You know your end product depends on it; we do too.',
-    color: '#FF5C39',
+    color: '#6484c2', // Danube
     icon: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="30" y="30" width="40" height="40" rx="10" stroke="#FF5C39" stroke-width="10"/>
-      <rect x="42" y="42" width="16" height="16" rx="4" fill="#FF5C39" opacity="0.3"/>
+      <rect x="30" y="30" width="40" height="40" rx="10" stroke="#6484c2" stroke-width="10"/>
+      <rect x="42" y="42" width="16" height="16" rx="4" fill="#6484c2" opacity="0.3"/>
     </svg>`
   },
   {
     title: 'Trust & Safety',
     description: 'Better compliance, higher engagement, and safer spaces. We’ll keep your users playing by your rules.',
-    color: '#9B51E0',
+    color: '#5b62ad', // Scampi
     icon: `<svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="45" cy="50" r="22" stroke="#9B51E0" stroke-width="8"/>
-      <circle cx="75" cy="50" r="22" stroke="#9B51E0" stroke-width="8" opacity="0.5"/>
+      <circle cx="45" cy="50" r="22" stroke="#5b62ad" stroke-width="8"/>
+      <circle cx="75" cy="50" r="22" stroke="#5b62ad" stroke-width="8" opacity="0.5"/>
     </svg>`
   },
   {
     title: 'Digital Operations',
     description: 'Crash costs cut friction, and boost efficiency. We’ll help you scale your operations faster and more profitably… and put years back on your life.',
-    color: '#6FCF97',
+    color: '#54c6d7', // Viking
     icon: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="38" cy="38" r="12" stroke="#6FCF97" stroke-width="6"/>
-      <circle cx="62" cy="38" r="12" stroke="#6FCF97" stroke-width="6"/>
-      <circle cx="38" cy="62" r="12" stroke="#6FCF97" stroke-width="6"/>
-      <circle cx="62" cy="62" r="12" stroke="#6FCF97" stroke-width="6"/>
+      <circle cx="38" cy="38" r="12" stroke="#54c6d7" stroke-width="6"/>
+      <circle cx="62" cy="38" r="12" stroke="#54c6d7" stroke-width="6"/>
+      <circle cx="38" cy="62" r="12" stroke="#54c6d7" stroke-width="6"/>
+      <circle cx="62" cy="62" r="12" stroke="#54c6d7" stroke-width="6"/>
     </svg>`
   }
 ];
@@ -111,7 +111,7 @@ const services = [
 <style>
   .services-wrapper {
     background: var(--bg-primary);
-    padding: 1.5rem 0 1rem;
+    padding: 4.5rem 0 3.5rem;
     position: relative;
     overflow: hidden;
   }
@@ -124,24 +124,24 @@ const services = [
 
   .services-header {
     text-align: center;
-    margin-bottom: 4rem; /* Reduced space */
+    margin-bottom: 4rem; 
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
   h2 {
-    font-size: clamp(1.6rem, 3.2vw, 2.2rem); /* Matching page scale */
+    font-size: clamp(2.2rem, 5vw, 3.2rem); 
     font-weight: 500;
-    margin-bottom: 1rem;
-    letter-spacing: -0.01em;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.02em;
     color: #000;
   }
 
   .services-header p {
-    font-size: 0.95rem;
-    color: #444;
-    max-width: 600px;
+    font-size: 1rem;
+    color: #555;
+    max-width: 580px;
     line-height: 1.5;
     font-weight: 400;
   }
@@ -186,11 +186,11 @@ const services = [
     .arcs-overlay { display: none; }
   }
 
-  /* Slider Viewport */
+  /* Slider Viewport & Mobile Snap */
   .slider-viewport {
     width: 100%;
     position: relative;
-    overflow: visible; /* Grid logic for desktop */
+    overflow: visible;
   }
 
   /* Grid Layout (Desktop) */
@@ -200,7 +200,6 @@ const services = [
     gap: 1.5rem;
     position: relative;
     z-index: 2;
-    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
   }
 
   .mobile-nav-controls {
@@ -251,57 +250,47 @@ const services = [
   }
 
   @media (max-width: 768px) {
-    .services-wrapper { 
-      padding-top: 3rem;
-      padding-bottom: 5rem;
-    }
-    
-    .mobile-nav-controls {
-      display: flex;
-      margin-top: 3rem; /* Push below cards */
-      justify-content: center;
-      align-items: center;
-      gap: 1.5rem;
-      pointer-events: auto;
-      width: 100%;
-    }
-
-    .grid-container {
-      display: flex;
-      flex-direction: column;
-    }
+    .container--wide { padding: 0; }
+    .services-header { padding: 0 1.5rem; }
 
     .slider-viewport {
-      order: 0;
-      overflow: visible;
-      width: 100%;
-      padding: 0 1.5rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      -webkit-overflow-scrolling: touch;
+      padding: 1rem 1.5rem 3rem; /* Allows card peeking */
     }
-
-    .mobile-only {
-      order: 1; /* Moves controls below cards */
-    }
+    .slider-viewport::-webkit-scrollbar { display: none; }
 
     .services-grid {
       display: flex;
       gap: 1.25rem;
       grid-template-columns: none;
-      will-change: transform;
+      width: max-content;
     }
 
     .service-card {
-      flex: 0 0 280px;
-      width: 280px;
+      flex: 0 0 calc(100vw - 4rem); /* Responsive width with peeking */
+      max-width: 320px;
+      scroll-snap-align: center;
     }
-    
-    .arcs-overlay { display: none; }
+
+    .mobile-nav-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: -1rem;
+      padding-bottom: 3rem;
+    }
   }
 
   /* Compact Smart Card */
   .service-card {
     background: #fff;
     border-radius: 20px;
-    padding: 1.5rem 1.25rem;
+    padding: 2.5rem 2rem;
     text-align: center;
     border: 1px solid rgba(0,0,0,0.06);
     outline: 2px solid var(--accent);
@@ -309,6 +298,7 @@ const services = [
     display: flex;
     flex-direction: column;
     height: 100%;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.03);
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   }
 
@@ -437,68 +427,33 @@ const services = [
   };
 
   const initServicesSlider = () => {
+    const viewport = document.querySelector('.slider-viewport');
     const grid = document.getElementById('servicesGrid');
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
+    const dots = document.querySelectorAll('.pagination-dots .dot');
     const cards = document.querySelectorAll('.service-card');
     
-    if (!grid || !prevBtn || !nextBtn || cards.length === 0) return;
+    if (!viewport || !grid || !prevBtn || !nextBtn || cards.length === 0) return;
 
     let currentIndex = 0;
-    const totalCards = cards.length;
 
-    const updateSlider = () => {
-      // Update Dots
-      const dots = document.querySelectorAll('.pagination-dots .dot');
-      dots.forEach((dot, i) => {
-        if (i === currentIndex) dot.classList.add('active');
-        else dot.classList.remove('active');
-      });
-
-      if (window.innerWidth > 768) {
-        grid.style.transform = 'none';
-        return;
-      }
-      
-      const cardWidth = 280; 
-      const gap = 20; // 1.25rem * 16 (approx)
-      const moveAmount = currentIndex * (cardWidth + gap);
-      
-      gsap.to(grid, {
-        x: -moveAmount,
-        duration: 0.6,
-        ease: "power2.out"
-      });
-
-      // Update button states
-      // @ts-ignore
-      prevBtn.style.opacity = currentIndex === 0 ? '0.3' : '1';
-      // @ts-ignore
-      prevBtn.style.pointerEvents = currentIndex === 0 ? 'none' : 'auto';
-      // @ts-ignore
-      nextBtn.style.opacity = currentIndex === totalCards - 1 ? '0.3' : '1';
-      // @ts-ignore
-      nextBtn.style.pointerEvents = currentIndex === totalCards - 1 ? 'none' : 'auto';
+    const syncSlider = () => {
+       const scrollLeft = viewport.scrollLeft;
+       const cardWidth = cards[0].clientWidth + 20; // width + gap
+       const index = Math.round(scrollLeft / cardWidth);
+       
+       if (index !== currentIndex) {
+          currentIndex = index;
+          dots.forEach((dot, i) => {
+             if (i === currentIndex) dot.classList.add('active');
+             else dot.classList.remove('active');
+          });
+       }
     };
 
-    prevBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (currentIndex > 0) {
-        currentIndex--;
-        updateSlider();
-      }
-    });
-
-    nextBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (currentIndex < totalCards - 1) {
-        currentIndex++;
-        updateSlider();
-      }
-    });
-
-    window.addEventListener('resize', updateSlider);
-    updateSlider(); // Init state
+    viewport.addEventListener('scroll', syncSlider);
+    syncSlider(); // Init state
   };
 
   window.addEventListener('load', () => {
