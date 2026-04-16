@@ -1,42 +1,39 @@
 ---
 const services = [
   {
-    title: 'Customer Support',
-    description: 'Across time zones, languages, cultures, and channels, we’ll leave your customers feeling great about your brand…even if it’s a bad day.',
+    title: 'Financial Support',
+    description: 'Bookkeeping, VAT preparation, accounts payable and receivable, and bank reconciliation to keep your finances in order.',
     color: '#54c6d7', // Viking Blue
     icon: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M40 70 C 45 60 55 60 60 70" stroke="#54c6d7" stroke-width="6" stroke-linecap="round"/>
-      <path d="M30 75 C 40 50 60 50 70 75" stroke="#54c6d7" stroke-width="6" stroke-linecap="round" opacity="0.6"/>
-      <path d="M20 80 C 35 35 65 35 80 80" stroke="#54c6d7" stroke-width="6" stroke-linecap="round" opacity="0.3"/>
+      <rect x="20" y="30" width="60" height="40" rx="4" stroke="#54c6d7" stroke-width="6"/>
+      <path d="M40 50 L 60 50 M 50 40 L 50 60" stroke="#54c6d7" stroke-width="6" stroke-linecap="round"/>
     </svg>`
   },
   {
-    title: 'Data & AI',
-    description: 'Process and build with better, less biased, more accurate training data. You know your end product depends on it; we do too.',
+    title: 'Back Office Support',
+    description: 'CRM management, data entry, document processing, and workflow administration to ensure smooth operations.',
     color: '#6484c2', // Danube
     icon: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="30" y="30" width="40" height="40" rx="10" stroke="#6484c2" stroke-width="10"/>
-      <rect x="42" y="42" width="16" height="16" rx="4" fill="#6484c2" opacity="0.3"/>
+      <path d="M20 20 H 80 V 80 H 20 Z" stroke="#6484c2" stroke-width="6"/>
+      <path d="M35 40 H 65 M 35 55 H 65 M 35 70 H 50" stroke="#6484c2" stroke-width="6" stroke-linecap="round"/>
     </svg>`
   },
   {
-    title: 'Trust & Safety',
-    description: 'Better compliance, higher engagement, and safer spaces. We’ll keep your users playing by your rules.',
+    title: 'Executive Support',
+    description: 'Diary management, travel planning, inbox management, and administrative support for busy leaders.',
     color: '#5b62ad', // Scampi
     icon: `<svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="45" cy="50" r="22" stroke="#5b62ad" stroke-width="8"/>
-      <circle cx="75" cy="50" r="22" stroke="#5b62ad" stroke-width="8" opacity="0.5"/>
+      <circle cx="60" cy="35" r="15" stroke="#5b62ad" stroke-width="6"/>
+      <path d="M30 80 Q 60 50 90 80" stroke="#5b62ad" stroke-width="6" stroke-linecap="round"/>
     </svg>`
   },
   {
-    title: 'Digital Operations',
-    description: 'Crash costs cut friction, and boost efficiency. We’ll help you scale your operations faster and more profitably… and put years back on your life.',
+    title: 'Specialist Support',
+    description: 'Marketing assistance, customer support, and IT support tailored to your unique business needs.',
     color: '#54c6d7', // Viking
     icon: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="38" cy="38" r="12" stroke="#54c6d7" stroke-width="6"/>
-      <circle cx="62" cy="38" r="12" stroke="#54c6d7" stroke-width="6"/>
-      <circle cx="38" cy="62" r="12" stroke="#54c6d7" stroke-width="6"/>
-      <circle cx="62" cy="62" r="12" stroke="#54c6d7" stroke-width="6"/>
+      <circle cx="50" cy="50" r="30" stroke="#54c6d7" stroke-width="6" stroke-dasharray="10 5"/>
+      <path d="M50 35 V 65 M 35 50 H 65" stroke="#54c6d7" stroke-width="6" stroke-linecap="round"/>
     </svg>`
   }
 ];
@@ -53,13 +50,13 @@ const services = [
           </svg>
         </div>
         <h2 class="section-title">
-          + More Growth, Less Risk
+          WHAT WE DO
           <svg class="title-scribble" viewBox="0 0 300 20">
             <path d="M10 12 Q150 18 290 12" stroke="black" stroke-opacity="0.1" stroke-width="3" fill="none" class="scribble-path"></path>
           </svg>
         </h2>
       </div>
-      <p class="section-desc">Focus on growth, we’ll take care of the many small tasks that make the difference between awesome and awful.</p>
+      <p class="section-desc">We provide support across a range of business functions, tailored to help you operate more effectively.</p>
     </div>
 
     <div class="grid-container">
@@ -84,7 +81,7 @@ const services = [
                 <div class="card-icon-wrapper">
                   <div class="card-icon" set:html={service.icon}></div>
                   <svg class="orbital-ring" viewBox="0 0 100 100">
-                    <circle cx="50" cy="50" r="45" stroke="var(--accent)" stroke-width="2" stroke-dasharray="20 150" fill="none" class="orbit-path" />
+                    <circle cx="50" cy="50" r="45" stroke="var(--accent)" stroke-width="3" stroke-dasharray="20 150" fill="none" class="orbit-path" />
                   </svg>
                 </div>
                 <h3 class="card-title">{service.title}</h3>
@@ -372,17 +369,17 @@ const services = [
 
   .card-icon-wrapper {
     position: relative;
-    width: 60px;
-    height: 60px;
-    margin: 0 auto 1.25rem;
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 1.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
   .card-icon {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -392,27 +389,27 @@ const services = [
 
   .orbital-ring {
     position: absolute;
-    top: -10px;
-    left: -10px;
-    width: 80px;
-    height: 80px;
+    top: -15px;
+    left: -15px;
+    width: 120px;
+    height: 120px;
     pointer-events: none;
     z-index: 1;
     overflow: visible;
   }
 
   .card-title {
-    font-size: 1rem; /* Scaled down */
+    font-size: 1.15rem; /* Slightly larger heading */
     font-weight: 700;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.85rem;
     color: #000;
   }
 
   .card-text {
-    font-size: 0.85rem; /* Denser, smarter profile */
+    font-size: 0.95rem; /* Slightly larger text for readability */
     color: #555;
-    line-height: 1.4;
-    margin-bottom: 1.25rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
     flex-grow: 1; /* Pushes button to bottom */
   }
 

@@ -1,34 +1,34 @@
 ---
 const leadership = [
-  { name: 'Emily Slota', title: 'President', link: '#', image: '/assets/sarah-sakara.png' },
-  { name: 'Orinola Gbadebo-Smith', title: 'Chief Executive', link: '#', image: '/assets/male-botm.png' },
-  { name: 'Simone Bartlett', title: 'Chief Operating Officer', link: '#', image: '/assets/female-faire.png' },
-  { name: 'Niel Harper', title: 'Information Security', link: '#', image: '/assets/lead-niel.png' },
-  { name: 'Travis Low', title: 'CX, AI & T&S Practice Leader', link: '#', image: '/assets/lead-travis.png' },
-  { name: 'Taire Avbovbo', title: 'Pilots & New Client Operations', link: '#', image: '/assets/lead-taire.png' },
-  { name: 'Ian McGuire', title: 'US Operations', link: '#', image: '/assets/lead-ian.png' },
-  { name: 'Funmi Ajala', title: 'Customer Support Operations', link: '#', image: '/assets/lead-funmi.png' }
+  { 
+    name: 'Shabab', 
+    title: 'Founder & Operations Partner', 
+    bio: 'Shabab leads the operational delivery of Hire Desk from Pakistan. He oversees team management, recruitment, training, systems and day-to-day delivery. A serial entrepreneur with experience building and operating multiple businesses across the UK.',
+    link: '#', 
+    image: '/assets/lead-travis.png' 
+  },
+  { 
+    name: 'Rasool', 
+    title: 'UK Managing Partner', 
+    bio: 'Rasool leads client relationships, onboarding and commercial strategy across the UK. With over 20 years experience in senior commercial roles, she designs support structures that create real operational and commercial impact.',
+    link: '#', 
+    image: '/assets/sarah-sakara.png' 
+  }
 ];
 ---
 
-<section class="leadership-section">
+<section class="leadership-section" id="leadership">
   <div class="container--smart">
      <div class="header-wrap reveal">
        <span class="sub-tag">The visionaries</span>
        <h2 class="section-title">Global <span style="color: #54c6d7;">Leadership</span></h2>
      </div>
 
-     <div class="lead-grid">
+     <div class="lead-grid centered">
        {leadership.map((person, index) => (
          <div class="lead-item reveal" style={`--delay: ${index * 0.05}s`}>
            <div class="portrait-wrap">
-             {person.image ? (
-               <img src={person.image} alt={person.name} class="lead-img" />
-             ) : (
-               <div class="placeholder-img" style={`background: ${index % 2 === 0 ? '#5b62ad' : '#54c6d7'}; opacity: 0.1`}>
-                 <span class="initials">{person.name.charAt(0)}</span>
-               </div>
-             )}
+             <img src={person.image} alt={person.name} class="lead-img" />
              <div class="lead-hover">
                <a href={person.link} class="ln-pill">LinkedIn</a>
              </div>
@@ -36,6 +36,7 @@ const leadership = [
            <div class="lead-meta">
              <h3 class="lead-name">{person.name}</h3>
              <p class="lead-title">{person.title}</p>
+             <p class="lead-bio">{person.bio}</p>
            </div>
          </div>
        ))}
@@ -45,7 +46,7 @@ const leadership = [
 
 <style>
   .leadership-section {
-    padding: 4rem 0 6rem; /* More compact */
+    padding: 2rem 0 4rem; /* Reduced from 4rem 0 6rem */
     background-color: #FDFCF6;
   }
 
@@ -85,8 +86,20 @@ const leadership = [
     gap: 2rem 1.75rem; /* Tightened grid */
   }
 
-  @media (max-width: 1100px) { .lead-grid { grid-template-columns: repeat(3, 1fr); } }
-  @media (max-width: 800px) { .lead-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem 1.25rem; } }
+  .lead-grid.centered {
+    grid-template-columns: repeat(2, 400px);
+    justify-content: center;
+    gap: 4rem;
+  }
+
+  @media (max-width: 1100px) { 
+    .lead-grid { grid-template-columns: repeat(3, 1fr); }
+    .lead-grid.centered { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+  }
+  @media (max-width: 800px) { 
+    .lead-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem 1.25rem; } 
+    .lead-grid.centered { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+  }
   @media (max-width: 500px) { .lead-grid { grid-template-columns: 1fr; } }
 
   .lead-item {
@@ -154,9 +167,19 @@ const leadership = [
 
   .lead-title {
     font-size: 0.8rem; /* Smaller title */
-    color: #666;
-    font-weight: 500;
+    color: var(--color-primary);
+    font-weight: 700;
     line-height: 1.35;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .lead-bio {
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.6;
+    font-weight: 500;
   }
 
   .placeholder-img {

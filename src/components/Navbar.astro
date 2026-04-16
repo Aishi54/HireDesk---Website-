@@ -3,7 +3,7 @@ const navItems = [
 	{ label: "Home", href: "/" },
 	{
 		label: "Our Services",
-		dropdown: ["Admin Management", "Customer Support", "Email Support"],
+		dropdown: ["Financial Support", "Back Office Support", "Executive Support", "Specialist Support"],
 	},
 	{ label: "About Us", href: "/about" },
 	{ label: "Resources", dropdown: ["FAQs"] },
@@ -13,7 +13,7 @@ const navItems = [
 <div class="top-banner">
 	<div class="container container--wide">
 		<p>
-			Hiredesk is hiring! Explore our positions and <a href="#"
+			Hire Desk is hiring! Explore our positions and <a href="#"
 				>apply today</a
 			>.
 		</p>
@@ -25,7 +25,7 @@ const navItems = [
 		<a
 			href="/"
 			class="logo"
-			aria-label="Hiredesk"
+			aria-label="Hire Desk"
 			style="display: flex; align-items: center; text-decoration: none;"
 		>
 			<img
@@ -244,25 +244,29 @@ const navItems = [
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		min-height: 90px; /* Ensure stable baseline for large logo */
 	}
 
 	.logo {
 		display: flex;
 		align-items: center;
 		text-decoration: none;
+		height: 100%; /* Fill nav height for better centering */
 	}
 
 	.logo-img {
 		display: block;
-		height: 180px; /* Hero 'Smart' Branding dominance */
+		height: 220px; /* Elevated brand dominance */
 		width: auto;
-		margin: -55px 0; /* Ultra-deep protrusion to stay slim */
+		margin: -70px 0;
+		transform: translateY(2px); /* Pixel-perfect visual nudge for text baseline */
 		transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 	}
 
 	.navbar.scrolled .logo-img {
-		height: 120px;
-		margin: -32px 0;
+		height: 160px;
+		margin: -45px 0;
+		transform: translateY(1px);
 	}
 
 	@media (max-width: 1024px) {
@@ -278,8 +282,8 @@ const navItems = [
 			transform: translateY(-50%);
 		}
 		.logo-img {
-			height: 200px; /* Utmost brand prominence on mobile */
-			margin: -50px 0;
+			height: 250px; /* Extreme mobile prominence */
+			margin: -75px 0;
 		}
 	}
 

@@ -1,0 +1,77 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ServiceHero from "../../components/ServiceHero.astro";
+import WhatYouGet from "../../components/WhatYouGet.astro";
+import ServiceFeatures from "../../components/ServiceFeatures.astro";
+import ServicesStats from '../../components/ServicesStats.astro';
+import OperationalSteps from '../../components/OperationalSteps.astro';
+import ServicePricing from '../../components/ServicePricing.astro';
+import WhyChoose from '../../components/WhyChoose.astro';
+import CustomerStories from '../../components/CustomerStories.astro';
+import LogoCloud from "../../components/LogoCloud.astro";
+---
+
+<Layout
+  title="Back Office Support | Hire Desk - Streamline Your Operations"
+>
+  <ServiceHero
+    title="Back Office Support"
+    description="Essential operational support that keeps your business running smoothly behind the scenes. We take care of the tasks that slow you down, from CRM management to document processing."
+    bgColor="#F3F0FF"
+  >
+    <LogoCloud
+      slot="bottom"
+      background="transparent"
+      padding="0 0 3rem"
+      hideTitle={true}
+    />
+  </ServiceHero>
+
+  <WhatYouGet
+    title="Back Office Support"
+    description="We take ownership of your back-office processes, ensuring data integrity and administrative efficiency across all your platforms."
+  />
+
+  <ServiceFeatures
+    cards={[
+      {
+        icon: "report",
+        title: "Data Management",
+        features: [
+          "CRM management",
+          "Data entry",
+          "Database cleanup",
+        ],
+      },
+      {
+        icon: "report",
+        title: "Administration",
+        features: ["Document processing", "Workflow administration", "Archive management"],
+      },
+      {
+        icon: "support",
+        title: "Operations",
+        features: ["Supplier management", "Process documentation", "General support"],
+      },
+    ]}
+  />
+
+  <ServicesStats
+    stats={[
+      { number: '24/7', label: 'Operational Support' },
+      { number: '100%', label: 'Human-Led Service' },
+      { number: '95%', label: 'Efficiency Gain' },
+      { number: '24/7', label: 'Dedicated Experts' }
+    ]}
+    title="Optimized Operations"
+    description="Focus on your vision while we handle the operational details that keep your business moving."
+  />
+
+  <WhyChoose />
+
+  <CustomerStories />
+
+  <OperationalSteps />
+
+  <ServicePricing />
+</Layout>

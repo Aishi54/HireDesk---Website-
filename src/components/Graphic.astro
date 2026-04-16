@@ -154,7 +154,13 @@ const {
   const assets = [
     '/assets/female-faire.png',
     '/assets/male-botm.png',
-    '/assets/sarah-sakara.png'
+    '/assets/sarah-sakara.png',
+    '/assets/hugo_agent_1.png',
+    '/assets/lead-funmi.png',
+    '/assets/lead-ian.png',
+    '/assets/lead-niel.png',
+    '/assets/lead-taire.png',
+    '/assets/lead-travis.png'
   ];
 
   const initGraphic = () => {
@@ -176,32 +182,63 @@ const {
        });
     });
 
-    // 2. Sequential "WOW" Revealed Tour
-    const revealNode = async (idx: number) => {
-       const node = document.querySelector(`#node-${idx}`);
-       const img = node?.querySelector('.node-img');
-       if (!node || !img) return;
+    // 2. Multi-Node Simultaneous "Premium" Tour
+    const activeNodes = new Set();
 
-       img.setAttribute('href', assets[idx % assets.length]);
+    const runNodeCycle = async () => {
+      // Find a random node that isn't currently active
+      let idx;
+      let attempts = 0;
+      do {
+        idx = Math.floor(Math.random() * 24);
+        attempts++;
+      } while (activeNodes.has(idx) && attempts < 50);
 
-       await gsap.timeline()
-         // Scale and Fade with elegant easing
-         .fromTo(node, 
-           { opacity: 0, scale: 0.4, rotateY: -45 }, 
-           { opacity: 1, scale: 1, rotateY: 0, duration: 1, ease: "back.out(1.8)" }
-         )
-         .to(node, { 
-           opacity: 0, 
-           scale: 0.25, 
-           duration: 0.8, 
-           delay: 2, 
-           ease: "power3.in" 
-         });
-       
-       revealNode((idx + 1) % 24);
+      if (activeNodes.has(idx)) return; // Failsafe
+      
+      activeNodes.add(idx);
+      const node = document.querySelector(`#node-${idx}`);
+      const img = node?.querySelector('.node-img');
+      
+      if (!node || !img) {
+        activeNodes.delete(idx);
+        return;
+      }
+
+      // Randomly pick an asset
+      const assetPath = assets[Math.floor(Math.random() * assets.length)];
+      img.setAttribute('href', assetPath);
+
+      // Animation Timeline
+      await gsap.timeline()
+        .fromTo(node, 
+          { opacity: 0, scale: 0.2, rotate: -20 }, 
+          { 
+            opacity: 1, 
+            scale: 1, 
+            rotate: 0, 
+            duration: 1.2, 
+            ease: "back.out(1.8)" 
+          }
+        )
+        .to(node, { 
+          opacity: 0, 
+          scale: 0, 
+          duration: 1, 
+          delay: 3 + Math.random() * 4, // Stay visible for varied time
+          ease: "power3.in" 
+        });
+
+      activeNodes.delete(idx);
+      
+      // Brief pause before this cycle "thread" picks a new node
+      setTimeout(runNodeCycle, 400 + Math.random() * 800);
     };
 
-    revealNode(0);
+    // Start 5 simultaneous "threads" of reveals
+    for (let i = 0; i < 5; i++) {
+      setTimeout(runNodeCycle, i * 1200); // Staggered entry
+    }
 
     // Subtle breathing on blobs
     gsap.to('.blob', {

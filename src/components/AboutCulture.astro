@@ -1,61 +1,61 @@
----
-
----
-
 <section class="about-culture" id="culture">
+  <!-- Decorative Background Blobs -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  
   <div class="container--smart">
-    <!-- Section 1: Powerhouse (Left Text, Right Image) -->
-    <div class="culture-row reveal">
-      <div class="culture-text">
+    <!-- Section 1: Trusted Extension (Left Text, Right Image) -->
+    <div class="culture-row">
+      <div class="culture-text reveal-left">
         <h2 class="culture-title">
-          We’re a powerhouse with the brightest minds.
+          A Trusted <span class="accent-wrap">Extension
+            <svg class="accent-scribble" viewBox="0 0 100 20"><path d="M5 15 Q50 20 95 15" stroke="var(--color-primary)" stroke-width="3" fill="none" /></svg>
+          </span> of Your Team.
         </h2>
         <p class="culture-desc">
-          At Hiredesk, only the most qualified 4-year and advanced degree
-          holders make it onto your live-mandates. With an acceptance rate of
-          2%, our recruitment process is on par with Harvard.
+          We work alongside your business, not outside of it. We integrate into the way you work and provide reliable support that feels like a natural part of your operations.
         </p>
       </div>
       <div class="culture-visual">
-        <div class="circle-frame" style="--border-color: #4DD0E1;">
-          <img src="/assets/sarah-sakara.png" alt="Brightest Minds" />
+        <div class="circle-frame reveal-scale" style="--border-color: #4DD0E1;">
+          <img src="/assets/lead-travis.png" alt="A Trusted Extension" />
         </div>
       </div>
     </div>
 
-    <!-- Section 2: Collaboration (Left Image, Right Text) -->
-    <div class="culture-row reverse reveal">
-      <div class="culture-text">
-        <h2 class="culture-title">Collaboration is our deepest commitment.</h2>
+    <!-- Section 2: Reliable, Human Support (Left Image, Right Text) -->
+    <div class="culture-row reverse">
+      <div class="culture-text reveal-right">
+        <h2 class="culture-title">Reliable, <span class="accent-wrap">Human
+          <svg class="accent-scribble" viewBox="0 0 100 20"><path d="M5 15 Q50 20 95 15" stroke="var(--color-secondary)" stroke-width="3" fill="none" /></svg>
+        </span> Support.</h2>
         <p class="culture-desc">
-          We’re your thought partner + sounding board. 365/24/7, we channel all
-          our energy, past successes, and collective expertise toward your
-          success.
+          We believe in real people and clear communication. Our focus is on doing things properly and building long-term relationships through consistent delivery.
         </p>
       </div>
       <div class="culture-visual">
-        <div class="circle-frame" style="--border-color: #5b62ad;">
-          <img src="/assets/male-botm.png" alt="Collaboration" />
+        <div class="circle-frame reveal-scale" style="--border-color: #5b62ad;">
+          <img src="/assets/sarah-sakara.png" alt="Human Support" />
         </div>
       </div>
     </div>
 
-    <!-- Section 3: Teams that last (Left Text, Right Image) -->
-    <div class="culture-row reveal">
-      <div class="culture-text">
-        <h2 class="culture-title">We build teams that last.</h2>
+    <!-- Section 3: Built for Growth (Left Text, Right Image) -->
+    <div class="culture-row">
+      <div class="culture-text reveal-left">
+        <h2 class="culture-title">Built for your <span class="accent-wrap">growth.
+          <svg class="accent-scribble" viewBox="0 0 100 20"><path d="M5 15 Q50 20 95 15" stroke="var(--color-accent)" stroke-width="3" fill="none" /></svg>
+        </span></h2>
         <p class="culture-desc">
-          We don’t believe in revolving doors. Our Sphere methodology helps us
-          build teams around long-term alignment. On average, our clients have
-          partnered with the same team for 3.5 years and counting.
+          Our role is simple: to free you from the operational burden that holds you back. We help create the time and capacity needed for you to focus on moving your business forward.
         </p>
         <div class="cta-wrap">
-          <a href="#" class="btn btn-black-pill">Take Hiredesk for a spin</a>
+          <a href="/contact" class="btn btn-black-pill">Let's talk about growth</a>
         </div>
       </div>
       <div class="culture-visual">
-        <div class="circle-frame" style="--border-color: #5C60A6;">
-          <img src="/assets/female-faire.png" alt="Teams that last" />
+        <div class="circle-frame reveal-scale" style="--border-color: #5C60A6;">
+          <img src="/assets/lead-niel.png" alt="Built for Growth" />
         </div>
       </div>
     </div>
@@ -64,9 +64,35 @@
 
 <style>
   .about-culture {
-    padding: 6rem 0; /* Reduced from 140px */
-    background-color: var(--bg-primary);
+    padding: 6rem 0;
+    background-color: #fdfcf6;
     overflow: hidden;
+    position: relative;
+  }
+
+  /* Decorative Blobs */
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 1;
+    opacity: 0.15;
+    pointer-events: none;
+  }
+  .blob-1 {
+    width: 400px;
+    height: 400px;
+    background: var(--color-primary);
+    top: 10%;
+    right: -100px;
+  }
+  .blob-2 {
+    width: 500px;
+    height: 500px;
+    background: var(--color-secondary);
+    bottom: 5%;
+    left: -150px;
+    opacity: 0.1;
   }
 
   .container--smart {
@@ -75,28 +101,30 @@
     padding: 0 4rem;
     display: flex;
     flex-direction: column;
-    gap: 80px; /* Tighter gap between sections */
+    gap: 120px; 
+    position: relative;
+    z-index: 2;
   }
 
   .culture-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    gap: 80px;
+    gap: 100px;
   }
 
   .culture-row.reverse {
-    direction: rtl; /* Flip the grid */
+    direction: rtl; 
   }
 
   .culture-row.reverse .culture-text,
   .culture-row.reverse .culture-desc,
   .culture-row.reverse .culture-title {
-    direction: ltr; /* Ensure text remains LTR */
+    direction: ltr;
   }
 
   @media (max-width: 1024px) {
-    .container--smart { padding: 0 1.5rem; }
+    .container--smart { padding: 0 1.5rem; gap: 80px; }
     .culture-row,
     .culture-row.reverse {
       grid-template-columns: 1fr;
@@ -107,20 +135,35 @@
   }
 
   .culture-title {
-    font-size: clamp(1.5rem, 3.2vw, 2rem); /* Matching the new Hero title scale */
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
     font-weight: 500;
     line-height: 1.15;
-    margin-bottom: 1.5rem;
-    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+    letter-spacing: -0.03em;
     color: #000;
   }
 
+  .accent-wrap {
+    position: relative;
+    display: inline-block;
+  }
+  .accent-scribble {
+    position: absolute;
+    bottom: -8px;
+    left: -5%;
+    width: 110%;
+    height: 20px;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.4;
+  }
+
   .culture-desc {
-    font-size: 0.9rem; /* Denser, smarter profile */
-    line-height: 1.5;
-    color: #444;
-    max-width: 460px;
-    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+    max-width: 480px;
+    font-weight: 500;
   }
 
   @media (max-width: 1024px) {
@@ -130,7 +173,7 @@
   }
 
   .cta-wrap {
-    margin-top: 2rem;
+    margin-top: 2.5rem;
   }
 
   /* Circular Visuals */
@@ -142,18 +185,16 @@
 
   .circle-frame {
     width: 100%;
-    max-width: 400px; /* Scaled down for compact frame */
+    max-width: 420px;
     aspect-ratio: 1/1;
     border-radius: 50%;
-    border: 8px solid var(--border-color); /* Thinner border for 'smart' look */
+    border: 10px solid var(--border-color);
     overflow: hidden;
     position: relative;
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.05); /* Softer shadow */
-    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-  }
-
-  .circle-frame:hover {
-    transform: scale(1.03) translateY(-8px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08); 
+    background: #fff;
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
   }
 
   .circle-frame img {
@@ -163,10 +204,8 @@
   }
 
   /* Reveal logic */
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-  }
+  .reveal-left { opacity: 0; transform: translateX(-40px); }
+  .reveal-right { opacity: 0; transform: translateX(40px); }
 </style>
 
 <script>
@@ -179,16 +218,66 @@
     const rows = document.querySelectorAll(".culture-row");
 
     rows.forEach((row, i) => {
-      gsap.to(row, {
-        opacity: 1,
-        y: 0,
-        duration: 1.2,
-        ease: "power3.out",
+      const text = row.querySelector('.reveal-left, .reveal-right');
+      const image = row.querySelector('.reveal-scale');
+      const scribble = row.querySelector('.accent-scribble path') as SVGPathElement;
+
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: row,
-          start: "top 80%",
-        },
+          start: "top 85%",
+        }
       });
+
+      // 1. Animate Text Appearance
+      if (text) {
+        tl.to(text, {
+          opacity: 1,
+          x: 0,
+          duration: 1.2,
+          ease: "power4.out"
+        });
+      }
+
+      // 2. Animate Image Appearance (Smooth scale & fade)
+      if (image) {
+        tl.to(image, {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 1.5,
+          ease: "elastic.out(1, 0.75)" // Premium "pop"
+        }, "-=0.8");
+      }
+
+      // 3. Animate Scribble
+      if (scribble) {
+        const length = scribble.getTotalLength();
+        gsap.set(scribble, { strokeDasharray: length, strokeDashoffset: length });
+        tl.to(scribble, {
+          strokeDashoffset: 0,
+          duration: 0.8,
+          ease: "power2.inOut"
+        }, "-=1");
+      }
+    });
+
+    // Subtle floating for blooms
+    gsap.to('.blob-1', {
+      x: 50,
+      y: 50,
+      duration: 10,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
+    gsap.to('.blob-2', {
+      x: -60,
+      y: -40,
+      duration: 12,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
     });
   };
 

@@ -1,0 +1,77 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ServiceHero from "../../components/ServiceHero.astro";
+import WhatYouGet from "../../components/WhatYouGet.astro";
+import ServiceFeatures from "../../components/ServiceFeatures.astro";
+import ServicesStats from '../../components/ServicesStats.astro';
+import OperationalSteps from '../../components/OperationalSteps.astro';
+import ServicePricing from '../../components/ServicePricing.astro';
+import WhyChoose from '../../components/WhyChoose.astro';
+import CustomerStories from '../../components/CustomerStories.astro';
+import LogoCloud from "../../components/LogoCloud.astro";
+---
+
+<Layout
+  title="Executive Support | Hire Desk - Reclaim Your Time"
+>
+  <ServiceHero
+    title="Executive Support"
+    description="Premium administrative assistance for leaders. We manage the details of your diary, inbox, and travel so you can reclaim your time and focus on high-impact strategy."
+    bgColor="#F0FFF4"
+  >
+    <LogoCloud
+      slot="bottom"
+      background="transparent"
+      padding="0 0 3rem"
+      hideTitle={true}
+    />
+  </ServiceHero>
+
+  <WhatYouGet
+    title="Executive Support"
+    description="Your dedicated executive assistant becomes your gatekeeper and coordinator, integrating perfectly into your personal and professional life."
+  />
+
+  <ServiceFeatures
+    cards={[
+      {
+        icon: "report",
+        title: "Communications",
+        features: [
+          "Inbox management",
+          "Drafting responses",
+          "Meeting coordination",
+        ],
+      },
+      {
+        icon: "report",
+        title: "Logistics",
+        features: ["Travel planning", "Expense management", "Event coordination"],
+      },
+      {
+        icon: "support",
+        title: "Coordination",
+        features: ["Diary management", "Appointment setting", "Personal lifestyle support"],
+      },
+    ]}
+  />
+
+  <ServicesStats
+    stats={[
+      { number: '15h+', label: 'Time saved per week' },
+      { number: '100%', label: 'Confidentiality' },
+      { number: '24/7', label: 'Availability' },
+      { number: '1:1', label: 'Dedicated Support' }
+    ]}
+    title="Premium Partnership"
+    description="High-level support that anticipates your needs and keeps you organized."
+  />
+
+  <WhyChoose />
+
+  <CustomerStories />
+
+  <OperationalSteps />
+
+  <ServicePricing />
+</Layout>

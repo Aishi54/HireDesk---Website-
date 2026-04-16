@@ -1,0 +1,265 @@
+---
+const team = [
+  {
+    name: "Shabab",
+    role: "Founder & Operations Partner",
+    description: "Shabab leads the operational delivery of Hire Desk from Pakistan. He oversees team management, recruitment, training, systems and day-to-day delivery to ensure work is completed to a consistently high standard. A serial entrepreneur with experience building and operating multiple businesses across the UK.",
+    image: "/assets/lead-travis.png",
+    location: "Pakistan"
+  },
+  {
+    name: "Rasool",
+    role: "UK Managing Partner",
+    description: "Rasool leads client relationships, onboarding and commercial strategy across the UK. With over 20 years experience in senior commercial roles, she works directly with clients to understand how their business operates and ensure Hire Desk delivers a solution that genuinely fits.",
+    image: "/assets/sarah-sakara.png",
+    location: "United Kingdom"
+  }
+];
+---
+
+<section class="team-section">
+  <div class="container--wide">
+    <div class="team-header reveal">
+      <div class="header-content-wrap">
+        <div class="label-box">
+          <span class="label-text">Meet The Team</span>
+          <svg class="label-scribble" viewBox="0 0 100 20">
+            <path d="M5 15 Q50 20 95 15" stroke="black" stroke-width="2" fill="none" class="scribble-path"></path>
+          </svg>
+        </div>
+        <h2 class="section-title">
+          The Team Behind Hire Desk
+          <svg class="title-scribble" viewBox="0 0 300 20">
+            <path d="M10 12 Q150 18 290 12" stroke="black" stroke-opacity="0.1" stroke-width="3" fill="none" class="scribble-path"></path>
+          </svg>
+        </h2>
+      </div>
+      <p class="section-desc">
+        Hire Desk is led by a hands-on team that combines UK-based commercial leadership with dedicated operational delivery.
+      </p>
+    </div>
+
+    <div class="team-grid">
+      {team.map((member) => (
+        <div class="team-card reveal">
+          <div class="card-image-wrapper">
+             <img src={member.image} alt={member.name} class="member-img" />
+            <div class="location-tag">{member.location}</div>
+          </div>
+          <div class="card-content">
+            <h3 class="member-name">{member.name}</h3>
+            <p class="member-role">{member.role}</p>
+            <p class="member-bio">{member.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .team-section {
+    padding: 6rem 0;
+    background-color: #fdfcf6;
+  }
+
+  .container--wide {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
+
+  .team-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header-content-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  .label-box {
+    position: relative;
+    padding-top: 0.5rem;
+  }
+
+  .label-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #555;
+    text-transform: capitalize;
+    letter-spacing: 0.05em;
+  }
+
+  .label-scribble {
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 12px;
+    pointer-events: none;
+  }
+
+  .section-title {
+    font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+    font-weight: 500;
+    line-height: 1.05;
+    color: #000;
+    position: relative;
+    letter-spacing: -3.0333px;
+    margin: 0;
+  }
+
+  .title-scribble {
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    pointer-events: none;
+    opacity: 0.15;
+  }
+
+  .section-desc {
+    font-size: 1.1rem;
+    color: #555;
+    max-width: 700px;
+    line-height: 1.6;
+    margin: 0 auto;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+
+  .team-card {
+    background: #fff;
+    border-radius: 24px;
+    padding: 2.5rem;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .team-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.08);
+  }
+
+  .card-image-wrapper {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #5b62ad; /* Fallback background */
+  }
+
+  .member-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .location-tag {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #54c6d7; /* Viking Blue */
+    color: #000;
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(84, 198, 215, 0.3);
+  }
+
+  .member-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 0.5rem;
+  }
+
+  .member-role {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #5b62ad;
+    margin-bottom: 1.5rem;
+  }
+
+  .member-bio {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+  }
+
+  @media (max-width: 1024px) {
+    .container--wide {
+      padding: 0 1.5rem;
+    }
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
+    .team-card {
+      padding: 2rem;
+    }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  window.addEventListener('load', () => {
+    gsap.to('.team-section .reveal', {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: '.team-section',
+        start: "top 80%"
+      }
+    });
+
+    // Label scribble animation
+    const path = document.querySelector('.team-section .scribble-path');
+    if (path instanceof SVGPathElement) {
+       const length = path.getTotalLength();
+       gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
+       gsap.to(path, {
+          strokeDashoffset: 0,
+          duration: 1.2,
+          ease: "power2.inOut",
+          scrollTrigger: {
+             trigger: '.team-section',
+             start: "top 80%"
+          }
+       });
+    }
+  });
+</script>

@@ -1,0 +1,77 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ServiceHero from "../../components/ServiceHero.astro";
+import WhatYouGet from "../../components/WhatYouGet.astro";
+import ServiceFeatures from "../../components/ServiceFeatures.astro";
+import ServicesStats from '../../components/ServicesStats.astro';
+import OperationalSteps from '../../components/OperationalSteps.astro';
+import ServicePricing from '../../components/ServicePricing.astro';
+import WhyChoose from '../../components/WhyChoose.astro';
+import CustomerStories from '../../components/CustomerStories.astro';
+import LogoCloud from "../../components/LogoCloud.astro";
+---
+
+<Layout
+  title="Specialist Support | Hire Desk - Niche Business Functions"
+>
+  <ServiceHero
+    title="Specialist Support"
+    description="Expert assistance in niche business functions. From marketing assistance to IT support, we provide the specialized knowledge you need to move your business forward."
+    bgColor="#FFF9F0"
+  >
+    <LogoCloud
+      slot="bottom"
+      background="transparent"
+      padding="0 0 3rem"
+      hideTitle={true}
+    />
+  </ServiceHero>
+
+  <WhatYouGet
+    title="Specialist Support"
+    description="Get access to specialized skills on a flexible basis, allowing you to grow without the overhead of full-time specialist hires."
+  />
+
+  <ServiceFeatures
+    cards={[
+      {
+        icon: "report",
+        title: "Growth & Marketing",
+        features: [
+          "Marketing assistance",
+          "Content scheduling",
+          "Social media support",
+        ],
+      },
+      {
+        icon: "report",
+        title: "Customer Support",
+        features: ["Inquiry handling", "Helpdesk management", "Customer onboarding"],
+      },
+      {
+        icon: "support",
+        title: "Technical Admin",
+        features: ["Basic IT support", "Software setup", "Tool integration"],
+      },
+    ]}
+  />
+
+  <ServicesStats
+    stats={[
+      { number: '24/7', label: 'Support Readiness' },
+      { number: '100%', label: 'Flexible Scaling' },
+      { number: '90%', label: 'Setup Speed' },
+      { number: '24/7', label: 'Domain Expertise' }
+    ]}
+    title="Expert Assistance"
+    description="Bridge the skills gap in your business with high-performing specialist support."
+  />
+
+  <WhyChoose />
+
+  <CustomerStories />
+
+  <OperationalSteps />
+
+  <ServicePricing />
+</Layout>
