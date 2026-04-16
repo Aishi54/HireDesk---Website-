@@ -1,26 +1,40 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import GetStartedForm from '../components/GetStartedForm.astro';
+import Layout from "../layouts/Layout.astro";
+import GetStartedForm from "../components/GetStartedForm.astro";
 ---
 
-<Layout title="Get Started | Hiredesk - Build Your Dream Team" hideNav={true} hideFooter={true}>
+<Layout title="Get Started | Hire Desk - Build Your Dream Team" hideNav={true} hideFooter={true}>
   <main class="get-started-page">
-    <div class="page-header">
-       <div class="header-inner">
-          <a href="/" class="small-logo">
-            <img src="/assets/hiredesk-logo.png" alt="Hiredesk" width="180" height="auto" />
-          </a>
-          <a href="/" class="close-btn" aria-label="Close">
-             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-               <line x1="18" y1="6" x2="6" y2="18"></line>
-               <line x1="6" y1="6" x2="18" y2="18"></line>
-             </svg>
-          </a>
-       </div>
-    </div>
-    
+    <header class="page-header">
+      <div class="header-inner">
+        <a href="/" class="small-logo" aria-label="Hire Desk">
+          <img
+            src="/assets/hiredesk-logo.png"
+            alt="Hire Desk"
+            width="140"
+            height="auto"
+          />
+        </a>
+        <a href="/" class="close-btn" aria-label="Close">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </a>
+      </div>
+    </header>
+
     <div class="form-container">
-       <GetStartedForm />
+      <GetStartedForm />
     </div>
   </main>
 </Layout>
@@ -31,19 +45,19 @@ import GetStartedForm from '../components/GetStartedForm.astro';
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    padding-top: 0; /* Removed top padding */
   }
 
   .page-header {
-    padding: 0 4rem 0; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0.5rem 4rem; /* Bare minimum vertical padding */
+    z-index: 100;
   }
-
-  .small-logo img {
-    width: 180px;
-    height: auto;
-    display: block;
-    transition: width 0.3s ease;
-  }
-
 
   .header-inner {
     max-width: 1440px;
@@ -53,16 +67,22 @@ import GetStartedForm from '../components/GetStartedForm.astro';
     align-items: center;
   }
 
+  .small-logo img {
+    width: 140px;
+    height: auto;
+    display: block;
+  }
+
   .close-btn {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: #000;
     color: #fff;
     border-radius: 50%;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
   }
 
   .close-btn:hover {
@@ -70,20 +90,9 @@ import GetStartedForm from '../components/GetStartedForm.astro';
   }
 
   .form-container {
-    flex: 1;
+    width: 100%;
     display: flex;
-    align-items: flex-start; 
     justify-content: center;
-    padding: 0rem 2rem 4rem; 
-    margin-top: -100px; /* Ultra-aggressive top docking */
-  }
-
-  @media (max-width: 768px) {
-    .page-header { padding: 1.5rem 1.5rem 0.5rem; }
-    .small-logo img { width: 140px; }
-    .form-container { 
-      margin-top: 0 !important; 
-      padding-top: 2.5rem !important; 
-    }
+    padding: 6rem 1.5rem 4rem; /* Balanced gap from top navigation */
   }
 </style>
