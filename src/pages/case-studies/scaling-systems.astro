@@ -6,14 +6,23 @@ import Graphic from "../../components/Graphic.astro";
 <Layout title="SME Scaling | Hire Desk Case Study">
   <article class="case-study-page">
     <div class="case-study-hero" style="--accent: #54c6d7;">
-      <div class="absolute-graphic">
-        <Graphic opacity={0.08} size={600} themeColor="#54c6d7" />
-      </div>
-      <div class="container--narrow">
-        <div class="hero-top reveal">
+      <div class="container--hero">
+        <div class="hero-content reveal">
           <span class="category">SME Scaling</span>
-          <h1 class="hero-title">Bringing structure and consistency to a scaling business</h1>
+          <h1 class="hero-title">
+            Bringing structure and <span class="accent-text">consistency</span> to a scaling business
+          </h1>
           <p class="hero-subtitle">When growth starts to outpace your systems</p>
+          <a href="/get-started" class="btn btn-black-pill">Build Your Dream Team</a>
+        </div>
+        <div class="hero-visual reveal">
+          <div class="img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=900&auto=format&fit=crop"
+              alt="Business scaling and operations"
+            />
+            <div class="img-badge">SME Scaling</div>
+          </div>
         </div>
       </div>
     </div>
@@ -22,8 +31,14 @@ import Graphic from "../../components/Graphic.astro";
       <div class="container--narrow">
         <div class="content-section reveal">
           <div class="label-box">
-             <span class="label-text">The Client</span>
-             <svg class="label-scribble" viewBox="0 0 100 20"><path d="M5 15 Q50 20 95 15" stroke="#54c6d7" stroke-width="2" fill="none"></path></svg>
+            <span class="label-text">The Client</span>
+            <svg class="label-scribble" viewBox="0 0 100 20"
+              ><path
+                d="M5 15 Q50 20 95 15"
+                stroke="#54c6d7"
+                stroke-width="2"
+                fill="none"></path></svg
+            >
           </div>
           <p class="meta-info">Growing SME</p>
         </div>
@@ -32,21 +47,29 @@ import Graphic from "../../components/Graphic.astro";
           <h2>The Challenge</h2>
           <div class="text-block">
             <p>
-              As the business grew, internal processes struggled to keep up. Key tasks such as admin, reporting and customer communication were being handled inconsistently, often by different people, leading to inefficiencies and delays.
+              As the business grew, internal processes struggled to keep up. Key
+              tasks such as admin, reporting and customer communication were
+              being handled inconsistently, often by different people, leading
+              to inefficiencies and delays.
             </p>
             <p>
-              The leadership team was spending increasing amounts of time managing operational detail instead of focusing on growth.
+              The leadership team was spending increasing amounts of time
+              managing operational detail instead of focusing on growth.
             </p>
           </div>
         </div>
 
         <div class="approach-visual reveal">
-           <Graphic opacity={0.15} size={400} themeColor="#54c6d7" />
+          <Graphic opacity={0.15} size={400} themeColor="#54c6d7" />
         </div>
 
         <div class="reality-box reveal">
           <h3>Our Approach</h3>
-          <p>Hire Desk worked closely with the business to understand how work was being managed day-to-day. We introduced structured support across:</p>
+          <p>
+            Hire Desk worked closely with the business to understand how work
+            was being managed day-to-day. We introduced structured support
+            across:
+          </p>
           <ul class="check-list">
             <li>Back-office administration</li>
             <li>CRM and data management</li>
@@ -59,28 +82,32 @@ import Graphic from "../../components/Graphic.astro";
           <h2>The Outcome</h2>
           <div class="text-block">
             <p>
-              The business became more organised, with clearer processes and more consistent delivery across key areas. The leadership team was able to step away from day-to-day coordination and refocus on growing the business.
+              The business became more organised, with clearer processes and
+              more consistent delivery across key areas. The leadership team was
+              able to step away from day-to-day coordination and refocus on
+              growing the business.
             </p>
           </div>
 
           <div class="results-grid">
-             <div class="result-item">
-                <span class="val">Insight</span>
-                <p>Improved operational consistency</p>
-             </div>
-             <div class="result-item">
-                <span class="val">Relief</span>
-                <p>Reduced pressure on internal team</p>
-             </div>
-             <div class="result-item">
-                <span class="val">Growth</span>
-                <p>More time for leadership to focus on growth</p>
-             </div>
+            <div class="result-item">
+              <span class="val">Insight</span>
+              <p>Improved operational consistency</p>
+            </div>
+            <div class="result-item">
+              <span class="val">Relief</span>
+              <p>Reduced pressure on internal team</p>
+            </div>
+            <div class="result-item">
+              <span class="val">Growth</span>
+              <p>More time for leadership to focus on growth</p>
+            </div>
           </div>
         </div>
 
         <div class="page-footer-nav reveal">
-          <a href="/get-started" class="btn btn-black">Accelerate Your Growth</a>
+          <a href="/get-started" class="btn btn-black">Accelerate Your Growth</a
+          >
         </div>
       </div>
     </div>
@@ -89,29 +116,80 @@ import Graphic from "../../components/Graphic.astro";
 
 <style>
   .case-study-hero {
-    background-color: #f0fbff;
-    padding: 120px 0 80px;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    background-color: #fdfcf6;
+    padding: 2rem 0 3rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     position: relative;
     overflow: hidden;
   }
 
-  .absolute-graphic {
+  .container--hero {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 4rem;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .img-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.12);
+    aspect-ratio: 4/3;
+  }
+
+  .img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s ease;
+  }
+
+  .img-wrap:hover img {
+    transform: scale(1.05);
+  }
+
+  .img-badge {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 0;
-    pointer-events: none;
+    bottom: 1rem;
+    left: 1rem;
+    background: rgba(0,0,0,0.75);
+    color: #fff;
+    padding: 0.3rem 0.9rem;
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    backdrop-filter: blur(6px);
+  }
+
+  .accent-text { color: #54c6d7; }
+
+  .absolute-graphic {
+    display: none;
   }
 
   .approach-visual {
-    position: absolute;
-    right: -100px;
-    top: 40%;
-    opacity: 0.4;
-    pointer-events: none;
-    z-index: 0;
+    display: none;
   }
 
   .container--narrow {
@@ -129,22 +207,38 @@ import Graphic from "../../components/Graphic.astro";
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-size: 0.9rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   .hero-title {
-    font-size: clamp(2.5rem, 6vw, 3.8rem);
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
     font-weight: 700;
-    line-height: 1.1;
+    line-height: 1.15;
     color: #000;
     letter-spacing: -0.04em;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 
   .hero-subtitle {
-    font-size: 1.25rem;
+    font-size: 1rem;
     color: #555;
     font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (max-width: 1024px) {
+    .container--hero {
+      grid-template-columns: 1fr;
+      padding: 0 1.5rem;
+      gap: 2rem;
+    }
+    .hero-image-wrap {
+      display: none;
+    }
+    .hero-content {
+      align-items: center;
+      text-align: center;
+    }
   }
 
   .case-study-content {
@@ -284,9 +378,47 @@ import Graphic from "../../components/Graphic.astro";
   }
 
   @media (max-width: 768px) {
-    .check-list { grid-template-columns: 1fr; }
-    .results-grid { grid-template-columns: 1fr; }
-    .reality-box { padding: 2rem; }
-    .approach-visual { display: none; }
+    .check-list {
+      grid-template-columns: 1fr;
+    }
+    .results-grid {
+      grid-template-columns: 1fr;
+    }
+    .reality-box {
+      padding: 2rem;
+    }
+    .approach-visual {
+      display: none;
+    }
   }
 </style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initHero = () => {
+    gsap.to('.hero-content', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' });
+    gsap.to('.hero-visual',  { opacity: 1, y: 0, duration: 1.1, delay: 0.15, ease: 'power3.out' });
+
+    const paths = document.querySelectorAll<SVGPathElement>('.flow-path');
+    paths.forEach((path, i) => {
+      const length = path.getTotalLength();
+      gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
+      gsap.to(path, { strokeDashoffset: -length, duration: 4 + i, repeat: -1, ease: 'none', delay: i * 0.5 });
+    });
+
+    gsap.to('.center-logo', { y: -12, duration: 3, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+
+    gsap.utils.toArray<HTMLElement>('.reveal').forEach((el) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 88%', once: true } }
+      );
+    });
+  };
+
+  window.addEventListener('load', initHero);
+</script>

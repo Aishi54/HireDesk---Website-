@@ -7,14 +7,26 @@ import FloatingGraphicLeft from "../../components/FloatingGraphicLeft.astro";
 <Layout title="Founder Story | Hire Desk Case Study">
   <article class="case-study-page">
     <div class="case-study-hero" style="--accent: #5b62ad;">
-      <div class="absolute-graphic">
-        <Graphic opacity={0.08} size={600} />
-      </div>
-      <div class="container--narrow">
-        <div class="hero-top reveal">
+      <div class="container--hero">
+        <div class="hero-content reveal">
           <span class="category">Founder Story</span>
-          <h1 class="hero-title">How a founder-led business became the bottleneck to its own growth</h1>
-          <p class="hero-subtitle">When the business relies on you for everything</p>
+          <h1 class="hero-title">
+            How a founder-led business became
+            <span class="accent-text">the bottleneck</span> to its own growth
+          </h1>
+          <p class="hero-subtitle">
+            When the business relies on you for everything
+          </p>
+          <a href="/get-started" class="btn btn-black-pill">Build Your Dream Team</a>
+        </div>
+        <div class="hero-visual reveal">
+          <div class="img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=900&auto=format&fit=crop"
+              alt="Founder overwhelmed with work"
+            />
+            <div class="img-badge">Founder Story</div>
+          </div>
         </div>
       </div>
     </div>
@@ -22,14 +34,20 @@ import FloatingGraphicLeft from "../../components/FloatingGraphicLeft.astro";
     <div class="case-study-content">
       <!-- Visual Accent -->
       <div class="side-visual-wrap">
-         <FloatingGraphicLeft />
+        <FloatingGraphicLeft />
       </div>
 
       <div class="container--narrow">
         <div class="content-section reveal">
           <div class="label-box">
-             <span class="label-text">The Client</span>
-             <svg class="label-scribble" viewBox="0 0 100 20"><path d="M5 15 Q50 20 95 15" stroke="#5b62ad" stroke-width="2" fill="none"></path></svg>
+            <span class="label-text">The Client</span>
+            <svg class="label-scribble" viewBox="0 0 100 20"
+              ><path
+                d="M5 15 Q50 20 95 15"
+                stroke="#5b62ad"
+                stroke-width="2"
+                fill="none"></path></svg
+            >
           </div>
           <p class="meta-info">Hire Desk Founder</p>
         </div>
@@ -38,17 +56,25 @@ import FloatingGraphicLeft from "../../components/FloatingGraphicLeft.astro";
           <h2>The Challenge</h2>
           <div class="text-block">
             <p>
-              The business had grown successfully, with multiple convenience stores and a large property portfolio. But as the business scaled, everything still relied on the founder.
+              The business had grown successfully, with multiple convenience
+              stores and a large property portfolio. But as the business scaled,
+              everything still relied on the founder.
             </p>
             <p>
-              From operations and hiring to accounts and admin, every task required direct involvement, creating long hours, constant pressure and no room to step back. Despite success, the business became overwhelming and difficult to sustain.
+              From operations and hiring to accounts and admin, every task
+              required direct involvement, creating long hours, constant
+              pressure and no room to step back. Despite success, the business
+              became overwhelming and difficult to sustain.
             </p>
           </div>
         </div>
 
         <div class="reality-box reveal">
           <h3>The Reality</h3>
-          <p>Like many founders, there was a belief: <strong>“No one else can do this as well as I can.”</strong></p>
+          <p>
+            Like many founders, there was a belief: <strong
+              >“No one else can do this as well as I can.”</strong>
+          </p>
           <ul class="check-list">
             <li>Overwork</li>
             <li>Lack of delegation</li>
@@ -61,7 +87,10 @@ import FloatingGraphicLeft from "../../components/FloatingGraphicLeft.astro";
           <h2>The Turning Point</h2>
           <div class="text-block">
             <p>
-              Eventually, the model became unsustainable. The business could not grow further without the founder being involved in everything, and the cost of doing it alone became too high, both professionally and personally.
+              Eventually, the model became unsustainable. The business could not
+              grow further without the founder being involved in everything, and
+              the cost of doing it alone became too high, both professionally
+              and personally.
             </p>
           </div>
         </div>
@@ -70,7 +99,9 @@ import FloatingGraphicLeft from "../../components/FloatingGraphicLeft.astro";
           <h2>The Insight</h2>
           <div class="text-block">
             <p>
-              After stepping back, it became clear that the real issue wasn’t the business. It was the lack of structured support. Access to the right people, in the right roles, could have:
+              After stepping back, it became clear that the real issue wasn’t
+              the business. It was the lack of structured support. Access to the
+              right people, in the right roles, could have:
             </p>
             <ul class="dot-list">
               <li>Reduced pressure</li>
@@ -85,17 +116,25 @@ import FloatingGraphicLeft from "../../components/FloatingGraphicLeft.astro";
           <h2>The Outcome</h2>
           <div class="text-block">
             <p>
-              This experience led to the creation of Hire Desk. A model designed to help businesses buy back their time and focus on growth by providing trusted, hands-on support, without the complexity of hiring locally.
+              This experience led to the creation of Hire Desk. A model designed
+              to help businesses buy back their time and focus on growth by
+              providing trusted, hands-on support, without the complexity of
+              hiring locally.
             </p>
           </div>
           <div class="takeaway">
-             <span class="tag">Key Takeaway</span>
-             <p>Trying to do everything alone doesn’t protect your business — it limits it.</p>
+            <span class="tag">Key Takeaway</span>
+            <p>
+              Trying to do everything alone doesn’t protect your business — it
+              limits it.
+            </p>
           </div>
         </div>
 
         <div class="page-footer-nav reveal">
-          <a href="/get-started" class="btn btn-black">Start Your Success Story</a>
+          <a href="/get-started" class="btn btn-black"
+            >Start Your Success Story</a
+          >
         </div>
       </div>
     </div>
@@ -104,30 +143,73 @@ import FloatingGraphicLeft from "../../components/FloatingGraphicLeft.astro";
 
 <style>
   .case-study-hero {
-    background-color: #f8f9ff;
-    padding: 120px 0 80px;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    background-color: #fdfcf6;
+    padding: 2rem 0 3rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     position: relative;
     overflow: hidden;
   }
 
-  .absolute-graphic {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 0;
-    pointer-events: none;
+  .container--hero {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 4rem;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 3rem;
   }
 
-  .side-visual-wrap {
-    position: fixed;
-    top: 20%;
-    left: -100px;
-    opacity: 0.3;
-    z-index: 0;
-    pointer-events: none;
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
+
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .img-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.12);
+    aspect-ratio: 4/3;
+  }
+
+  .img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s ease;
+  }
+
+  .img-wrap:hover img {
+    transform: scale(1.05);
+  }
+
+  .img-badge {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    background: rgba(0,0,0,0.75);
+    color: #fff;
+    padding: 0.3rem 0.9rem;
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    backdrop-filter: blur(6px);
+  }
+
+  .accent-text { color: #5b62ad; }
 
   .container--narrow {
     max-width: 800px;
@@ -144,22 +226,38 @@ import FloatingGraphicLeft from "../../components/FloatingGraphicLeft.astro";
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-size: 0.9rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   .hero-title {
-    font-size: clamp(2.5rem, 6vw, 3.8rem);
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
     font-weight: 700;
-    line-height: 1.1;
+    line-height: 1.15;
     color: #000;
     letter-spacing: -0.04em;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 
   .hero-subtitle {
-    font-size: 1.25rem;
+    font-size: 1rem;
     color: #555;
     font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (max-width: 1024px) {
+    .container--hero {
+      grid-template-columns: 1fr;
+      padding: 0 1.5rem;
+      gap: 2rem;
+    }
+    .hero-image-wrap {
+      display: none;
+    }
+    .hero-content {
+      align-items: center;
+      text-align: center;
+    }
   }
 
   .case-study-content {
@@ -327,9 +425,64 @@ import FloatingGraphicLeft from "../../components/FloatingGraphicLeft.astro";
   }
 
   @media (max-width: 768px) {
-    .check-list { grid-template-columns: 1fr; }
-    .reality-box { padding: 2rem; }
-    .hero-title { font-size: 2.8rem; }
-    .side-visual-wrap { display: none; }
+    .check-list {
+      grid-template-columns: 1fr;
+    }
+    .reality-box {
+      padding: 2rem;
+    }
+    .hero-title {
+      font-size: 2.8rem;
+    }
+    .side-visual-wrap {
+      display: none;
+    }
   }
 </style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initHero = () => {
+    // Reveal content
+    gsap.to('.hero-content', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' });
+    gsap.to('.hero-visual',  { opacity: 1, y: 0, duration: 1.1, delay: 0.15, ease: 'power3.out' });
+
+    // Animate flowing SVG paths — identical to AboutHero
+    const paths = document.querySelectorAll<SVGPathElement>('.flow-path');
+    paths.forEach((path, i) => {
+      const length = path.getTotalLength();
+      gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
+      gsap.to(path, {
+        strokeDashoffset: -length,
+        duration: 4 + i,
+        repeat: -1,
+        ease: 'none',
+        delay: i * 0.5,
+      });
+    });
+
+    // Float center logo
+    gsap.to('.center-logo', {
+      y: -12,
+      duration: 3,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+    });
+
+    // Scroll reveals for page content
+    gsap.utils.toArray<HTMLElement>('.reveal').forEach((el) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+        }
+      );
+    });
+  };
+
+  window.addEventListener('load', initHero);
+</script>

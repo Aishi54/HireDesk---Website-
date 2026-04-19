@@ -7,28 +7,43 @@ import FloatingGraphicRight from "../../components/FloatingGraphicRight.astro";
 <Layout title="Hiring Alternative | Hire Desk Case Study">
   <article class="case-study-page">
     <div class="case-study-hero" style="--accent: #6484c2;">
-      <div class="absolute-graphic">
-        <Graphic opacity={0.08} size={600} themeColor="#6484c2" />
-      </div>
-      <div class="container--narrow">
-        <div class="hero-top reveal">
+      <div class="container--hero">
+        <div class="hero-content reveal">
           <span class="category">Hiring Strategy</span>
-          <h1 class="hero-title">A flexible alternative to building an in-house team</h1>
+          <h1 class="hero-title">
+            A flexible <span class="accent-text">alternative</span> to building an in-house team
+          </h1>
           <p class="hero-subtitle">Support Without the Cost of Hiring</p>
+          <a href="/get-started" class="btn btn-black-pill">Build Your Dream Team</a>
+        </div>
+        <div class="hero-visual reveal">
+          <div class="img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=900&auto=format&fit=crop"
+              alt="Flexible hiring and remote team"
+            />
+            <div class="img-badge">Hiring Strategy</div>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="case-study-content">
       <div class="side-visual-right">
-         <FloatingGraphicRight />
+        <FloatingGraphicRight />
       </div>
 
       <div class="container--narrow">
         <div class="content-section reveal">
           <div class="label-box">
-             <span class="label-text">The Client</span>
-             <svg class="label-scribble" viewBox="0 0 100 20"><path d="M5 15 Q50 20 95 15" stroke="#6484c2" stroke-width="2" fill="none"></path></svg>
+            <span class="label-text">The Client</span>
+            <svg class="label-scribble" viewBox="0 0 100 20"
+              ><path
+                d="M5 15 Q50 20 95 15"
+                stroke="#6484c2"
+                stroke-width="2"
+                fill="none"></path></svg
+            >
           </div>
           <p class="meta-info">SME reviewing hiring strategy</p>
         </div>
@@ -37,51 +52,65 @@ import FloatingGraphicRight from "../../components/FloatingGraphicRight.astro";
           <h2>The Challenge</h2>
           <div class="text-block">
             <p>
-              The business needed additional support across admin and finance but faced high costs associated with hiring locally. Recruitment, salaries, National Insurance, pensions and HR obligations made hiring a significant long-term commitment. 
+              The business needed additional support across admin and finance
+              but faced high costs associated with hiring locally. Recruitment,
+              salaries, National Insurance, pensions and HR obligations made
+              hiring a significant long-term commitment.
             </p>
             <p>
-              The business needed a more flexible solution without compromising on quality.
+              The business needed a more flexible solution without compromising
+              on quality.
             </p>
           </div>
         </div>
 
         <div class="reality-box reveal">
           <h3>Our Approach</h3>
-          <p>Hire Desk provided a tailored support model that replaced the need for multiple local hires. Support included:</p>
+          <p>
+            Hire Desk provided a tailored support model that replaced the need
+            for multiple local hires. Support included:
+          </p>
           <ul class="check-list">
             <li>Bookkeeping and accounts administration</li>
             <li>Back-office and operational support</li>
             <li>Ongoing day-to-day business support</li>
           </ul>
-          <p style="margin-top: 1.5rem; font-size: 0.95rem; opacity: 0.8;">Delivered through a consistent and structured model aligned to the business needs.</p>
+          <p style="margin-top: 1.5rem; font-size: 0.95rem; opacity: 0.8;">
+            Delivered through a consistent and structured model aligned to the
+            business needs.
+          </p>
         </div>
 
         <div class="outcome-box reveal">
           <h2>The Outcome</h2>
           <div class="text-block">
             <p>
-              The business gained access to reliable support without the complexity and cost of local hiring. They were able to operate more efficiently with a clear and predictable cost structure.
+              The business gained access to reliable support without the
+              complexity and cost of local hiring. They were able to operate
+              more efficiently with a clear and predictable cost structure.
             </p>
           </div>
 
           <div class="results-grid">
-             <div class="result-item">
-                <span class="val">Cost Saving</span>
-                <p>Reduced overall cost compared to local hiring</p>
-             </div>
-             <div class="result-item">
-                <span class="val">Zero Risk</span>
-                <p>No HR or employment-related overheads</p>
-             </div>
-             <div class="result-item">
-                <span class="val">Flexibility</span>
-                <p>Support that could scale with the business</p>
-             </div>
+            <div class="result-item">
+              <span class="val">Cost Saving</span>
+              <p>Reduced overall cost compared to local hiring</p>
+            </div>
+            <div class="result-item">
+              <span class="val">Zero Risk</span>
+              <p>No HR or employment-related overheads</p>
+            </div>
+            <div class="result-item">
+              <span class="val">Flexibility</span>
+              <p>Support that could scale with the business</p>
+            </div>
           </div>
         </div>
 
         <div class="page-footer-nav reveal">
-          <a href="/get-started" class="btn btn-black">Build Your Flexible Team</a>
+          <a href="/get-started" class="btn btn-black"
+            >Build Your Flexible Team</a
+          >
         </div>
       </div>
     </div>
@@ -89,31 +118,83 @@ import FloatingGraphicRight from "../../components/FloatingGraphicRight.astro";
 </Layout>
 
 <style>
-  .case-study-page { background: #fff; }
+  .case-study-page {
+    background: #fff;
+  }
   .case-study-hero {
-    background-color: #f1f4f9;
-    padding: 120px 0 80px;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    background-color: #fdfcf6;
+    padding: 2rem 0 3rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     position: relative;
     overflow: hidden;
   }
 
-  .absolute-graphic {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 0;
-    pointer-events: none;
+  .container--hero {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 4rem;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 3rem;
   }
 
-  .side-visual-right {
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .img-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.12);
+    aspect-ratio: 4/3;
+  }
+
+  .img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s ease;
+  }
+
+  .img-wrap:hover img {
+    transform: scale(1.05);
+  }
+
+  .img-badge {
     position: absolute;
-    right: -100px;
-    top: 20%;
-    opacity: 0.3;
-    pointer-events: none;
-    z-index: 0;
+    bottom: 1rem;
+    left: 1rem;
+    background: rgba(0,0,0,0.75);
+    color: #fff;
+    padding: 0.3rem 0.9rem;
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    backdrop-filter: blur(6px);
+  }
+
+  .accent-text { color: #6484c2; }
+
+  .absolute-graphic {
+    display: none;
+  }
+  .side-visual-right {
+    display: none;
   }
 
   .container--narrow {
@@ -131,22 +212,38 @@ import FloatingGraphicRight from "../../components/FloatingGraphicRight.astro";
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-size: 0.9rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   .hero-title {
-    font-size: clamp(2.5rem, 6vw, 3.8rem);
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
     font-weight: 700;
-    line-height: 1.1;
+    line-height: 1.15;
     color: #000;
     letter-spacing: -0.04em;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 
   .hero-subtitle {
-    font-size: 1.25rem;
+    font-size: 1rem;
     color: #555;
     font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (max-width: 1024px) {
+    .container--hero {
+      grid-template-columns: 1fr;
+      padding: 0 1.5rem;
+      gap: 2rem;
+    }
+    .hero-image-wrap {
+      display: none;
+    }
+    .hero-content {
+      align-items: center;
+      text-align: center;
+    }
   }
 
   .case-study-content {
@@ -269,7 +366,7 @@ import FloatingGraphicRight from "../../components/FloatingGraphicRight.astro";
   .result-item:hover {
     background: #fff;
     border-color: #6484c2;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   }
 
   .result-item .val {
@@ -294,8 +391,44 @@ import FloatingGraphicRight from "../../components/FloatingGraphicRight.astro";
   }
 
   @media (max-width: 768px) {
-    .results-grid { grid-template-columns: 1fr; }
-    .reality-box { padding: 2rem; }
-    .side-visual-right { display: none; }
+    .results-grid {
+      grid-template-columns: 1fr;
+    }
+    .reality-box {
+      padding: 2rem;
+    }
+    .side-visual-right {
+      display: none;
+    }
   }
 </style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initHero = () => {
+    gsap.to('.hero-content', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' });
+    gsap.to('.hero-visual',  { opacity: 1, y: 0, duration: 1.1, delay: 0.15, ease: 'power3.out' });
+
+    const paths = document.querySelectorAll<SVGPathElement>('.flow-path');
+    paths.forEach((path, i) => {
+      const length = path.getTotalLength();
+      gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
+      gsap.to(path, { strokeDashoffset: -length, duration: 4 + i, repeat: -1, ease: 'none', delay: i * 0.5 });
+    });
+
+    gsap.to('.center-logo', { y: -12, duration: 3, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+
+    gsap.utils.toArray<HTMLElement>('.reveal').forEach((el) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 88%', once: true } }
+      );
+    });
+  };
+
+  window.addEventListener('load', initHero);
+</script>
