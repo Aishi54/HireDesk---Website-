@@ -106,7 +106,27 @@
                     <span class="arr">›</span>
                   </li>
                   <li>
-                    <a href="/services/specialist-support">Specialist Support</a>
+                    <a href="/services/additional-support">Additional Support</a>
+                    <span class="arr">›</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Column 3 (Case Studies) -->
+            <div class="link-col">
+              <div class="link-subgroup">
+                <h4>Case Studies</h4>
+                <ul class="arrowed-links">
+                  <li>
+                    <a href="/case-studies/founder-bottleneck">Founder Story</a>
+                    <span class="arr">›</span>
+                  </li>
+                  <li>
+                    <a href="/case-studies/scaling-systems">SME Scaling</a>
+                    <span class="arr">›</span>
+                  </li>
+                  <li>
+                    <a href="/case-studies/hiring-alternative">Hiring Strategy</a>
                     <span class="arr">›</span>
                   </li>
                 </ul>
@@ -666,8 +686,8 @@
   /* Directory Grid */
   .link-directory {
     display: grid;
-    grid-template-columns: 300px 300px; /* Precise widths for better alignment */
-    gap: 4rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
   }
 
   .link-subgroup {

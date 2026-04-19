@@ -1,0 +1,335 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Graphic from "../../components/Graphic.astro";
+import FloatingGraphicLeft from "../../components/FloatingGraphicLeft.astro";
+---
+
+<Layout title="Founder Story | Hire Desk Case Study">
+  <article class="case-study-page">
+    <div class="case-study-hero" style="--accent: #5b62ad;">
+      <div class="absolute-graphic">
+        <Graphic opacity={0.08} size={600} />
+      </div>
+      <div class="container--narrow">
+        <div class="hero-top reveal">
+          <span class="category">Founder Story</span>
+          <h1 class="hero-title">How a founder-led business became the bottleneck to its own growth</h1>
+          <p class="hero-subtitle">When the business relies on you for everything</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-study-content">
+      <!-- Visual Accent -->
+      <div class="side-visual-wrap">
+         <FloatingGraphicLeft />
+      </div>
+
+      <div class="container--narrow">
+        <div class="content-section reveal">
+          <div class="label-box">
+             <span class="label-text">The Client</span>
+             <svg class="label-scribble" viewBox="0 0 100 20"><path d="M5 15 Q50 20 95 15" stroke="#5b62ad" stroke-width="2" fill="none"></path></svg>
+          </div>
+          <p class="meta-info">Hire Desk Founder</p>
+        </div>
+
+        <div class="content-section reveal">
+          <h2>The Challenge</h2>
+          <div class="text-block">
+            <p>
+              The business had grown successfully, with multiple convenience stores and a large property portfolio. But as the business scaled, everything still relied on the founder.
+            </p>
+            <p>
+              From operations and hiring to accounts and admin, every task required direct involvement, creating long hours, constant pressure and no room to step back. Despite success, the business became overwhelming and difficult to sustain.
+            </p>
+          </div>
+        </div>
+
+        <div class="reality-box reveal">
+          <h3>The Reality</h3>
+          <p>Like many founders, there was a belief: <strong>“No one else can do this as well as I can.”</strong></p>
+          <ul class="check-list">
+            <li>Overwork</li>
+            <li>Lack of delegation</li>
+            <li>Limited ability to scale</li>
+            <li>Growing personal and operational pressure</li>
+          </ul>
+        </div>
+
+        <div class="content-section reveal">
+          <h2>The Turning Point</h2>
+          <div class="text-block">
+            <p>
+              Eventually, the model became unsustainable. The business could not grow further without the founder being involved in everything, and the cost of doing it alone became too high, both professionally and personally.
+            </p>
+          </div>
+        </div>
+
+        <div class="content-section reveal">
+          <h2>The Insight</h2>
+          <div class="text-block">
+            <p>
+              After stepping back, it became clear that the real issue wasn’t the business. It was the lack of structured support. Access to the right people, in the right roles, could have:
+            </p>
+            <ul class="dot-list">
+              <li>Reduced pressure</li>
+              <li>Improved operations</li>
+              <li>Enabled growth</li>
+              <li>Created balance</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="outcome-box reveal">
+          <h2>The Outcome</h2>
+          <div class="text-block">
+            <p>
+              This experience led to the creation of Hire Desk. A model designed to help businesses buy back their time and focus on growth by providing trusted, hands-on support, without the complexity of hiring locally.
+            </p>
+          </div>
+          <div class="takeaway">
+             <span class="tag">Key Takeaway</span>
+             <p>Trying to do everything alone doesn’t protect your business — it limits it.</p>
+          </div>
+        </div>
+
+        <div class="page-footer-nav reveal">
+          <a href="/get-started" class="btn btn-black">Start Your Success Story</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .case-study-hero {
+    background-color: #f8f9ff;
+    padding: 120px 0 80px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .absolute-graphic {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .side-visual-wrap {
+    position: fixed;
+    top: 20%;
+    left: -100px;
+    opacity: 0.3;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .container--narrow {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .category {
+    display: inline-block;
+    color: var(--accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 6vw, 3.8rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: #000;
+    letter-spacing: -0.04em;
+    margin-bottom: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: #555;
+    font-weight: 500;
+  }
+
+  .case-study-content {
+    padding: 80px 0 120px;
+    background-color: #fff;
+    position: relative;
+  }
+
+  .content-section {
+    margin-bottom: 5rem;
+  }
+
+  .label-box {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+  }
+
+  .label-text {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #999;
+  }
+
+  .label-scribble {
+    width: 100%;
+    height: 12px;
+    margin-top: -4px;
+    opacity: 0.4;
+  }
+
+  .meta-info {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #000;
+  }
+
+  h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
+  }
+
+  .text-block p {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 1.5rem;
+  }
+
+  .reality-box {
+    background-color: rgba(91, 98, 173, 0.05);
+    padding: 3rem;
+    border-radius: 32px;
+    margin-bottom: 4rem;
+    border: 1px solid rgba(91, 98, 173, 0.1);
+  }
+
+  .reality-box h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .check-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .check-list li {
+    position: relative;
+    padding-left: 2.5rem;
+    font-weight: 600;
+    font-size: 1.05rem;
+  }
+
+  .check-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: -2px;
+    width: 24px;
+    height: 24px;
+    background: #5b62ad;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+  }
+
+  .dot-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .dot-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+
+  .dot-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 6px;
+    height: 6px;
+    background: #5b62ad;
+    border-radius: 50%;
+  }
+
+  .outcome-box {
+    border-top: 2px solid #f0f0f0;
+    padding-top: 4rem;
+    margin-top: 4rem;
+  }
+
+  .takeaway {
+    background-color: #000;
+    color: #fff;
+    padding: 2.5rem;
+    border-radius: 24px;
+    margin-top: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .takeaway .tag {
+    display: inline-block;
+    background: #5b62ad;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .takeaway p {
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .page-footer-nav {
+    margin-top: 6rem;
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .check-list { grid-template-columns: 1fr; }
+    .reality-box { padding: 2rem; }
+    .hero-title { font-size: 2.8rem; }
+    .side-visual-wrap { display: none; }
+  }
+</style>

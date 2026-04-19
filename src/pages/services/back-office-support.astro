@@ -16,7 +16,7 @@ import LogoCloud from "../../components/LogoCloud.astro";
 >
   <ServiceHero
     title="Back Office Support"
-    description="Essential operational support that keeps your business running smoothly behind the scenes. We take care of the tasks that slow you down, from CRM management to document processing."
+    description="We provide the operational help you need when you need it. By handling your back-office admin, we take the friction out of your day-to-day work."
     bgColor="#F3F0FF"
   >
     <LogoCloud
@@ -29,24 +29,24 @@ import LogoCloud from "../../components/LogoCloud.astro";
 
   <WhatYouGet
     title="Back Office Support"
-    description="We take ownership of your back-office processes, ensuring data integrity and administrative efficiency across all your platforms."
+    description="Think of us as an extension of your own team. We manage the processes that slow you down, allowing you to focus on high-speed growth and strategy."
   />
 
   <ServiceFeatures
     cards={[
       {
         icon: "report",
-        title: "Data Management",
+        title: "Data & Systems",
         features: [
-          "CRM management",
-          "Data entry",
+          "Data management",
+          "CRM updates",
           "Database cleanup",
         ],
       },
       {
         icon: "report",
         title: "Administration",
-        features: ["Document processing", "Workflow administration", "Archive management"],
+        features: ["Document processing", "Workflow support", "Archive management"],
       },
       {
         icon: "support",
@@ -73,5 +73,8 @@ import LogoCloud from "../../components/LogoCloud.astro";
 
   <OperationalSteps />
 
-  <ServicePricing />
+  <ServicePricing 
+    price="$12"
+    unit="per hour"
+  />
 </Layout>

@@ -19,48 +19,50 @@
           <button class="option-pill" data-value="Financial Support">Financial Support</button>
           <button class="option-pill" data-value="Back Office Support">Back Office Support</button>
           <button class="option-pill" data-value="Executive Support">Executive Support</button>
-          <button class="option-pill" data-value="Specialist Support">Specialist Support</button>
+          <button class="option-pill" data-value="Additional Support">Additional Support</button>
         </div>
       </div>
 
-      <!-- Step 2: Team Size -->
+      <!-- Step 2: Specific Support Area -->
       <div class="step" data-step="2">
-        <h2 class="step-title">How many new team members do you need?</h2>
+        <h2 class="step-title">Which area of your business needs support?</h2>
         <div class="options-list">
-          <button class="option-pill" data-value="1-2">1–2</button>
-          <button class="option-pill" data-value="3-10">3–10</button>
-          <button class="option-pill" data-value="10-20">10–20</button>
-          <button class="option-pill" data-value="20-100">20–100</button>
-          <button class="option-pill" data-value="100+">100+</button>
+          <button class="option-pill" data-value="Daily Operations">Daily Operations</button>
+          <button class="option-pill" data-value="Financial Management">Financial Management</button>
+          <button class="option-pill" data-value="Executive Planning">Executive Planning</button>
+          <button class="option-pill" data-value="Customer Experience">Customer Experience</button>
+          <button class="option-pill" data-value="Scaling Systems">Scaling Systems</button>
         </div>
       </div>
 
-      <!-- Step 3: Journey -->
+      <!-- Step 3: Timeline -->
       <div class="step" data-step="3">
-        <h2 class="step-title">What best describes your journey in outsourcing?</h2>
+        <h2 class="step-title">How soon would you like to get started?</h2>
         <div class="options-list">
-          <button class="option-pill" data-value="Actively looking to outsource">Actively looking to outsource</button>
-          <button class="option-pill" data-value="Already outsourcing – looking to switch providers">Already outsourcing – looking to switch providers</button>
-          <button class="option-pill" data-value="Already outsourcing – looking to add more capacity">Already outsourcing – looking to add more capacity</button>
-          <button class="option-pill" data-value="Just exploring">Just exploring</button>
+          <button class="option-pill" data-value="Immediately">Immediately (Within 1 week)</button>
+          <button class="option-pill" data-value="Soon">Soon (1–4 weeks)</button>
+          <button class="option-pill" data-value="Exploring">Exploring (1–2 months)</button>
+          <button class="option-pill" data-value="Long-term">Long-term Planning</button>
         </div>
       </div>
 
-      <!-- Step 4: Email Info -->
+      <!-- Step 4: Final Details (Name, Company, Email) -->
       <div class="step" data-step="4">
-        <h2 class="step-title">Enter your professional email</h2>
+        <h2 class="step-title">Final Details</h2>
         <div class="input-wrap">
-          <input type="email" id="emailInput" placeholder="Enter Business Email" class="email-field" />
+          <input type="text" id="nameInput" placeholder="Your Full Name" class="email-field" style="margin-bottom: 1rem;" />
+          <input type="text" id="companyInput" placeholder="Company Name" class="email-field" style="margin-bottom: 1rem;" />
+          <input type="email" id="emailInput" placeholder="Your Professional Email" class="email-field" />
         </div>
         <div class="form-actions">
-           <button id="finalSubmit" class="btn btn-smart-white">Next</button>
+           <button id="finalSubmit" class="btn btn-smart-white">Send Request</button>
         </div>
       </div>
 
       <!-- Final: Success Message -->
        <div class="step" data-step="5">
-          <h2 class="step-title">Thank you! Our experts will contact you shortly.</h2>
-          <p class="final-desc">We’ve received your request and are preparing a custom strategy for you.</p>
+          <h2 class="step-title">Complete Detail Received!</h2>
+          <p class="final-desc">We’ve received your request. Our team will direct msg you shortly with all the details.</p>
           <div class="form-actions">
              <a href="/" class="btn btn-smart-white">Return Home</a>
           </div>
@@ -217,11 +219,17 @@
     border: 1.5px solid rgba(255,255,255,0.15);
     outline: none;
     text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .email-field::placeholder {
+    color: rgba(255,255,255,0.5);
   }
 
   .email-field:focus {
     background: #fff;
-    box-shadow: 0 0 0 2px #000;
+    color: #000;
+    box-shadow: 0 0 0 2px #54c6d7;
   }
 
   /* Actions */
@@ -336,6 +344,17 @@
         backBtn.style.visibility = 'hidden';
       }
     }
+
+    // Full 100% on final success screen
+    if (currentStepIndex === formSteps.length - 1 && progressFill) {
+       progressFill.style.width = '100%';
+       progressFill.innerText = "Complete";
+       progressFill.style.textAlign = "center";
+       progressFill.style.fontSize = "0.7rem";
+       progressFill.style.lineHeight = "12px";
+       progressFill.style.fontWeight = "800";
+       progressFill.style.color = "#fff";
+    }
   };
 
   // Option selection
@@ -351,15 +370,57 @@
     });
   });
 
-  // Final step
-  finalBtn?.addEventListener('click', () => {
-    const email = (document.getElementById('emailInput') as HTMLInputElement).value;
-    if (email && email.includes('@')) {
-       formData['email'] = email;
-       console.log('Form Submitted:', formData);
-       goToStep(currentStepIndex + 1);
+  // Final Step: Formatted Submission for nazarayesha547@gmail.com
+  finalBtn?.addEventListener('click', async () => {
+    const nameInput = document.getElementById('nameInput') as HTMLInputElement;
+    const companyInput = document.getElementById('companyInput') as HTMLInputElement;
+    const emailInput = document.getElementById('emailInput') as HTMLInputElement;
+    
+    if (nameInput.value && companyInput.value && emailInput.value && emailInput.value.includes('@')) {
+       
+       // Prepare data in the EXACT pattern requested
+       const submissionPayload = {
+         "_subject": "New Contact Form Submission – Service Request",
+         "Submitted On": new Date().toLocaleString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }) + " (UTC)",
+         "--- Client Details ---": "",
+         "Name": nameInput.value,
+         "Company": companyInput.value,
+         "Email": emailInput.value,
+         "--- Requested Service ---": "",
+         "Primary Service": formData['step-1'],
+         "--- Business Area Needing Support ---": "",
+         "Selected Area": formData['step-2'],
+         "--- Timeline / Start Date ---": "",
+         "Preferred Start Time": formData['step-3'],
+         "--- Summary ---": "",
+         "Message": `The client is looking for ${formData['step-1']} services specifically focused on ${formData['step-2']}, and would like to begin as soon as possible (${formData['step-3']}).`
+       };
+       
+       if (finalBtn) {
+         finalBtn.innerText = "Sending...";
+         finalBtn.style.opacity = "0.7";
+       }
+
+       try {
+         const response = await fetch("https://formsubmit.co/ajax/nazarayesha547@gmail.com", {
+           method: "POST",
+           body: JSON.stringify(submissionPayload),
+           headers: {
+             'Accept': 'application/json',
+             'Content-Type': 'application/json'
+           }
+         });
+
+         if (response.ok) {
+           goToStep(currentStepIndex + 1);
+         } else {
+           goToStep(currentStepIndex + 1);
+         }
+       } catch (error) {
+         goToStep(currentStepIndex + 1);
+       }
     } else {
-       alert('Please enter a valid business email.');
+       alert('Please provide your name, company, and a valid email.');
     }
   });
 

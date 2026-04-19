@@ -1,0 +1,301 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Graphic from "../../components/Graphic.astro";
+import FloatingGraphicRight from "../../components/FloatingGraphicRight.astro";
+---
+
+<Layout title="Hiring Alternative | Hire Desk Case Study">
+  <article class="case-study-page">
+    <div class="case-study-hero" style="--accent: #6484c2;">
+      <div class="absolute-graphic">
+        <Graphic opacity={0.08} size={600} themeColor="#6484c2" />
+      </div>
+      <div class="container--narrow">
+        <div class="hero-top reveal">
+          <span class="category">Hiring Strategy</span>
+          <h1 class="hero-title">A flexible alternative to building an in-house team</h1>
+          <p class="hero-subtitle">Support Without the Cost of Hiring</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-study-content">
+      <div class="side-visual-right">
+         <FloatingGraphicRight />
+      </div>
+
+      <div class="container--narrow">
+        <div class="content-section reveal">
+          <div class="label-box">
+             <span class="label-text">The Client</span>
+             <svg class="label-scribble" viewBox="0 0 100 20"><path d="M5 15 Q50 20 95 15" stroke="#6484c2" stroke-width="2" fill="none"></path></svg>
+          </div>
+          <p class="meta-info">SME reviewing hiring strategy</p>
+        </div>
+
+        <div class="content-section reveal">
+          <h2>The Challenge</h2>
+          <div class="text-block">
+            <p>
+              The business needed additional support across admin and finance but faced high costs associated with hiring locally. Recruitment, salaries, National Insurance, pensions and HR obligations made hiring a significant long-term commitment. 
+            </p>
+            <p>
+              The business needed a more flexible solution without compromising on quality.
+            </p>
+          </div>
+        </div>
+
+        <div class="reality-box reveal">
+          <h3>Our Approach</h3>
+          <p>Hire Desk provided a tailored support model that replaced the need for multiple local hires. Support included:</p>
+          <ul class="check-list">
+            <li>Bookkeeping and accounts administration</li>
+            <li>Back-office and operational support</li>
+            <li>Ongoing day-to-day business support</li>
+          </ul>
+          <p style="margin-top: 1.5rem; font-size: 0.95rem; opacity: 0.8;">Delivered through a consistent and structured model aligned to the business needs.</p>
+        </div>
+
+        <div class="outcome-box reveal">
+          <h2>The Outcome</h2>
+          <div class="text-block">
+            <p>
+              The business gained access to reliable support without the complexity and cost of local hiring. They were able to operate more efficiently with a clear and predictable cost structure.
+            </p>
+          </div>
+
+          <div class="results-grid">
+             <div class="result-item">
+                <span class="val">Cost Saving</span>
+                <p>Reduced overall cost compared to local hiring</p>
+             </div>
+             <div class="result-item">
+                <span class="val">Zero Risk</span>
+                <p>No HR or employment-related overheads</p>
+             </div>
+             <div class="result-item">
+                <span class="val">Flexibility</span>
+                <p>Support that could scale with the business</p>
+             </div>
+          </div>
+        </div>
+
+        <div class="page-footer-nav reveal">
+          <a href="/get-started" class="btn btn-black">Build Your Flexible Team</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .case-study-page { background: #fff; }
+  .case-study-hero {
+    background-color: #f1f4f9;
+    padding: 120px 0 80px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .absolute-graphic {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .side-visual-right {
+    position: absolute;
+    right: -100px;
+    top: 20%;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container--narrow {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .category {
+    display: inline-block;
+    color: var(--accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 6vw, 3.8rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: #000;
+    letter-spacing: -0.04em;
+    margin-bottom: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: #555;
+    font-weight: 500;
+  }
+
+  .case-study-content {
+    padding: 80px 0 120px;
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .content-section {
+    margin-bottom: 5rem;
+  }
+
+  .label-box {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+  }
+
+  .label-text {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #999;
+  }
+
+  .label-scribble {
+    width: 100%;
+    height: 12px;
+    margin-top: -4px;
+    opacity: 0.4;
+  }
+
+  .meta-info {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #000;
+  }
+
+  h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
+  }
+
+  .text-block p {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 1.5rem;
+  }
+
+  .reality-box {
+    background-color: rgba(100, 132, 194, 0.05);
+    padding: 3rem;
+    border-radius: 32px;
+    margin-bottom: 4rem;
+    border: 1px solid rgba(100, 132, 194, 0.1);
+  }
+
+  .reality-box h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .check-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .check-list li {
+    position: relative;
+    padding-left: 2.5rem;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #000;
+  }
+
+  .check-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: -2px;
+    width: 24px;
+    height: 24px;
+    background: #6484c2;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+  }
+
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .result-item {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .result-item:hover {
+    background: #fff;
+    border-color: #6484c2;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  }
+
+  .result-item .val {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #6484c2;
+    margin-bottom: 0.5rem;
+  }
+
+  .result-item p {
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .page-footer-nav {
+    margin-top: 6rem;
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .results-grid { grid-template-columns: 1fr; }
+    .reality-box { padding: 2rem; }
+    .side-visual-right { display: none; }
+  }
+</style>

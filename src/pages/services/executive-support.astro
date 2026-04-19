@@ -16,7 +16,7 @@ import LogoCloud from "../../components/LogoCloud.astro";
 >
   <ServiceHero
     title="Executive Support"
-    description="Premium administrative assistance for leaders. We manage the details of your diary, inbox, and travel so you can reclaim your time and focus on high-impact strategy."
+    description="Never miss a beat. We act as a trusted extension of your leadership team, managing the administrative details that move your business forward."
     bgColor="#F0FFF4"
   >
     <LogoCloud
@@ -29,29 +29,29 @@ import LogoCloud from "../../components/LogoCloud.astro";
 
   <WhatYouGet
     title="Executive Support"
-    description="Your dedicated executive assistant becomes your gatekeeper and coordinator, integrating perfectly into your personal and professional life."
+    description="We take the friction out of executive administration. Our high-performing support teams scale with you, getting to know your business inside and out."
   />
 
   <ServiceFeatures
     cards={[
       {
         icon: "report",
-        title: "Communications",
+        title: "Logistics",
         features: [
-          "Inbox management",
-          "Drafting responses",
-          "Meeting coordination",
+          "Diary & calendar management",
+          "Travel coordination",
+          "Expense management",
         ],
       },
       {
         icon: "report",
-        title: "Logistics",
-        features: ["Travel planning", "Expense management", "Event coordination"],
+        title: "Administration",
+        features: ["General admin support", "Inbox management", "Document preparation"],
       },
       {
         icon: "support",
         title: "Coordination",
-        features: ["Diary management", "Appointment setting", "Personal lifestyle support"],
+        features: ["Meeting scheduling", "Gatekeeping", "Appointment setting"],
       },
     ]}
   />
@@ -73,5 +73,8 @@ import LogoCloud from "../../components/LogoCloud.astro";
 
   <OperationalSteps />
 
-  <ServicePricing />
+  <ServicePricing 
+    price="$18"
+    unit="per hour"
+  />
 </Layout>

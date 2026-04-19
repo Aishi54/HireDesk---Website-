@@ -3,10 +3,10 @@ const navItems = [
 	{ label: "Home", href: "/" },
 	{
 		label: "Our Services",
-		dropdown: ["Financial Support", "Back Office Support", "Executive Support", "Specialist Support"],
+		dropdown: ["Financial Support", "Back Office Support", "Executive Support", "Additional Support"],
 	},
 	{ label: "About Us", href: "/about" },
-	{ label: "Resources", dropdown: ["FAQs"] },
+	{ label: "Case Studies", dropdown: ["Founder Bottleneck", "Scaling Systems", "Hiring Alternative"] },
 ];
 ---
 
@@ -64,11 +64,11 @@ const navItems = [
 							{item.dropdown && (
 								<div class="dropdown-menu">
 									{item.dropdown.map((subItem) => {
-										const base =
-											item.label.toLowerCase() ===
-											"our services"
-												? "services"
-												: "resources";
+										const baseLabel = item.label.toLowerCase();
+										const base = 
+											baseLabel === "our services" ? "services" : 
+											baseLabel === "case studies" ? "case-studies" : 
+											"resources";
 										return (
 											<a
 												href={`/${base}/${subItem.toLowerCase().replace(/ /g, "-")}`}
@@ -155,11 +155,11 @@ const navItems = [
 						{item.dropdown && (
 							<div class="mobile-dropdown">
 								{item.dropdown.map((subItem) => {
-									const base =
-										item.label.toLowerCase() ===
-										"our services"
-											? "services"
-											: "resources";
+									const baseLabel = item.label.toLowerCase();
+									const base = 
+										baseLabel === "our services" ? "services" : 
+										baseLabel === "case studies" ? "case-studies" : 
+										"resources";
 									const path = `/${base}/${subItem.toLowerCase().replace(/ /g, "-")}`;
 									return (
 										<a

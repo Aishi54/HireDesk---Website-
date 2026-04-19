@@ -2,8 +2,9 @@
 const services = [
   {
     title: 'Financial Support',
-    description: 'Bookkeeping, VAT preparation, accounts payable and receivable, and bank reconciliation to keep your finances in order.',
+    description: 'Handling the numbers that slow you down, so you can focus on scaling your business.',
     color: '#54c6d7', // Viking Blue
+    link: '/services/financial-support',
     icon: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="20" y="30" width="60" height="40" rx="4" stroke="#54c6d7" stroke-width="6"/>
       <path d="M40 50 L 60 50 M 50 40 L 50 60" stroke="#54c6d7" stroke-width="6" stroke-linecap="round"/>
@@ -11,8 +12,9 @@ const services = [
   },
   {
     title: 'Back Office Support',
-    description: 'CRM management, data entry, document processing, and workflow administration to ensure smooth operations.',
+    description: 'Streamlining your operations to take the friction out of daily administration.',
     color: '#6484c2', // Danube
+    link: '/services/back-office-support',
     icon: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M20 20 H 80 V 80 H 20 Z" stroke="#6484c2" stroke-width="6"/>
       <path d="M35 40 H 65 M 35 55 H 65 M 35 70 H 50" stroke="#6484c2" stroke-width="6" stroke-linecap="round"/>
@@ -20,17 +22,19 @@ const services = [
   },
   {
     title: 'Executive Support',
-    description: 'Diary management, travel planning, inbox management, and administrative support for busy leaders.',
+    description: 'A trusted extension of your leadership, managing the details for businesses who move fast.',
     color: '#5b62ad', // Scampi
+    link: '/services/executive-support',
     icon: `<svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="60" cy="35" r="15" stroke="#5b62ad" stroke-width="6"/>
       <path d="M30 80 Q 60 50 90 80" stroke="#5b62ad" stroke-width="6" stroke-linecap="round"/>
     </svg>`
   },
   {
-    title: 'Specialist Support',
-    description: 'Marketing assistance, customer support, and IT support tailored to your unique business needs.',
+    title: 'Additional Support',
+    description: 'High-performing support that scales with you, giving you more space for growth.',
     color: '#54c6d7', // Viking
+    link: '/services/additional-support',
     icon: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="50" cy="50" r="30" stroke="#54c6d7" stroke-width="6" stroke-dasharray="10 5"/>
       <path d="M50 35 V 65 M 35 50 H 65" stroke="#54c6d7" stroke-width="6" stroke-linecap="round"/>
@@ -87,7 +91,7 @@ const services = [
                 <h3 class="card-title">{service.title}</h3>
                 <p class="card-text">{service.description}</p>
                 <div class="card-footer">
-                  <a href="#" class="btn-learn">Learn More</a>
+                  <a href={service.link} class="btn-learn">Learn More</a>
                 </div>
               </div>
             </div>

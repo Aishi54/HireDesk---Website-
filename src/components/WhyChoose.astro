@@ -66,13 +66,24 @@ const benefits: Benefit[] = [
         <div class="label-box">
           <span class="label-text">Difference</span>
           <svg class="label-scribble" viewBox="0 0 100 20">
-            <path d="M5 15 Q50 20 95 15" stroke="black" stroke-width="2" fill="none" class="scribble-path"></path>
+            <path
+              d="M5 15 Q50 20 95 15"
+              stroke="black"
+              stroke-width="2"
+              fill="none"
+              class="scribble-path"></path>
           </svg>
         </div>
         <h2 class="section-title">
           Why Choose <span class="accent-line">Hiredesk</span>
           <svg class="title-scribble" viewBox="0 0 300 20">
-            <path d="M10 12 Q150 18 290 12" stroke="black" stroke-opacity="0.1" stroke-width="3" fill="none" class="scribble-path"></path>
+            <path
+              d="M10 12 Q150 18 290 12"
+              stroke="black"
+              stroke-opacity="0.1"
+              stroke-width="3"
+              fill="none"
+              class="scribble-path"></path>
           </svg>
         </h2>
       </div>
@@ -86,8 +97,8 @@ const benefits: Benefit[] = [
     <div class="benefits-grid">
       {
         benefits.map((benefit, i) => (
-          <div 
-            class="benefit-card reveal" 
+          <div
+            class="benefit-card reveal"
             style={`--delay: ${i * 0.1}s; --glow-color: ${benefit.badgeColor};`}
           >
             <div
@@ -325,14 +336,14 @@ const benefits: Benefit[] = [
   .benefit-card:hover {
     transform: translateY(-12px) scale(1.01);
     border-color: rgba(0, 0, 0, 1);
-    box-shadow: 
+    box-shadow:
       0 20px 40px rgba(0, 0, 0, 0.06),
-      0 0 20px var(--glow-color, rgba(0,0,0,0.02));
+      0 0 20px var(--glow-color, rgba(0, 0, 0, 0.02));
   }
 
   .benefit-card:hover .icon-badge {
     transform: scale(1.1) rotate(5deg);
-    border-color: rgba(0,0,0,0.2);
+    border-color: rgba(0, 0, 0, 0.2);
   }
 
   .benefit-card:hover .benefit-title {
